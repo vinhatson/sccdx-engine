@@ -1,0 +1,9 @@
+# Build context hygiene. The image needs the engine, not its history.
+.git
+.gitattributes
+.gitignore
+.nojekyll
+__pycache__
+**/__pycache__
+*.pyc
+deploy

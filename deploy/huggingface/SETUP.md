@@ -10,10 +10,17 @@ The Space runs the same `serve.py` with no code change — it already reads
 [`Dockerfile`](../../Dockerfile) at the repository root sets them to
 `0.0.0.0:7860`, which is what Spaces expect.
 
-> **Not yet tested in a live Space.** The Dockerfile was written against the
-> Spaces Docker SDK contract (non-root uid 1000, `app_port`) but has not been
-> built, because this machine has no Docker. Expect to iterate once on the
-> first build, and check the build log if the Space does not come up.
+> **Built and run, 2026-10-12.** `docker build` succeeds on Docker 29.8.2
+> from a clean context and the `RUN python validate2.py` build check passes
+> inside the image, so the engine is verified against its own 119 checks
+> before the image is ever shipped. The container comes up on `0.0.0.0:7860`
+> in about two seconds, picks `scipy` as the ODE backend — the stiff solver
+> Part IV 8.1 asks for — and serves `/`, `/api/v2/health`, `schema`,
+> `events`, `presets`, `audit` and both POST endpoints at HTTP 200.
+> `POST /api/v2/diagnose` was run in `vi` and in `en` and compared field by
+> field: 649 numeric fields, zero mismatches, and the Vietnamese renders
+> correctly inside the container. What remains untested is the Spaces
+> platform wrapper itself, not the image.
 
 ---
 
