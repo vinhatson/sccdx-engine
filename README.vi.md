@@ -243,6 +243,7 @@ python validate_v1.py     # báo cáo bất nhất của v1
 - **[docs/engine-notes-en.md](docs/engine-notes-en.md)** — ghi chú engine gốc: bốn kết quả cấu trúc, phân tích sâu
 - **[sea2027/README.md](sea2027/README.md)** — đợt chạy ASEAN, từng file
 - **[docs/validation-log.txt](docs/validation-log.txt)** — một đợt kiểm tra đã ghi lại
+- **[docs/v1-notes-vi.md](docs/v1-notes-vi.md)** — ghi chú thiết kế của engine v1.00 đứng riêng (các lệnh trong đó là lịch sử, xem cảnh báo đầu file)
 
 ### Các bài báo gốc
 

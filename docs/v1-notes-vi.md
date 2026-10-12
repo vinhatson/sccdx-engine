@@ -1,3 +1,16 @@
+> **Ghi chú lịch sử — đọc kèm cảnh báo này.**
+>
+> Đây là ghi chú thiết kế của engine `sccd` **v1.00**, viết khi nó còn là một
+> engine đứng riêng. Các lệnh trong đó (`python3 validate.py`,
+> `python3 scenarios.py`) trỏ tới những file **không còn tồn tại** trong repo
+> này: v2.00 đã gộp chúng thành `validate2.py`, `validate_v1.py` và `serve.py`.
+>
+> Giữ lại file này vì phần lập luận về **vì sao** từng quyết định được đưa ra
+> vẫn đúng và vẫn đáng đọc. Để biết cách **dùng** engine, xem
+> [GUIDE.vi.md](GUIDE.vi.md).
+
+---
+
 # SCCD Engine v1.00
 
 Module hóa khung **Sovereign-Civilian Capacity Dynamics** (Vi Nhật Sơn, Parts I–V)

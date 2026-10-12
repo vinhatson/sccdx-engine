@@ -242,6 +242,7 @@ Verified on Python 3.12, Windows / macOS / Linux, with and without `scipy`.
 - **[docs/engine-notes-en.md](docs/engine-notes-en.md)** — the original engine notes: the four structural results, in depth
 - **[sea2027/README.md](sea2027/README.md)** — the ASEAN run, file by file
 - **[docs/validation-log.txt](docs/validation-log.txt)** — a captured validation run
+- **[docs/v1-notes-vi.md](docs/v1-notes-vi.md)** — design notes from the standalone v1.00 engine (Vietnamese; its commands are historical, see the banner)
 
 ### The source papers
 
