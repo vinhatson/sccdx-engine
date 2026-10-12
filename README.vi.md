@@ -89,6 +89,17 @@ python sea2027/run.py              # mười một quốc gia ASEAN (tiếng Vi�
 
 Python 3.9+. `numpy` là thứ duy nhất bắt buộc.
 
+### Hoặc không cần cài gì cả
+
+```bash
+docker run --rm -p 7860:7860 vinhatson/sccdx-engine   # → http://127.0.0.1:7860
+```
+
+Image đã xuất bản có sẵn `scipy`, nên nó chạy đúng bộ giải stiff thích nghi mà
+Phần IV §8.1 yêu cầu, không phải bản dự phòng DP45. Nó cũng chạy `validate2.py`
+ngay trong bước build, nghĩa là một image tồn tại đồng nghĩa với engine bên trong
+đã qua đủ 119 kiểm tra của chính nó.
+
 ### API HTTP
 
 `serve.py` là server chính và không cần gì ngoài `numpy`.

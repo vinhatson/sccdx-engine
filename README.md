@@ -89,6 +89,17 @@ python sea2027/run.py --lang en    # the eleven ASEAN polities
 
 Python 3.9+. `numpy` is the only hard requirement.
 
+### Or without installing anything
+
+```bash
+docker run --rm -p 7860:7860 vinhatson/sccdx-engine   # → http://127.0.0.1:7860
+```
+
+The published image carries `scipy`, so it runs the adaptive stiff solver
+Part IV §8.1 asks for rather than the DP45 fallback. It also runs
+`validate2.py` as a build step, which means an image that exists is an image
+whose engine passed its own 119 checks.
+
 ### The HTTP API
 
 `serve.py` is the primary server and needs nothing but `numpy`.
