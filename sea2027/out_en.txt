@@ -1,0 +1,1124 @@
+==============================================================================
+SCCD-X v2.00  -  11 ASEAN polities  -  run 2026-10-09  -  lang=en
+==============================================================================
+
+--- 1. EFFECTIVE INPUTS (post boundary compression, pre forcing) ----
+code      s1     s2     s3     s4     s5     c1     c2     c3     c4     c5    wt  state_type
+ID     0.431  0.603  0.297  0.662  0.662  0.644  0.702  0.511  0.408  0.522  1.000  liberal_democracy
+SG     0.466  0.926  0.851  0.980  0.407  0.431  0.437  0.472  0.932  0.340  0.418  developmental_autocracy
+TH     0.530  0.594  0.386  0.739  0.441  0.604  0.643  0.601  0.398  0.692  0.399  liberal_democracy
+VN     0.522  0.718  0.460  0.659  0.701  0.522  0.400  0.221  0.417  0.190  0.356  developmental_autocracy
+PH     0.544  0.536  0.304  0.536  0.571  0.772  0.695  0.523  0.546  0.679  0.337  liberal_democracy
+MY     0.517  0.762  0.576  0.813  0.519  0.636  0.718  0.614  0.489  0.714  0.327  liberal_democracy
+MM     0.343  0.161  0.139  0.089  0.480  0.606  0.197  0.102  0.284  0.820  0.057  failed_state
+KH     0.432  0.630  0.384  0.424  0.721  0.632  0.235  0.246  0.677  0.222  0.035  extractive_patrimonial
+LA     0.324  0.722  0.368  0.345  0.599  0.624  0.165  0.186  0.253  0.190  0.013  developmental_autocracy
+BN     0.811  0.895  0.751  0.774  0.700  0.460  0.107  0.428  0.635  0.122  0.010  extractive_patrimonial
+TL     0.612  0.721  0.586  0.434  0.714  0.286  0.733  0.677  0.342  0.452  0.001  liberal_democracy
+
+code      d1     d2     d3     d4     d5  |     a1     a2     a3     a4     a5     a6
+ID     0.680  0.447  0.449  0.224  0.534  |  0.148  0.135  0.137  0.660  0.080  0.159
+SG     0.037  0.797  0.977  0.448  0.039  |  0.643  0.842  0.802  0.400  0.140  0.783
+TH     0.478  0.617  0.645  0.592  0.298  |  0.210  0.199  0.201  0.560  0.100  0.339
+VN     0.549  0.495  0.544  0.344  0.394  |  0.279  0.273  0.274  0.700  0.050  0.506
+PH     0.609  0.568  0.329  0.174  0.472  |  0.207  0.255  0.246  0.380  0.070  0.226
+MY     0.366  0.426  0.434  0.247  0.235  |  0.250  0.268  0.265  0.440  0.080  0.344
+MM     0.683  0.292  0.223  0.172  0.495  |  0.050  0.033  0.037  0.780  0.030  0.071
+KH     0.631  0.421  0.167  0.129  0.506  |  0.085  0.061  0.066  0.420  0.030  0.110
+LA     0.843  0.305  0.188  0.069  0.797  |  0.055  0.038  0.041  0.580  0.030  0.072
+BN     0.236  0.336  0.737  0.242  0.288  |  0.240  0.235  0.236  0.250  0.040  0.447
+TL     0.914  0.209  0.154  0.166  0.793  |  0.035  0.023  0.026  0.200  0.030  0.021
+
+provenance over 176 derived fields: ANALYST=11, MEASURED=72, MIXED=93
+
+--- 2. THE 2027 VERDICT  (state at t=1.23y, from horizon_verdict) ---
+
+[ID] Indonesia   (liberal_democracy)
+   2026 : Equilibrium / Strained ; MIXED ; Psi=0.367 th25=0.999 Dn=+0.008
+   2027 : Equilibrium / Strained ; MIXED ; Psi=0.355 th25=0.999 Dn=-0.001
+   gate : OPEN (nearest gate ~68 yr)
+   loops: L2+L6   CAI core=1.000 ext=2.000   R_B=0   decoupled=False
+   dDn/dt=-0.0075/yr  measured dD/dt=-0.0075
+   MC   : Dn median=+0.013 ci80=[-0.081,+0.130] Psi median=0.356
+          regime mix: Equilibrium 65%, Negotiated 25%, Crisis 10%
+   OAT  : 3 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, a4_flight_thresh, L3_revpol_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          a4_flight_thresh high: active_loops ['L2', 'L6'] -> ['L2']
+          L3_revpol_thresh low: active_loops ['L2', 'L6'] -> ['L2', 'L3', 'L6']
+
+[SG] Singapore   (developmental_autocracy)
+   2026 : Hegemonic / Coherent ; VOLUNTARY ADJUSTMENT ; Psi=1.339 th25=0.994 Dn=+0.392
+   2027 : Hegemonic / Coherent ; VOLUNTARY ADJUSTMENT ; Psi=1.269 th25=0.993 Dn=+0.371
+   gate : OPEN (nearest gate ~32 yr)
+   loops: L5   CAI core=0.000 ext=1.000   R_B=0   decoupled=True
+   dDn/dt=-0.0166/yr  measured dD/dt=-0.0166
+   MC   : Dn median=+0.382 ci80=[+0.313,+0.441] Psi median=1.305
+          regime mix: Hegemonic 93%, Negotiated 7%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d4_inversion_thresh, a1_mass_thresh
+          d4_inversion_thresh low: active_loops ['L5'] -> ['L5', 'L7']
+          a1_mass_thresh high: active_loops ['L5'] -> []
+
+[TH] Thailand   (liberal_democracy)
+   2026 : Negotiated / Strained ; VOLUNTARY ADJUSTMENT ; Psi=0.324 th25=0.996 Dn=+0.105
+   2027 : Negotiated / Strained ; VOLUNTARY ADJUSTMENT ; Psi=0.320 th25=0.995 Dn=+0.096
+   gate : OPEN (nearest gate ~27 yr)
+   loops: L3+L6+L7   CAI core=1.000 ext=3.000   R_B=0   decoupled=False
+   dDn/dt=-0.0072/yr  measured dD/dt=-0.0072
+   MC   : Dn median=+0.109 ci80=[-0.008,+0.220] Psi median=0.299
+          regime mix: Negotiated 60%, Equilibrium 39%, Crisis 0%
+   OAT  : 5 of 42 parameters flip the verdict at +/-20% -> d3_voluntary_thresh, d4_inversion_thresh, d2_trap_thresh, a4_flight_thresh, L3_revpol_thresh
+          d3_voluntary_thresh high: adjustment_mode VOLUNTARY -> MIXED
+          d3_voluntary_thresh high: active_loops ['L3', 'L6', 'L7'] -> ['L3', 'L6']
+          d4_inversion_thresh high: active_loops ['L3', 'L6', 'L7'] -> ['L3', 'L6']
+          d2_trap_thresh high: active_loops ['L3', 'L6', 'L7'] -> ['L3', 'L6']
+
+[VN] Viet Nam   (developmental_autocracy)
+   2026 : Negotiated / Coherent ; MIXED ; Psi=1.042 th25=1.000 Dn=+0.170
+   2027 : Negotiated / Coherent ; MIXED ; Psi=1.009 th25=1.000 Dn=+0.158
+   gate : OPEN (nearest gate ~89 yr)
+   loops: L6   CAI core=0.000 ext=1.000   R_B=0   decoupled=False
+   dDn/dt=-0.0104/yr  measured dD/dt=-0.0104
+   MC   : Dn median=+0.173 ci80=[+0.048,+0.281] Psi median=1.024
+          regime mix: Negotiated 77%, Equilibrium 18%, Hegemonic 5%
+   OAT  : 1 of 42 parameters flip the verdict at +/-20% -> d3_voluntary_thresh
+          d3_voluntary_thresh low: adjustment_mode MIXED -> VOLUNTARY
+
+[PH] Philippines   (liberal_democracy)
+   2026 : Equilibrium / Strained ; MIXED ; Psi=0.254 th25=0.996 Dn=+0.017
+   2027 : Equilibrium / Incoherent ; MIXED ; Psi=0.234 th25=0.996 Dn=+0.008
+   gate : OPEN (nearest gate ~57 yr)
+   loops: L1+L2+L3   CAI core=3.000 ext=3.000   R_B=0   decoupled=False
+   dDn/dt=-0.0076/yr  measured dD/dt=-0.0076
+   MC   : Dn median=+0.022 ci80=[-0.072,+0.133] Psi median=0.228
+          regime mix: Equilibrium 68%, Negotiated 26%, Crisis 6%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, L4_c4_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          d5_violent_thresh low: active_loops ['L1', 'L2', 'L3'] -> ['L1', 'L2', 'L3', 'L8']
+          L4_c4_thresh low: active_loops ['L1', 'L2', 'L3'] -> ['L1', 'L2', 'L3', 'L4']
+
+[MY] Malaysia   (liberal_democracy)
+   2026 : Negotiated / Coherent ; MIXED ; Psi=0.455 th25=0.999 Dn=+0.249
+   2027 : Negotiated / Coherent ; MIXED ; Psi=0.451 th25=0.999 Dn=+0.236
+   gate : OPEN (nearest gate ~83 yr)
+   loops: L3   CAI core=1.000 ext=1.000   R_B=0   decoupled=False
+   dDn/dt=-0.0108/yr  measured dD/dt=-0.0108
+   MC   : Dn median=+0.249 ci80=[+0.138,+0.335] Psi median=0.437
+          regime mix: Negotiated 72%, Hegemonic 24%, Equilibrium 3%
+   OAT  : none of 42 parameters flips the verdict at +/-20%
+
+[MM] Myanmar   (failed_state)
+   2026 : Equilibrium / Incoherent ; MIXED ; Psi=0.010 th25=0.144 Dn=-0.040
+   2027 : Equilibrium / Incoherent ; MIXED ; Psi=0.008 th25=0.127 Dn=-0.043
+   gate : S2 GATE CLOSED (violent/youth terminus)
+   loops: L2+L3+L6   CAI core=2.000 ext=3.000   R_B=0   decoupled=False
+   dDn/dt=-0.0022/yr  measured dD/dt=-0.0022
+   MC   : Dn median=-0.035 ci80=[-0.057,+0.003] Psi median=0.008
+          regime mix: Equilibrium 100%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, L3_revpol_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          d5_violent_thresh low: active_loops ['L2', 'L3', 'L6'] -> ['L2', 'L3', 'L6', 'L8']
+          L3_revpol_thresh high: active_loops ['L2', 'L3', 'L6'] -> ['L2', 'L6']
+
+[KH] Cambodia   (extractive_patrimonial)
+   2026 : Equilibrium / Coherent ; MIXED ; Psi=0.816 th25=0.999 Dn=+0.060
+   2027 : Equilibrium / Coherent ; MIXED ; Psi=0.749 th25=0.999 Dn=+0.046
+   gate : OPEN (nearest gate ~61 yr)
+   loops: none   CAI core=0.000 ext=0.000   R_B=0   decoupled=False
+   dDn/dt=-0.0111/yr  measured dD/dt=-0.0111
+   MC   : Dn median=+0.061 ci80=[-0.038,+0.160] Psi median=0.812
+          regime mix: Equilibrium 57%, Negotiated 41%, Crisis 2%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, L4_c1_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          L4_c1_thresh low: active_loops [] -> ['L4']
+
+[LA] Lao PDR   (developmental_autocracy)
+   2026 : Equilibrium / Coherent ; VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.808 th25=1.000 Dn=+0.031
+   2027 : Equilibrium / Coherent ; VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.721 th25=1.000 Dn=+0.023
+   gate : OPEN (nearest gate ~38 yr)
+   loops: L6   CAI core=0.000 ext=1.000   R_B=0   decoupled=False
+   dDn/dt=-0.0063/yr  measured dD/dt=-0.0063
+   MC   : Dn median=+0.033 ci80=[-0.040,+0.118] Psi median=0.806
+          regime mix: Equilibrium 73%, Negotiated 26%, Crisis 1%
+   OAT  : 1 of 42 parameters flip the verdict at +/-20% -> a4_flight_thresh
+          a4_flight_thresh high: active_loops ['L6'] -> []
+
+[BN] Brunei Darussalam   (extractive_patrimonial)
+   2026 : Hegemonic / Coherent ; SLACK ; Psi=1.681 th25=1.000 Dn=+0.450
+   2027 : Hegemonic / Coherent ; SLACK ; Psi=1.651 th25=1.000 Dn=+0.419
+   gate : OPEN (nearest gate ~126 yr)
+   loops: none   CAI core=0.000 ext=0.000   R_B=0   decoupled=False
+   dDn/dt=-0.0253/yr  measured dD/dt=-0.0253
+   MC   : Dn median=+0.451 ci80=[+0.359,+0.521] Psi median=1.655
+          regime mix: Hegemonic 97%, Negotiated 3%
+   OAT  : none of 42 parameters flips the verdict at +/-20%
+
+[TL] Timor-Leste   (liberal_democracy)
+   2026 : Negotiated / Coherent ; VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.885 th25=1.000 Dn=+0.224
+   2027 : Negotiated / Coherent ; VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.826 th25=1.000 Dn=+0.214
+   gate : OPEN (nearest gate ~34 yr)
+   loops: none   CAI core=0.000 ext=0.000   R_B=0   decoupled=False
+   dDn/dt=-0.0089/yr  measured dD/dt=-0.0089
+   MC   : Dn median=+0.217 ci80=[+0.114,+0.299] Psi median=0.858
+          regime mix: Negotiated 86%, Hegemonic 10%, Equilibrium 4%
+   OAT  : none of 42 parameters flips the verdict at +/-20%
+
+--- 3. GATE ORDER AND LOOP SET OVER 15 YEARS ------------------------
+code  2041 band / tier                 gate            loops
+ID    Crisis / Incoherent              OPEN_NEAREST    L2+L6
+SG    Negotiated / Coherent            OPEN_NEAREST    L5
+TH    Equilibrium / Incoherent         OPEN_NEAREST    L3+L6+L7
+VN    Equilibrium / Coherent           OPEN_NEAREST    L6
+PH    Crisis / Incoherent              OPEN_NEAREST    L1+L2+L3
+MY    Negotiated / Coherent            OPEN_NEAREST    L3
+MM    Equilibrium / Incoherent         S2_GATE_CLOSED  L2+L3+L6
+KH    Crisis / Incoherent              OPEN_NEAREST    none
+LA    Crisis / Incoherent              OPEN_NEAREST    L6
+BN    Hegemonic / Coherent             OPEN_NEAREST    none
+TL    Equilibrium / Incoherent         OPEN_NEAREST    none
+
+ID: s3->0.30 in 0.0y, c5->0.50 in 0.0y, s2->0.25 in 68.4y, s5->0.15 in 127.2y
+SG: c5->0.50 in 12.7y, s3->0.30 in 20.9y, s5->0.15 in 31.9y, s2->0.25 in 69378.0y
+TH: c5->0.50 in 0.0y, s3->0.30 in 10.1y, s5->0.15 in 27.3y, s2->0.25 in 207.6y
+VN: s3->0.30 in 18.1y, c5->0.50 in 65.6y, s5->0.15 in 88.9y, s2->0.25 in 167.6y
+PH: c5->0.50 in 0.0y, s3->0.30 in 0.4y, s2->0.25 in 57.1y, s5->0.15 in 134.9y
+MY: c5->0.50 in 0.0y, s3->0.30 in 37.2y, s5->0.15 in 82.8y, s2->0.25 in 368.6y
+MM: s2->0.25 in 0.0y, s3->0.30 in 0.0y, c5->0.50 in 0.0y, s5->0.15 in 106.2y
+KH: s3->0.30 in 8.4y, c5->0.50 in 39.6y, s2->0.25 in 61.3y, s5->0.15 in 247.0y
+LA: s3->0.30 in 5.8y, c5->0.50 in 22.0y, s2->0.25 in 38.0y, s5->0.15 in 362.9y
+BN: s3->0.30 in 79.6y, s5->0.15 in 126.4y, c5->0.50 in 172.9y, s2->0.25 in 1011.2y
+TL: c5->0.50 in 3.2y, s3->0.30 in 22.0y, s2->0.25 in 34.4y, s5->0.15 in 188.7y
+
+--- 4. THE SYSTEM THEY FORM ----------------------------------------
+
+Psi_G is a SNAPSHOT aggregate over the eleven current capacity vectors, not
+a trajectory, so the 2027 and 2041 passes return the same number by construction;
+the horizon only moves each polity's own path. One row is printed, plus the
+stress branch, which does move it because events shift the levels Psi_G reads.
+
+[baseline] Psi_G=0.1035 (crit 0.400)  Sync_Risk=0.774 (prior 0.580 + haven 0.194)
+      CAI_weighted=0.965  adjustment divergence=0.410  AI divergence=0.329  haven pressure=0.556
+      hegemon=ID  challenger=SG  R_B,G=0
+      MIXED: KH ID MY MM PH VN
+      SLACK: BN
+      VIOLENT_EXPOSED: LA TL
+      VOLUNTARY: SG TH
+      verdict: Psi_G = 0.104 vs crit 0.40 (BELOW threshold); Sync_Risk = 0.774 (prior 0.58 + haven term 0.194); CAI_weighted = 0.97 vs crit 1.50; R_B,G = 0; adjustment divergence 0.41 (2 voluntary vs 2 violent-exposed)
+      ! Psi_G is UNCALIBRATED in sccd v1.00 itself - Part IV 6.1 states its required properties but not its closed form, so the engine uses a weighted geometric mean times (1 - Sync_Risk), which satisfies them. Everything the v2 layer adds on top is ANALYST.
+      ! R_B,G identifies a STRUCTURAL CONDITION, in sccd Part IV 6.3's own words an 'overloaded-fault analogy', and is NOT a prediction of any event or date.
+      ! Inputs for BN, KH, ID, LA, MY, MM, PH, SG, TH, TL, VN are flagged low-confidence analyst priors, not measurements. sccd Part III 5.3 refuses a calibrated Delta when more than 30% of a series is imputed; hand-entered point values are weaker than imputation, since there is no series to gate.
+      talent gradient: LA->TH 0.1322, TL->TH 0.1315, ID->TH 0.0886, KH->TH 0.0839, MM->TH 0.0821
+
+[stress  ] Psi_G=0.0770 (crit 0.400)  Sync_Risk=0.774 (prior 0.580 + haven 0.194)
+      CAI_weighted=1.100  adjustment divergence=0.410  AI divergence=0.329  haven pressure=0.556
+      hegemon=ID  challenger=SG  R_B,G=0
+      MIXED: KH ID MY MM PH VN
+      VIOLENT_EXPOSED: LA TL
+      VOLUNTARY: BN SG TH
+      verdict: Psi_G = 0.077 vs crit 0.40 (BELOW threshold); Sync_Risk = 0.774 (prior 0.58 + haven term 0.194); CAI_weighted = 1.10 vs crit 1.50; R_B,G = 0; adjustment divergence 0.41 (3 voluntary vs 2 violent-exposed)
+      ! Psi_G is UNCALIBRATED in sccd v1.00 itself - Part IV 6.1 states its required properties but not its closed form, so the engine uses a weighted geometric mean times (1 - Sync_Risk), which satisfies them. Everything the v2 layer adds on top is ANALYST.
+      ! R_B,G identifies a STRUCTURAL CONDITION, in sccd Part IV 6.3's own words an 'overloaded-fault analogy', and is NOT a prediction of any event or date.
+      ! Inputs for BN, KH, ID, LA, MY, MM, PH, SG, TH, TL, VN are flagged low-confidence analyst priors, not measurements. sccd Part III 5.3 refuses a calibrated Delta when more than 30% of a series is imputed; hand-entered point values are weaker than imputation, since there is no series to gate.
+      talent gradient: LA->TH 0.1322, TL->TH 0.1315, ID->TH 0.0886, KH->TH 0.0839, MM->TH 0.0821
+
+--- 5. THE TWO MOST ARGUABLE ANALYST INPUTS -------------------------
+
+SG state_type: developmental_autocracy (used) vs liberal_democracy
+   used: 2027 Hegemonic / Coherent ; Psi=1.269 Dn=+0.371 R_B=0 loops=L5
+   alt : 2027 Hegemonic / Coherent ; Psi=1.269 Dn=+0.329 R_B=0 loops=L5
+
+VN a4 haven: 0.70 from the premium (used) vs 0.40 from the volume
+   used: 2027 Negotiated / Coherent ; Psi=1.009 Dn=+0.158 R_B=0 loops=L6
+   alt : 2027 Negotiated / Coherent ; Psi=1.010 Dn=+0.162 R_B=0 loops=none
+
+--- 6. THE 2027 STRESS BRANCH (prospective events only) -------------
+Baseline -> stress, both read at t=1.23y. Events are level shifts for
+things that have NOT happened; see STRESS in this file for what was
+deliberately left out of each row to avoid charging it twice.
+
+[ID] verdict holds   events: tariff_war@0.50, sovereign_debt_stress@0.50, currency_crisis@0.40
+   base  : Equilibrium / Strained / MIXED ; Psi=0.355 Dn=-0.001 th25=0.999 R_B=0 loops=L2+L6
+   stress: Equilibrium / Strained / MIXED ; Psi=0.336 Dn=-0.015 th25=0.999 R_B=0 loops=L2+L6
+   why   : a breach of the 3% deficit cap crystallising the Moody's negative outlook, plus rupiah pressure. Neither is in the baseline; the protests already are.
+   shift  tariff_war@0.50: s1-0.025 c4-0.030 c5+0.025 d1+0.030
+   shift  sovereign_debt_stress@0.50: s1-0.050 s5-0.070 base_revenue_demand+0.010
+   shift  currency_crisis@0.40: s1-0.048 s5-0.048 c4+0.032 a4+0.064
+
+[SG] verdict holds   events: tariff_war@0.60, whitecollar_displacement@0.60, agency_crisis_visible@0.40
+   base  : Hegemonic / Coherent / VOLUNTARY ADJUSTMENT ; Psi=1.269 Dn=+0.371 th25=0.993 R_B=0 loops=L5
+   stress: Hegemonic / Coherent / VOLUNTARY ADJUSTMENT ; Psi=1.077 Dn=+0.329 th25=0.993 R_B=0 loops=L5
+   why   : the displacement OUTCOME of an adoption rate already measured at 64.3%. a1 is what people use; whitecollar_displacement is what it does to them, and that has not happened yet.
+   shift  tariff_war@0.60: s1-0.030 c4-0.036 c5+0.030 d1+0.036
+   shift  whitecollar_displacement@0.60: a2+0.120 a3+0.084 c1+0.060 s1-0.048 d2+0.048 s3-0.042
+   shift  agency_crisis_visible@0.40: a3+0.080 c5+0.032 s3-0.040 a5+0.032
+
+[TH] VERDICT MOVES   events: tariff_war@0.55, constitutional_crisis@0.50, pension_reform_failure@0.40
+   base  : Negotiated / Strained / VOLUNTARY ADJUSTMENT ; Psi=0.320 Dn=+0.096 th25=0.995 R_B=0 loops=L3+L6+L7
+   stress: Equilibrium / Incoherent / VOLUNTARY ADJUSTMENT ; Psi=0.157 Dn=+0.012 th25=0.989 R_B=0 loops=L2+L3+L6+L7
+   why   : the Article 151 motion resolving against the government, plus the pension commitment failing rather than being reformed. pension=0.70 is the size of the commitment, not its failure.
+   shift  tariff_war@0.55: s1-0.028 c4-0.033 c5+0.028 d1+0.033
+   shift  constitutional_crisis@0.50: s3-0.080 s4-0.045 c5+0.050 c1+0.035
+   shift  pension_reform_failure@0.40: d4+0.048 s5-0.048 s3-0.032 base_revenue_demand+0.006
+
+[VN] verdict holds   events: tariff_war@0.70, whitecollar_displacement@0.40, inflation_surge@0.40
+   base  : Negotiated / Coherent / MIXED ; Psi=1.009 Dn=+0.158 th25=1.000 R_B=0 loops=L6
+   stress: Negotiated / Coherent / MIXED ; Psi=0.811 Dn=+0.103 th25=1.000 R_B=0 loops=L6
+   why   : the highest tariff exposure in the set (trade at 190% of GDP), plus the IMF's own inflation path (3.3% in 2025 to 4.9% in 2026 and 4.6% in 2027) and white-collar displacement on a1=0.279.
+   shift  tariff_war@0.70: s1-0.035 c4-0.042 c5+0.035 d1+0.042
+   shift  whitecollar_displacement@0.40: a2+0.080 a3+0.056 c1+0.040 s1-0.032 d2+0.032 s3-0.028
+   shift  inflation_surge@0.40: s1+0.016 s3-0.036 a4+0.048 d2+0.032
+
+[PH] verdict holds   events: tariff_war@0.40, constitutional_crisis@0.45, whitecollar_displacement@0.50
+   base  : Equilibrium / Incoherent / MIXED ; Psi=0.234 Dn=+0.008 th25=0.996 R_B=0 loops=L1+L2+L3
+   stress: Equilibrium / Incoherent / MIXED ; Psi=0.115 Dn=-0.057 th25=0.996 R_B=0 loops=L1+L2+L3
+   why   : the impeachment verdict and its aftermath, plus BPO displacement on the region's highest white-collar exposure.
+   shift  tariff_war@0.40: s1-0.020 c4-0.024 c5+0.020 d1+0.024
+   shift  constitutional_crisis@0.45: s3-0.072 s4-0.041 c5+0.045 c1+0.032
+   shift  whitecollar_displacement@0.50: a2+0.100 a3+0.070 c1+0.050 s1-0.040 d2+0.040 s3-0.035
+
+[MY] VERDICT MOVES   events: tariff_war@0.55, polarising_election@0.60
+   base  : Negotiated / Coherent / MIXED ; Psi=0.451 Dn=+0.236 th25=0.999 R_B=0 loops=L3
+   stress: Negotiated / Strained / MIXED ; Psi=0.284 Dn=+0.225 th25=0.999 R_B=0 loops=L3
+   why   : GE16, due by February 2028 and possibly early. The state-level losses are baseline; the national election is not.
+   shift  tariff_war@0.55: s1-0.028 c4-0.033 c5+0.028 d1+0.033
+   shift  polarising_election@0.60: c5+0.072 revenue_polarisation+0.120 s3-0.030
+
+[MM] verdict holds   events: relief_system_failure@0.60, currency_crisis@0.60
+   base  : Equilibrium / Incoherent / MIXED ; Psi=0.008 Dn=-0.043 th25=0.127 R_B=0 loops=L2+L3+L6
+   stress: Equilibrium / Incoherent / MIXED ; Psi=0.007 Dn=-0.058 th25=0.125 R_B=0 loops=L2+L3+L6
+   why   : relief-system failure and a further currency break. The war itself is baseline - adding civil_conflict would charge the coup twice.
+   shift  relief_system_failure@0.60: s3-0.108 s4-0.072 d1+0.048
+   shift  currency_crisis@0.60: s1-0.072 s5-0.072 c4+0.048 a4+0.096
+
+[KH] verdict holds   events: tariff_war@0.60, interstate_war_onset@0.45
+   base  : Equilibrium / Coherent / MIXED ; Psi=0.749 Dn=+0.046 th25=0.999 R_B=0 loops=none
+   stress: Equilibrium / Coherent / MIXED ; Psi=0.842 Dn=+0.085 th25=1.000 R_B=0 loops=none
+   why   : border re-escalation as an ONSET rather than as standing pressure. Note the catalogue has interstate_war_onset RAISING s2 and s3 - the rally effect sccd Part V documents for 1941-45 - so this event is not uniformly adverse, and that is the engine's reading, not mine.
+   shift  tariff_war@0.60: s1-0.030 c4-0.036 c5+0.030 d1+0.036
+   shift  interstate_war_onset@0.45: s2+0.045 s3+0.054 s5-0.081 s1+0.027 security_pressure+0.158 g_shock+0.036
+
+[LA] verdict holds   events: sovereign_debt_stress@0.50, inflation_surge@0.50
+   base  : Equilibrium / Coherent / VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.721 Dn=+0.023 th25=1.000 R_B=0 loops=L6
+   stress: Equilibrium / Coherent / VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.608 Dn=-0.008 th25=0.999 R_B=0 loops=L6
+   why   : a default or restructuring event on liabilities the IMF already calls unsustainable, plus inflation back through 10%.
+   shift  sovereign_debt_stress@0.50: s1-0.050 s5-0.070 base_revenue_demand+0.010
+   shift  inflation_surge@0.50: s1+0.020 s3-0.045 a4+0.060 d2+0.040
+
+[BN] VERDICT MOVES   events: energy_shock@0.60
+   base  : Hegemonic / Coherent / SLACK ; Psi=1.651 Dn=+0.419 th25=1.000 R_B=0 loops=none
+   stress: Hegemonic / Coherent / VOLUNTARY ADJUSTMENT ; Psi=1.613 Dn=+0.391 th25=1.000 R_B=0 loops=none
+   why   : an oil-price downside on a single-commodity revenue base with 2025 growth already at 0.7%.
+   shift  energy_shock@0.60: s1-0.042 d1+0.054 s3-0.030
+
+[TL] verdict holds   events: relief_system_failure@0.40, youth_unemployment_surge@0.50
+   base  : Negotiated / Coherent / VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.826 Dn=+0.214 th25=1.000 R_B=0 loops=none
+   stress: Negotiated / Coherent / VIOLENT-ADJUSTMENT EXPOSED ; Psi=0.621 Dn=+0.146 th25=1.000 R_B=0 loops=none
+   why   : Petroleum Fund drawdown outrunning the ESI, plus the youth cohort arriving with NEET already at 29.1%.
+   shift  relief_system_failure@0.40: s3-0.072 s4-0.048 d1+0.032
+   shift  youth_unemployment_surge@0.50: d5+0.090 d1+0.040 c5+0.035 s3-0.035
+
+--- 7. NARRATIVE PER POLITY ----------------------------------------
+
+### ID Indonesia
+QUALITATIVE READING - Indonesia 2026   [spec v1.00 / v2.00, state type: liberal_democracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Equilibrium (Stable or Gridlock)
+      Δ_norm = +0.0079   S = 0.4267   C = 0.4068
+   Coherence tier: Strained
+      Ψ = 0.3671  vs Ψ_crit = 0.40 [PAPER]  → BELOW
+   Adjustment mode: MIXED
+      both channels carrying pressure, or neither dominant.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~68 yr)
+     S5  = 0.662 ↓ -0.0040/yr  → 0.15 [PAPER] : ~127 yr
+     S2  = 0.603 ↓ -0.0052/yr  → 0.25 [PAPER] : ~68 yr
+     S3  = 0.297 ↓ -0.0080/yr  → 0.30 [PAPER] : crossed
+     C5  = 0.522 ↑ +0.0048/yr  → 0.50 [FREE] : crossed
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 1.0 (manageable): 1-2 loops active; manageable non-linear effects
+   CAI_ext (L1-L8, bands rescaled 4/8) = 2.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 ACTIVE   Legitimacy Death Spiral
+          S3=0.30 vs crit 0.30; lambda=0.769 vs crit 0.80 -> EXPLOSIVE
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 ACTIVE   Legibility-Extraction Spiral
+          squeeze=+0.1895 vs 0.10 [True] (demanded 0.2007 vs feasible 0.0112); a4=0.66 vs 0.55 [True], physical share 0.88
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+   [L6] This is where the two new papers coincide. Degrow describes the late-Ming state raising rates on centuries-stale land registers - "like continuing to milk a cow that was already emaciated to the bone". Displacement describes the base relocating into physical metal no register can see. Same spiral, six centuries apart, one reached from demography and one from psychology. The asymmetry is what makes it hard to exit: raising a4 is a private decision taken once, lowering it requires the holder to trust the register again.
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0075, measured over first 3 yr of trajectory)
+   low coherence: True
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Equilibrium / Strained
+   At horizon   : Equilibrium / Strained
+     s3 crosses below 0.30 [PAPER] at t~0.0: sccd L2 legitimacy death spiral becomes explosive
+     psi crosses below 0.40 [PAPER] at t~0.0: sccd Psi_crit - R_B coherence condition trips
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   3 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d5_violent_thresh [ANALYST] = 0.5500
+        adjustment mode: MIXED → VIOLENT-ADJUSTMENT EXPOSED [−20%]
+     a4_flight_thresh [ANALYST] = 0.5500
+        active loops: L2+L6 → L2 [+20%]
+     L3_revpol_thresh [FREE] = 0.5000
+        active loops: L2+L6 → L2+L3+L6 [−20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### SG Singapore
+QUALITATIVE READING - Singapore 2026   [spec v1.00 / v2.00, state type: developmental_autocracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Hegemonic (Metastable)
+      Δ_norm = +0.3919   S = 1.3974   C = 0.4177
+   Coherence tier: Coherent
+      Ψ = 1.3385  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: VOLUNTARY ADJUSTMENT
+      d3 high, d5 low - pressure discharges through fertility refusal and then dependency inversion. Degrow's modern path. Terminal gate: S5 falling through theta25's 0.15 floor.
+
+2. G/S3 DECOUPLING ACTIVE - why three axes are needed
+   G/S3 DECOUPLING ACTIVE: output generation is being raised (x1.313) while legitimacy drifts down (-0.0155/yr). No windfall in sccd Parts I-V behaves this way - Part V's 1941-45 case raises both together. Expect Delta_norm and Psi to move in OPPOSITE directions, which the five Delta bands of Part II Table 2 cannot express on their own; read the coherence tier alongside the band.
+
+3. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~32 yr)
+     S5  = 0.407 ↓ -0.0081/yr  → 0.15 [PAPER] : ~32 yr
+     S2  = 0.926 ↓ -0.0000/yr  → 0.25 [PAPER] : ~69378 yr
+     S3  = 0.851 ↓ -0.0264/yr  → 0.30 [PAPER] : ~21 yr
+     C5  = 0.340 ↑ +0.0126/yr  → 0.50 [FREE] : ~13 yr
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+4. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 0.0 (damped): linear dynamics dominate
+   CAI_ext (L1-L8, bands rescaled 4/8) = 1.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 ACTIVE   Agency-Legitimacy Spiral
+          a1=0.64 vs 0.60 [True]; a3=0.80 vs 0.55 [True]; dS3/dt=-0.0264/yr [True] -> lambda now 2.040
+     L6 damped   Legibility-Extraction Spiral
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+5. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0166, measured over first 3 yr of trajectory)
+   low coherence: False
+
+6. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Hegemonic / Coherent
+   At horizon   : Hegemonic / Coherent
+
+7. WHAT WOULD MAKE THIS READING WRONG
+   2 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d4_inversion_thresh [ANALYST] = 0.5500
+        active loops: L5 → L5+L7 [−20%]
+     a1_mass_thresh [ANALYST] = 0.6000
+        active loops: L5 → — [+20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### TH Thailand
+QUALITATIVE READING - Thailand 2026   [spec v1.00 / v2.00, state type: liberal_democracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Negotiated (Conditionally stable)
+      Δ_norm = +0.1052   S = 0.6139   C = 0.3508
+   Coherence tier: Strained
+      Ψ = 0.3244  vs Ψ_crit = 0.40 [PAPER]  → BELOW
+   Adjustment mode: VOLUNTARY ADJUSTMENT
+      d3 high, d5 low - pressure discharges through fertility refusal and then dependency inversion. Degrow's modern path. Terminal gate: S5 falling through theta25's 0.15 floor.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~27 yr)
+     S5  = 0.441 ↓ -0.0107/yr  → 0.15 [PAPER] : ~27 yr
+     S2  = 0.594 ↓ -0.0017/yr  → 0.25 [PAPER] : ~208 yr
+     S3  = 0.386 ↓ -0.0085/yr  → 0.30 [PAPER] : ~10 yr
+     C5  = 0.692 ↑ +0.0012/yr  → 0.50 [FREE] : crossed
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 1.0 (manageable): 1-2 loops active; manageable non-linear effects
+   CAI_ext (L1-L8, bands rescaled 4/8) = 3.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 ACTIVE   Polarisation Trap
+          C5=0.69 vs 0.50; Rev_Pol=0.56 vs 0.50 (LEVEL PROXY - the formal test needs eps_p, eta and the natural depolarisation rate)
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 ACTIVE   Legibility-Extraction Spiral
+          squeeze=+0.2841 vs 0.10 [True] (demanded 0.3045 vs feasible 0.0204); a4=0.56 vs 0.55 [True], physical share 0.85
+     L7 ACTIVE   Demographic Inversion Trap
+          d4=0.59 vs 0.55 [True]; d2=0.62 vs 0.60 [True]; d3=0.65 vs 0.60 [True]
+     L8 damped   Youth-Surplus Discharge
+   CROSS-COUPLED & ACTIVE: L6, L7 -> compound acceleration operative
+
+   [L6] This is where the two new papers coincide. Degrow describes the late-Ming state raising rates on centuries-stale land registers - "like continuing to milk a cow that was already emaciated to the bone". Displacement describes the base relocating into physical metal no register can see. Same spiral, six centuries apart, one reached from demography and one from psychology. The asymmetry is what makes it hard to exit: raising a4 is a private decision taken once, lowering it requires the holder to trust the register again.
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0072, measured over first 3 yr of trajectory)
+   low coherence: True
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Negotiated / Strained
+   At horizon   : Negotiated / Strained
+     psi crosses below 0.40 [PAPER] at t~0.0: sccd Psi_crit - R_B coherence condition trips
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   5 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d3_voluntary_thresh [ANALYST] = 0.6000
+        adjustment mode: VOLUNTARY ADJUSTMENT → MIXED [+20%]
+        active loops: L3+L6+L7 → L3+L6 [+20%]
+     d4_inversion_thresh [ANALYST] = 0.5500
+        active loops: L3+L6+L7 → L3+L6 [+20%]
+     d2_trap_thresh [ANALYST] = 0.6000
+        active loops: L3+L6+L7 → L3+L6 [+20%]
+     a4_flight_thresh [ANALYST] = 0.5500
+        active loops: L3+L6+L7 → L3+L7 [+20%]
+     L3_revpol_thresh [FREE] = 0.5000
+        active loops: L3+L6+L7 → L6+L7 [+20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### VN Viet Nam
+QUALITATIVE READING - Viet Nam 2026   [spec v1.00 / v2.00, state type: developmental_autocracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Negotiated (Conditionally stable)
+      Δ_norm = +0.1704   S = 0.7966   C = 0.3707
+   Coherence tier: Coherent
+      Ψ = 1.0422  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: MIXED
+      both channels carrying pressure, or neither dominant.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~89 yr)
+     S5  = 0.701 ↓ -0.0062/yr  → 0.15 [PAPER] : ~89 yr
+     S2  = 0.718 ↓ -0.0028/yr  → 0.25 [PAPER] : ~168 yr
+     S3  = 0.460 ↓ -0.0088/yr  → 0.30 [PAPER] : ~18 yr
+     C5  = 0.190 ↑ +0.0047/yr  → 0.50 [FREE] : ~66 yr
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 0.0 (damped): linear dynamics dominate
+   CAI_ext (L1-L8, bands rescaled 4/8) = 1.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 ACTIVE   Legibility-Extraction Spiral
+          squeeze=+0.2235 vs 0.10 [True] (demanded 0.2450 vs feasible 0.0215); a4=0.70 vs 0.55 [True], physical share 0.90
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+   [L6] This is where the two new papers coincide. Degrow describes the late-Ming state raising rates on centuries-stale land registers - "like continuing to milk a cow that was already emaciated to the bone". Displacement describes the base relocating into physical metal no register can see. Same spiral, six centuries apart, one reached from demography and one from psychology. The asymmetry is what makes it hard to exit: raising a4 is a private decision taken once, lowering it requires the holder to trust the register again.
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0104, measured over first 3 yr of trajectory)
+   low coherence: False
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Negotiated / Coherent
+   At horizon   : Negotiated / Coherent
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   1 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d3_voluntary_thresh [ANALYST] = 0.6000
+        adjustment mode: MIXED → VOLUNTARY ADJUSTMENT [−20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### PH Philippines
+QUALITATIVE READING - Philippines 2026   [spec v1.00 / v2.00, state type: liberal_democracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Equilibrium (Stable or Gridlock)
+      Δ_norm = +0.0171   S = 0.4272   C = 0.3843
+   Coherence tier: Strained
+      Ψ = 0.2536  vs Ψ_crit = 0.40 [PAPER]  → BELOW
+   Adjustment mode: MIXED
+      both channels carrying pressure, or neither dominant.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~57 yr)
+     S5  = 0.571 ↓ -0.0031/yr  → 0.15 [PAPER] : ~135 yr
+     S2  = 0.536 ↓ -0.0050/yr  → 0.25 [PAPER] : ~57 yr
+     S3  = 0.304 ↓ -0.0102/yr  → 0.30 [PAPER] : ~0 yr
+     C5  = 0.679 ↑ +0.0057/yr  → 0.50 [FREE] : crossed
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 3.0 (compounding): 3 loops active; crisis likely within 5-10 years
+   CAI_ext (L1-L8, bands rescaled 4/8) = 3.0 (manageable)
+     L1 ACTIVE   Regulatory Capture Accelerator
+          C1=0.80 vs crit 0.70 (OVER); S2=0.54 vs crit 0.60 (BELOW)
+     L2 ACTIVE   Legitimacy Death Spiral
+          S3=0.30 vs crit 0.30; lambda=0.793 vs crit 0.80 -> EXPLOSIVE
+     L3 ACTIVE   Polarisation Trap
+          C5=0.68 vs 0.50; Rev_Pol=0.72 vs 0.50 (LEVEL PROXY - the formal test needs eps_p, eta and the natural depolarisation rate)
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 damped   Legibility-Extraction Spiral
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+   CROSS-COUPLED & ACTIVE: L1, L2, L3 -> compound acceleration operative
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0076, measured over first 3 yr of trajectory)
+   low coherence: True
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Equilibrium / Strained
+   At horizon   : Equilibrium / Incoherent
+   -> The band and/or coherence tier SHIFTS within the horizon. Read this as ordering and direction, not as timing.
+     s3 crosses below 0.30 [PAPER] at t~0.3: sccd L2 legitimacy death spiral becomes explosive
+     c1 crosses above 0.70 [PAPER] at t~0.0: sccd capture threshold C1,crit - Gamma turns on
+     psi crosses below 0.40 [PAPER] at t~0.0: sccd Psi_crit - R_B coherence condition trips
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   2 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d5_violent_thresh [ANALYST] = 0.5500
+        adjustment mode: MIXED → VIOLENT-ADJUSTMENT EXPOSED [−20%]
+        active loops: L1+L2+L3 → L1+L2+L3+L8 [−20%]
+     L4_c4_thresh [FREE] = 0.7000
+        active loops: L1+L2+L3 → L1+L2+L3+L4 [−20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### MY Malaysia
+QUALITATIVE READING - Malaysia 2026   [spec v1.00 / v2.00, state type: liberal_democracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Negotiated (Conditionally stable)
+      Δ_norm = +0.2488   S = 0.9891   C = 0.3670
+   Coherence tier: Coherent
+      Ψ = 0.4547  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: MIXED
+      both channels carrying pressure, or neither dominant.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~83 yr)
+     S5  = 0.519 ↓ -0.0045/yr  → 0.15 [PAPER] : ~83 yr
+     S2  = 0.762 ↓ -0.0014/yr  → 0.25 [PAPER] : ~369 yr
+     S3  = 0.576 ↓ -0.0074/yr  → 0.30 [PAPER] : ~37 yr
+     C5  = 0.714 ↑ +0.0017/yr  → 0.50 [FREE] : crossed
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 1.0 (manageable): 1-2 loops active; manageable non-linear effects
+   CAI_ext (L1-L8, bands rescaled 4/8) = 1.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 ACTIVE   Polarisation Trap
+          C5=0.71 vs 0.50; Rev_Pol=0.72 vs 0.50 (LEVEL PROXY - the formal test needs eps_p, eta and the natural depolarisation rate)
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 damped   Legibility-Extraction Spiral
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0108, measured over first 3 yr of trajectory)
+   low coherence: False
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Negotiated / Coherent
+   At horizon   : Negotiated / Coherent
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   No parameter flipped the verdict under +/-20% OAT. That is robustness against PARAMETER error only - it says nothing about whether the model structure or the input levels are right.
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### MM Myanmar
+QUALITATIVE READING - Myanmar 2026   [spec v1.00 / v2.00, state type: failed_state]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Equilibrium (Stable or Gridlock)
+      Δ_norm = -0.0400   S = 0.0893   C = 0.1893
+   Coherence tier: Incoherent
+      Ψ = 0.0100  vs Ψ_crit = 0.40 [PAPER]  → BELOW
+   Adjustment mode: MIXED
+      both channels carrying pressure, or neither dominant.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: S2 GATE CLOSED (violent/youth terminus)
+     S5  = 0.480 ↓ -0.0031/yr  → 0.15 [PAPER] : ~106 yr
+     S2  = 0.161 ↓ -0.0061/yr  → 0.25 [PAPER] : crossed
+     S3  = 0.139 ↓ -0.0091/yr  → 0.30 [PAPER] : crossed
+     C5  = 0.820 ↑ +0.0068/yr  → 0.50 [FREE] : crossed
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 2.0 (manageable): 1-2 loops active; manageable non-linear effects
+   CAI_ext (L1-L8, bands rescaled 4/8) = 3.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 ACTIVE   Legitimacy Death Spiral
+          S3=0.14 vs crit 0.30; lambda=0.386 vs crit 0.80 -> EXPLOSIVE
+     L3 ACTIVE   Polarisation Trap
+          C5=0.82 vs 0.50; Rev_Pol=0.50 vs 0.50 (LEVEL PROXY - the formal test needs eps_p, eta and the natural depolarisation rate)
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 ACTIVE   Legibility-Extraction Spiral
+          squeeze=+0.2753 vs 0.10 [True] (demanded 0.2807 vs feasible 0.0054); a4=0.78 vs 0.55 [True], physical share 0.92
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+   CROSS-COUPLED & ACTIVE: L2, L3 -> compound acceleration operative
+
+   [L6] This is where the two new papers coincide. Degrow describes the late-Ming state raising rates on centuries-stale land registers - "like continuing to milk a cow that was already emaciated to the bone". Displacement describes the base relocating into physical metal no register can see. Same spiral, six centuries apart, one reached from demography and one from psychology. The asymmetry is what makes it hard to exit: raising a4 is a private decision taken once, lowering it requires the holder to trust the register again.
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0022, measured over first 3 yr of trajectory)
+   low coherence: True
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Equilibrium / Incoherent
+   At horizon   : Equilibrium / Incoherent
+     s2 crosses below 0.25 [PAPER] at t~0.0: theta25 gate closes - Degrow violent/youth terminus
+     s3 crosses below 0.30 [PAPER] at t~0.0: sccd L2 legitimacy death spiral becomes explosive
+     psi crosses below 0.40 [PAPER] at t~0.0: sccd Psi_crit - R_B coherence condition trips
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   2 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d5_violent_thresh [ANALYST] = 0.5500
+        adjustment mode: MIXED → VIOLENT-ADJUSTMENT EXPOSED [−20%]
+        active loops: L2+L3+L6 → L2+L3+L6+L8 [−20%]
+     L3_revpol_thresh [FREE] = 0.5000
+        active loops: L2+L3+L6 → L2+L6 [+20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### KH Cambodia
+QUALITATIVE READING - Cambodia 2026   [spec v1.00 / v2.00, state type: extractive_patrimonial]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Equilibrium (Stable or Gridlock)
+      Δ_norm = +0.0598   S = 0.5137   C = 0.3642
+   Coherence tier: Coherent
+      Ψ = 0.8157  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: MIXED
+      both channels carrying pressure, or neither dominant.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~61 yr)
+     S5  = 0.721 ↓ -0.0023/yr  → 0.15 [PAPER] : ~247 yr
+     S2  = 0.630 ↓ -0.0062/yr  → 0.25 [PAPER] : ~61 yr
+     S3  = 0.384 ↓ -0.0099/yr  → 0.30 [PAPER] : ~8 yr
+     C5  = 0.222 ↑ +0.0070/yr  → 0.50 [FREE] : ~40 yr
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 0.0 (damped): linear dynamics dominate
+   CAI_ext (L1-L8, bands rescaled 4/8) = 0.0 (damped)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 damped   Legibility-Extraction Spiral
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0111, measured over first 3 yr of trajectory)
+   low coherence: False
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Equilibrium / Coherent
+   At horizon   : Equilibrium / Coherent
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   2 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     d5_violent_thresh [ANALYST] = 0.5500
+        adjustment mode: MIXED → VIOLENT-ADJUSTMENT EXPOSED [−20%]
+     L4_c1_thresh [FREE] = 0.7000
+        active loops: — → L4 [−20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### LA Lao PDR
+QUALITATIVE READING - Lao PDR 2026   [spec v1.00 / v2.00, state type: developmental_autocracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Equilibrium (Stable or Gridlock)
+      Δ_norm = +0.0309   S = 0.3874   C = 0.3102
+   Coherence tier: Coherent
+      Ψ = 0.8082  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: VIOLENT-ADJUSTMENT EXPOSED
+      d3 low, d5 high - no voluntary instruments and a large cohort with no stake. Degrow's ancient path. Terminal gate: S2 falling through theta25's 0.25 floor.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~38 yr)
+     S5  = 0.599 ↓ -0.0012/yr  → 0.15 [PAPER] : ~363 yr
+     S2  = 0.722 ↓ -0.0124/yr  → 0.25 [PAPER] : ~38 yr
+     S3  = 0.368 ↓ -0.0117/yr  → 0.30 [PAPER] : ~6 yr
+     C5  = 0.190 ↑ +0.0141/yr  → 0.50 [FREE] : ~22 yr
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 0.0 (damped): linear dynamics dominate
+   CAI_ext (L1-L8, bands rescaled 4/8) = 1.0 (manageable)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 ACTIVE   Legibility-Extraction Spiral
+          squeeze=+0.1548 vs 0.10 [True] (demanded 0.1702 vs feasible 0.0154); a4=0.58 vs 0.55 [True], physical share 0.90
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+   [L6] This is where the two new papers coincide. Degrow describes the late-Ming state raising rates on centuries-stale land registers - "like continuing to milk a cow that was already emaciated to the bone". Displacement describes the base relocating into physical metal no register can see. Same spiral, six centuries apart, one reached from demography and one from psychology. The asymmetry is what makes it hard to exit: raising a4 is a private decision taken once, lowering it requires the holder to trust the register again.
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0063, measured over first 3 yr of trajectory)
+   low coherence: False
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Equilibrium / Coherent
+   At horizon   : Equilibrium / Coherent
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   1 parameter(s) FLIP the qualitative verdict under the +/-20% OAT protocol sccd eq (SA) mandates. A verdict that moves under a 20% nudge to an ANALYST coefficient is a HYPOTHESIS, not a finding.
+     a4_flight_thresh [ANALYST] = 0.5500
+        active loops: L6 → — [+20%]
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### BN Brunei Darussalam
+QUALITATIVE READING - Brunei Darussalam 2026   [spec v1.00 / v2.00, state type: extractive_patrimonial]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Hegemonic (Metastable)
+      Δ_norm = +0.4502   S = 1.4750   C = 0.3495
+   Coherence tier: Coherent
+      Ψ = 1.6808  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: SLACK
+      load low enough that no adjustment is being demanded.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~126 yr)
+     S5  = 0.700 ↓ -0.0044/yr  → 0.15 [PAPER] : ~126 yr
+     S2  = 0.895 ↓ -0.0006/yr  → 0.25 [PAPER] : ~1011 yr
+     S3  = 0.751 ↓ -0.0057/yr  → 0.30 [PAPER] : ~80 yr
+     C5  = 0.122 ↑ +0.0022/yr  → 0.50 [FREE] : ~173 yr
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 0.0 (damped): linear dynamics dominate
+   CAI_ext (L1-L8, bands rescaled 4/8) = 0.0 (damped)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 damped   Legibility-Extraction Spiral
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0253, measured over first 3 yr of trajectory)
+   low coherence: False
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Hegemonic / Coherent
+   At horizon   : Hegemonic / Coherent
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   No parameter flipped the verdict under +/-20% OAT. That is robustness against PARAMETER error only - it says nothing about whether the model structure or the input levels are right.
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### TL Timor-Leste
+QUALITATIVE READING - Timor-Leste 2026   [spec v1.00 / v2.00, state type: liberal_democracy]
+==========================================================================
+1. THE STRUCTURAL TRIPLE
+   Delta band: Negotiated (Conditionally stable)
+      Δ_norm = +0.2244   S = 0.9291   C = 0.3680
+   Coherence tier: Coherent
+      Ψ = 0.8853  vs Ψ_crit = 0.40 [PAPER]  → above
+   Adjustment mode: VIOLENT-ADJUSTMENT EXPOSED
+      d3 low, d5 high - no voluntary instruments and a large cohort with no stake. Degrow's ancient path. Terminal gate: S2 falling through theta25's 0.25 floor.
+
+2. THE theta25 GATES - the Wheel of Fate in sccd's own variables
+   Verdict: OPEN (nearest gate ~34 yr)
+     S5  = 0.714 ↓ -0.0030/yr  → 0.15 [PAPER] : ~189 yr
+     S2  = 0.721 ↓ -0.0137/yr  → 0.25 [PAPER] : ~34 yr
+     S3  = 0.586 ↓ -0.0130/yr  → 0.30 [PAPER] : ~22 yr
+     C5  = 0.452 ↑ +0.0150/yr  → 0.50 [FREE] : ~3 yr
+   Degrow's two adjustment channels terminate in the same object - theta25 - through different gates: voluntary/aging closes S5 (crit 0.15, PAPER), violent/youth closes S2 (crit 0.25, PAPER). Both drive Psi -> 0 via Psi = lambda*theta25*(1-C5), tripping R_B's third condition.
+
+3. FEEDBACK LOOPS
+   CAI_core (L1-L4, PAPER bands) = 0.0 (damped): linear dynamics dominate
+   CAI_ext (L1-L8, bands rescaled 4/8) = 0.0 (damped)
+     L1 damped   Regulatory Capture Accelerator
+     L2 damped   Legitimacy Death Spiral
+     L3 damped   Polarisation Trap
+     L4 damped   Exit-Fragmentation Coupling
+     L5 damped   Agency-Legitimacy Spiral
+     L6 damped   Legibility-Extraction Spiral
+     L7 damped   Demographic Inversion Trap
+     L8 damped   Youth-Surplus Discharge
+
+4. BIFURCATION RISK  R_B = 0  (sccd eq 23 - ALL THREE conditions required)
+   Delta_norm below crit: False
+   momentum: False   (dΔ/dt = -0.0089, measured over first 3 yr of trajectory)
+   low coherence: False
+
+5. TRAJECTORY TO +1 YEARS (STRUCTURAL SCENARIO, not a forecast)
+   Now      : Negotiated / Coherent
+   At horizon   : Negotiated / Coherent
+
+6. WHAT WOULD MAKE THIS READING WRONG
+   No parameter flipped the verdict under +/-20% OAT. That is robustness against PARAMETER error only - it says nothing about whether the model structure or the input levels are right.
+
+EPISTEMIC LIMIT
+   36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level.
+   sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST.
+
+### WORLD
+QUALITATIVE WORLD READING - 2026
+==========================================================================
+
+1. GLOBAL COHERENCE
+   Ψ_G = 0.1035  vs Ψ_G,crit = 0.40 [PAPER] → BELOW
+   Sync_Risk = 0.774  = prior 0.58 + haven 0.194
+   Sync_Risk in sccd v1.00 is four bare historical numbers (0.12/0.24/0.41/0.58 for 1980/95/2010/2024) with no generating mechanism. Displacement supplies one: haven flight is simultaneous across states because its cause is a shared psychological shift rather than any country's local conditions. The engine reports the two parts separately so the prior is never silently overwritten.
+   CAI_weighted = 0.97  vs 1.50 [PAPER, 1929-39]
+
+2. THE TWO-CHANNEL WORLD  [Wheel of Fate at system scale]
+   VOLUNTARY ADJUSTMENT (2): SG, TH
+   VIOLENT-ADJUSTMENT EXPOSED (2): LA, TL
+   MIXED (6): KH, ID, MY, MM, PH, VN
+   SLACK (1): BN
+   Adjustment divergence (weighted d3 dispersion) = 0.410
+   This dispersion is not an incidental statistic: it IS the migration pressure differential. Polities in voluntary mode have inverting pyramids and need workers; violent-exposed polities have surplus youth with no stake. A world where every polity shares the same d3 has no such gradient however high the pressure.
+   Strongest talent gradients (push d5 x pull d4):
+     LA → TH   d₅=0.80 × d₄=0.59 = 0.1322
+     TL → TH   d₅=0.79 × d₄=0.59 = 0.1315
+     ID → TH   d₅=0.53 × d₄=0.59 = 0.0886
+     KH → TH   d₅=0.51 × d₄=0.59 = 0.0839
+     MM → TH   d₅=0.49 × d₄=0.59 = 0.0821
+
+3. HEGEMONIC TRANSITION
+   Pair: ID (hegemon by systemic weight) vs SG
+   δ_hc = -0.3839  vs 0.25 [PAPER]
+   T_trap = 0   (gap below crit: True; converging: False; sustained (T_min): True)
+   CAVEAT: difference of the two measured dDelta/dt; sustained_years is assumed 10 and NOT measured - the engine has one year of input, not a series, so sccd's T_min condition cannot be genuinely tested
+
+4. GLOBAL BIFURCATION CONDITION  R_B,G = 0
+   low global coherence: True
+   Thucydides trap: False
+   compound acceleration: False
+   R_B,G=1 identifies a structural condition (overloaded-fault analogy), NOT a prediction of a specific event or timeline (sccd Part IV 6.3).
+
+5. PER-POLITY TABLE
+   Code  Delta band / Coherence tier    Adjustment mode              Active loops        Ψ
+   ---------------------------------------------------------------------------------------
+   BN    Hegemonic / Coherent           SLACK                        —               1.681
+   KH    Equilibrium / Coherent         MIXED                        —               0.816
+   ID    Equilibrium / Strained         MIXED                        2+6             0.367
+   LA    Equilibrium / Coherent         VIOLENT-ADJUSTMENT EXPOSED   6               0.808
+   MY    Negotiated / Coherent          MIXED                        3               0.455
+   MM    Equilibrium / Incoherent       MIXED                        2+3+6           0.010
+   PH    Equilibrium / Strained         MIXED                        1+2+3           0.254
+   SG    Hegemonic / Coherent           VOLUNTARY ADJUSTMENT         5               1.339
+   TH    Negotiated / Strained          VOLUNTARY ADJUSTMENT         3+6+7           0.324
+   TL    Negotiated / Coherent          VIOLENT-ADJUSTMENT EXPOSED   —               0.885
+   VN    Negotiated / Coherent          MIXED                        6               1.042
+
+CALIBRATION WARNINGS
+   ! Psi_G is UNCALIBRATED in sccd v1.00 itself - Part IV 6.1 states its required properties but not its closed form, so the engine uses a weighted geometric mean times (1 - Sync_Risk), which satisfies them. Everything the v2 layer adds on top is ANALYST.
+   ! R_B,G identifies a STRUCTURAL CONDITION, in sccd Part IV 6.3's own words an 'overloaded-fault analogy', and is NOT a prediction of any event or date.
+   ! Inputs for BN, KH, ID, LA, MY, MM, PH, SG, TH, TL, VN are flagged low-confidence analyst priors, not measurements. sccd Part III 5.3 refuses a calibrated Delta when more than 30% of a series is imputed; hand-entered point values are weaker than imputation, since there is no series to gate.
+
+--- 8. CALIBRATION ---------------------------------------------------
+{
+ "spec_version": "1.00",
+ "spec2_version": "2.00",
+ "audit": {
+  "v1": {
+   "total": 83,
+   "counts": {
+    "PAPER": 36,
+    "FREE": 46,
+    "DERIVED": 1
+   },
+   "spec_version": "1.00"
+  },
+  "v2": {
+   "total": 46,
+   "counts": {
+    "ANALYST": 45,
+    "DERIVED2": 1
+   },
+   "spec2_version": "2.00"
+  },
+  "headline": "36 of 83 v1 parameters carry a value from the source paper; 46 do not. ALL 46 v2 parameters are ANALYST or DERIVED2 - the two new papers are qualitative and state no coefficients. Read every v2-dependent output as ORDINAL: a ranking and a threshold-crossing map, not a level."
+ },
+ "open_problems_v2": [
+  {
+   "id": "OP2-1",
+   "severity": "HIGH",
+   "where": "Block D router",
+   "issue": "The split P_violent/P_voluntary = (1-d3)/d3 is the engine's reading of Degrow, not Degrow's own statement. The paper argues the two channels are 'different manifestations of the same fundamental law' and that modern tools let people 'cut the spiral at its first stage', which is what a router means. But the paper never says total pressure is CONSERVED across the split. If voluntary adjustment is cheaper in total pressure terms - plausible, since it prevents rather than clears overload - then d3 should reduce P_demo itself and not merely redirect it. The engine exposes this as `router_mode` ('conserve' | 'discount') so the assumption is a dial rather than a hidden choice. Default: conserve.",
+   "severity_text": "HIGH"
+  },
+  {
+   "id": "OP2-2",
+   "severity": "HIGH",
+   "where": "Block A, sigma_agency",
+   "issue": "The agency->legitimacy link is the load-bearing claim of the whole v2 layer and it is the least evidenced. Displacement documents agency erosion and documents capital reallocation; it does NOT document a fall in regime legitimacy, and offers no survey series on consent. The engine asserts the link on the ground that consent of the governed is constituted by exactly the self-authorship the paper says is dissolving. That is an argument, not a measurement. If it is wrong, L5 is spurious and S3 drift in rich democracies is overstated.",
+   "severity_text": "HIGH"
+  },
+  {
+   "id": "OP2-3",
+   "severity": "medium",
+   "where": "Block A, a4 double-counting",
+   "issue": "Haven flight hits S1 twice: directly through zeta_base_s1, and indirectly because the raised C4 cuts tau_eff through sccd's own (1-C4) factor. These are genuinely different channels (base size vs extraction rate) but the engine cannot prove they do not overlap. Set `haven_single_channel=True` to disable the direct term and route everything through C4.",
+   "severity_text": "medium"
+  },
+  {
+   "id": "OP2-4",
+   "severity": "medium",
+   "where": "Block A vs sccd C4 measurement",
+   "issue": "Effective C4 now mixes two things sccd Part III measured as one: jurisdiction exit (Chinn-Ito, OECD DIOC) and asset-form exit (haven share). They have different reversal dynamics - capital controls can close jurisdiction exit in a weekend; metal in a domestic vault is not recalled by decree. Treating them as one scalar understates how hard asset-form exit is to reverse.",
+   "severity_text": "medium"
+  },
+  {
+   "id": "OP2-5",
+   "severity": "medium",
+   "where": "Blocks D and A overlap",
+   "issue": "d2 (expectation trap) and a2 (self-efficacy erosion) are measured separately but both depress household formation and both drain S3. In a 2026 OECD panel they would be strongly collinear. The engine does not de-collinearise them, so a caller who sets both high is double-counting one pressure. Cronbach gating (sccd.normalize) would catch it given series; with hand-entered point values nothing does.",
+   "severity_text": "medium"
+  },
+  {
+   "id": "OP2-6",
+   "severity": "low",
+   "where": "L8 vs sccd L2",
+   "issue": "L8's activation overlaps sccd's L2 (legitimacy death spiral) whenever surplus youth has already driven S3 below 0.30. CAI then counts two loops where arguably one mechanism is running. The cross-coupling map marks the pair, and the engine reports `cai_overlap_warning`, but the count is not corrected.",
+   "severity_text": "low"
+  },
+  {
+   "id": "OP2-7",
+   "severity": "low",
+   "where": "inherited",
+   "issue": "Everything in sccd.spec.KNOWN_INCONSISTENCIES still applies. INC-7/8/9 are CRITICAL and the v2 engine therefore runs with sccd's patch=True and c1_dynamic=True by DEFAULT, inverting v1.00's default. Rationale: Block A supplies a sourced mechanism for the depolarisation term INC-7 says is missing (counter-tech organising through C2), and Block D supplies one for the legitimacy-recovery term INC-8 says is missing (delivery performance through S4). Set `faithful_v1=True` to reproduce the paper verbatim instead.",
+   "severity_text": "low"
+  }
+ ],
+ "known_inconsistencies_v1": [
+  {
+   "id": "INC-1",
+   "severity": "low",
+   "where": "Part II Table 1",
+   "issue": "State-type weight rows all sum to 1.00 — constraint satisfied. No action.",
+   "severity_text": "low"
+  },
+  {
+   "id": "INC-2",
+   "severity": "HIGH",
+   "where": "Part II eq (6) vs eq (7)",
+   "issue": "eq(6) applies the exit-adjustment Π to the entire Σ v_j Ĉ_j; eq(7) applies it to v₁·Ĉ₁ only. Not equivalent. Engine default = eq(7) (c1_only); switch via spec.PI_SCOPE.",
+   "severity_text": "HIGH"
+  },
+  {
+   "id": "INC-3",
+   "severity": "medium",
+   "where": "Part I Table 1 vs Part II Table 2",
+   "issue": "Part I states Δ normalised to (-1,1); Part II derives Δ_norm ∈ (-0.40,1.00). Band edges agree; lower bound does not. Engine uses Part II.",
+   "severity_text": "medium"
+  },
+  {
+   "id": "INC-4",
+   "severity": "medium",
+   "where": "Part II §2.1 vs eq (3)",
+   "issue": "Paper states λ(0.20)≈0.55 and λ(0.38)≈0.93, but eq(2) with the eq(3) parameters yields 0.502 and 1.037. λ(0.50)=1.40 matches exactly. Either the quoted examples use different k/mid, or they are approximations.",
+   "severity_text": "medium"
+  },
+  {
+   "id": "INC-5",
+   "severity": "HIGH",
+   "where": "Part III §3.5 vs Part IV §2.3",
+   "issue": "US C₅ in 2024 given as 0.72 (Part III, MFS) and 0.74 (Part IV §2.3 and Part V V.US). Small but the engine must pick one; defaults to 0.74 (Part V).",
+   "severity_text": "HIGH"
+  },
+  {
+   "id": "INC-6",
+   "severity": "medium",
+   "where": "Part III §3.5 vs Part IV §2.3",
+   "issue": "US C₅ 1980 baseline given as 0.35 (Part III) and 0.28 (Part IV §2.3).",
+   "severity_text": "medium"
+  },
+  {
+   "id": "INC-7",
+   "severity": "CRITICAL",
+   "where": "Part IV eq (NL), dC₅/dt",
+   "issue": "dC₅/dt = C₅_structural + ε_p·C₅(1−C₅)·Rev_Pol + η·C₅²·C₃ + ξ·Ĉ₄Ĉ₁(1−C₅). ALL THREE endogenous terms are POSITIVE and there is no depolarisation term, even though §2.3 defines the L3 activation test against a 'Natural_Depolarisation_Rate'. As written, C₅ is monotonically increasing toward 1 for every trajectory, hence Ψ = λ·θ₂₅·(1−C₅) → 0 regardless of scenario. FIX: add −ν·C₅ (or −ν·C₅·C₂, since Part IV §2.3 names C₂ as 'the primary counterweight to L3') to dC₅/dt.",
+   "severity_text": "CRITICAL"
+  },
+  {
+   "id": "INC-8",
+   "severity": "CRITICAL",
+   "where": "Part IV eq (NL), dS₃/dt",
+   "issue": "dS₃/dt = S₃_natural − ρ_b(1−λ/λmax)² − ζC₅^ψ(S₃−S₃floor). Both endogenous terms are NEGATIVE. With S₃_natural exogenous, S₃ can only decay, so the model cannot generate the legitimacy RECONSTITUTION that Part V §2.3 documents for 1980-86 (λ 1.2 → 1.7) or the 1941-45 build-up. Part IV §2.2 names a 'natural legitimacy recovery' rate but it never enters the ODE. FIX: add a recovery term, e.g. +σ·(S₃_target(performance) − S₃), driven by S₄ implementation success.",
+   "severity_text": "CRITICAL"
+  },
+  {
+   "id": "INC-9",
+   "severity": "CRITICAL",
+   "where": "Part IV §2.1 vs §7.1 state vector",
+   "issue": "§2.1 writes the C₁ equation explicitly — 'dC₁/dt = v₁·D_drain→C₁ + r(t)C₁(1−C₁/C₁max) − τ_eff·C₁ + μ·Γ' — but §7.1 (INT) lists the state variables as [S_i, C_i, S₃,i, C₅,i]: C₁ is OMITTED and treated as exogenous. Consequence: with C₁ exogenous, neither dS₃/dt nor dC₅/dt depends on S or C, so [S₃,C₅] is an AUTONOMOUS subsystem driving [S,C] one-way. There is NO closed feedback loop in eq (NL) at all — L1 and L4 are open, and the cross-coupling table of §2.4 is not implemented by the equations as written. Diagnostic: every scenario gives identical C₅(t) and Ψ(t). FIX: promote C₁ to a fifth state variable using §2.1's own equation. Engine: simulate(..., c1_dynamic=True).",
+   "severity_text": "CRITICAL"
+  }
+ ],
+ "patch_defaults": {
+  "sccd_patch": true,
+  "c1_dynamic": true,
+  "rationale_key": "patch.rationale",
+  "rationale": "spec2 OP2-7: INC-7/8/9 are CRITICAL, and the two new blocks supply sourced mechanisms for the terms INC-7 and INC-8 say are missing. Pass faithful_v1=True to the dynamics layer to reproduce the paper verbatim instead."
+ },
+ "epistemic_limit_key": "epistemic.limit",
+ "epistemic_limit": "sccd Part V 1, verbatim: 'We do not, at this stage, claim predictive precision - generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' The v2 layer is strictly weaker than that again, since all 46 of its parameters are ANALYST."
+}
+JSON -> sea2027/sea2027_en.json
+

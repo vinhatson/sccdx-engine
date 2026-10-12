@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCCD-X Engine</title>
+<meta name="description" content="A qualitative structural engine for world politics: ten capacity components, eight feedback loops, two forcing blocks, and a fully bilingual interface that refuses to half-translate.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#FBFAF8; --panel:#FFFFFF; --fg:#1A1D22; --muted:#5F6670; --dim:#8C939C;
+  --rule:#E4E6EA; --line:#D0D4DA;
+  --accent:#2B5C8A; --accent-soft:#E9F0F7;
+  --warn:#8A5A1B; --warn-soft:#FBF2E4;
+  --crit:#9A3A3A; --crit-soft:#F9EBEB;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  --serif:"IBM Plex Serif",Georgia,serif;
+  --maxw:62rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1216; --panel:#161A20; --fg:#E8EBEF; --muted:#9BA3AD; --dim:#6E7680;
+    --rule:#232931; --line:#2D343D;
+    --accent:#7FB3E0; --accent-soft:#16212C;
+    --warn:#E0B468; --warn-soft:#241C10;
+    --crit:#E08A8A; --crit-soft:#2A1818;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1216; --panel:#161A20; --fg:#E8EBEF; --muted:#9BA3AD; --dim:#6E7680;
+  --rule:#232931; --line:#2D343D;
+  --accent:#7FB3E0; --accent-soft:#16212C;
+  --warn:#E0B468; --warn-soft:#241C10;
+  --crit:#E08A8A; --crit-soft:#2A1818;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:17px; line-height:1.65}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 16px}
+a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--accent)}
+code,.mono{font-family:var(--mono); font-size:.9em}
+
+.langbar{position:sticky; top:0; z-index:20; background:var(--bg);
+  border-bottom:1px solid var(--rule)}
+.langbar .wrap{display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:10px 16px; flex-wrap:wrap}
+.brand{font-family:var(--mono); font-weight:500; letter-spacing:.02em}
+.brand span{color:var(--dim)}
+.controls{display:flex; gap:6px; align-items:center}
+button.sw{font-family:var(--mono); font-size:13px; cursor:pointer;
+  background:var(--panel); color:var(--muted);
+  border:1px solid var(--line); border-radius:6px; padding:5px 11px}
+button.sw[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
+:root[data-theme="dark"] button.sw[aria-pressed="true"]{color:#0A1118}
+
+header.hero{padding:46px 0 30px; border-bottom:1px solid var(--rule)}
+h1{font-family:var(--serif); font-size:clamp(1.9rem,5.2vw,3rem); line-height:1.12;
+  margin:0 0 .5rem; font-weight:600; letter-spacing:-.01em}
+.sub{font-size:clamp(1rem,2.4vw,1.2rem); color:var(--muted);
+  margin:0 0 1.5rem; max-width:46rem}
+.cta{display:flex; flex-wrap:wrap; gap:10px}
+.btn{display:inline-block; font-family:var(--mono); font-size:14px;
+  padding:10px 16px; border-radius:7px; border:1px solid var(--line);
+  background:var(--panel); color:var(--fg)}
+.btn:hover{border-color:var(--accent); color:var(--accent)}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+.btn.primary:hover{color:#fff; opacity:.9}
+:root[data-theme="dark"] .btn.primary{color:#0A1118}
+
+section{padding:38px 0; border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+h2{font-family:var(--serif); font-size:1.5rem; margin:0 0 .4rem; font-weight:600}
+h2+.lede{color:var(--muted); margin:0 0 1.4rem; max-width:46rem}
+h3.sub3{font-family:var(--mono); font-size:.98rem; font-weight:500;
+  margin:1.4rem 0 .5rem; color:var(--fg)}
+
+.cards{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--panel); border:1px solid var(--rule); border-radius:10px;
+  padding:18px; display:flex; flex-direction:column; gap:8px}
+.card h3{margin:0; font-size:1.03rem; font-family:var(--mono); font-weight:500}
+.card p{margin:0; color:var(--muted); font-size:.95rem; flex:1}
+.card .go{font-family:var(--mono); font-size:13px; margin-top:4px}
+
+table{width:100%; border-collapse:collapse; font-size:.93rem; margin:0 0 1rem}
+th,td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--rule); vertical-align:top}
+th{font-family:var(--mono); font-weight:500; font-size:.82rem;
+  text-transform:uppercase; letter-spacing:.05em; color:var(--dim)}
+td.k{font-family:var(--mono); white-space:nowrap}
+.blocked{color:var(--crit); font-weight:600; font-family:var(--mono); font-size:.85em}
+.paper{color:var(--muted); font-family:var(--mono); font-size:.85em}
+.tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+pre{background:var(--panel); border:1px solid var(--rule); border-radius:8px;
+  padding:14px; overflow-x:auto; font-family:var(--mono); font-size:.86rem;
+  line-height:1.5; margin:0 0 1rem}
+blockquote{margin:0 0 1rem; padding:12px 16px; background:var(--accent-soft);
+  border-left:3px solid var(--accent); border-radius:0 7px 7px 0;
+  font-family:var(--serif); font-size:1.05rem}
+.note{background:var(--warn-soft); border-left:3px solid var(--warn);
+  padding:12px 16px; border-radius:0 7px 7px 0; margin:0 0 1rem; font-size:.95rem}
+.note strong{color:var(--warn)}
+.note.crit{background:var(--crit-soft); border-left-color:var(--crit)}
+.note.crit strong{color:var(--crit)}
+ul{margin:0 0 1rem; padding-left:1.25rem} li{margin:.3rem 0}
+footer{padding:30px 0 50px; color:var(--dim); font-size:.9rem}
+footer .wrap>div{margin:.25rem 0}
+[data-lang]{display:none}
+[data-lang].on{display:block}
+span[data-lang].on,a[data-lang].on{display:inline}
+</style>
+</head>
+<body>
+
+<div class="langbar"><div class="wrap">
+  <div class="brand">sccdx-engine <span>· Vi Nhật Sơn</span></div>
+  <div class="controls">
+    <button class="sw" id="b-en" aria-pressed="true">EN</button>
+    <button class="sw" id="b-vi" aria-pressed="false">VI</button>
+    <button class="sw" id="b-theme" aria-pressed="false" title="Light / dark">◐</button>
+  </div>
+</div></div>
+
+<!-- ============================ ENGLISH ============================ -->
+<div data-lang="en" class="on">
+
+<header class="hero"><div class="wrap">
+  <h1>An engine that tells you which of its own numbers you may not trust</h1>
+  <p class="sub">A qualitative structural engine for world politics: ten capacity
+  components, eight feedback loops, two forcing blocks — and a provenance tag on
+  every derived field, because 46 of its parameters have no value from any
+  paper and it says so rather than implying otherwise.</p>
+  <div class="cta">
+    <a class="btn primary" href="docs/GUIDE.en.md">Read the guide</a>
+    <a class="btn" href="https://github.com/REPO_SLUG">Source on GitHub</a>
+    <a class="btn" href="#asean">The 2027 ASEAN run</a>
+    <a class="btn" href="#limits">Honest limits</a>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Run it in three lines</h2>
+  <p class="lede">Python 3.9+. <code>numpy</code> is the only hard requirement.</p>
+<pre>git clone https://github.com/REPO_SLUG.git
+cd sccdx-engine &amp;&amp; pip install numpy
+python serve.py        # → http://127.0.0.1:8777</pre>
+  <p>The engine runs locally rather than as a hosted page, because the diagnosis
+  is computed server-side on purpose: every string you see in the browser
+  arrives from the API, and the page itself holds no prose of its own.</p>
+<pre>python validate2.py              # 119 checks
+python validate_v1.py            # the source model's own inconsistencies
+python sea2027/run.py --lang en  # the eleven ASEAN polities</pre>
+</div></section>
+
+<section><div class="wrap">
+  <h2>The hole it was built to fill</h2>
+  <p class="lede"><code>sccd</code> v1.00 left two terms of its own ODE system
+  purely exogenous — and they are the two that control everything else.</p>
+<pre>dS₃/dt = <strong>S₃_natural</strong>    − ρ_b(1−λ/λmax)² − ζ·C₅^ψ·(S₃−S₃floor)
+dC₅/dt = <strong>C₅_structural</strong> + ε_p·C₅(1−C₅)·RevPol + η·C₅²·C₃ + ξ·Ĉ₄Ĉ₁(1−C₅)</pre>
+  <p>S₃ drives λ, and λ multiplies <em>all</em> of S. C₅ is the C denominator
+  <em>and</em> the (1−C₅) factor in Ψ. v1.00 has nothing to say about either
+  drift. v2.00 supplies both, from two further papers on two different
+  timescales:</p>
+  <div class="tscroll"><table>
+    <tr><th>block</th><th>paper</th><th>timescale</th></tr>
+    <tr><td class="k">D · DEGROW</td><td>The Wheel of Fate: from the ancient "prosperity trap" to the modern fertility crisis</td><td>demographic</td></tr>
+    <tr><td class="k">A · DISPL</td><td>The Displacement Hypothesis, 2nd ed.</td><td>AI adoption</td></tr>
+  </table></div>
+  <p>Block D is a <strong>router</strong>, not another pressure. Load generates a
+  quantity of adjustment pressure; what the paper varies is <em>which channel
+  carries it</em>, and the split variable is the availability of voluntary
+  instruments:</p>
+<pre>violent_share = (1 − d₃)^route_sharpness</pre>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Two languages, genuinely separate</h2>
+  <p class="lede">There is no bilingual mode and no half-translated state. This
+  is enforced by the test suite, not promised in a README.</p>
+  <ul>
+    <li>406 templates must have <strong>both</strong> sides, or the suite fails</li>
+    <li>160 UI strings must have both sides</li>
+    <li>a missing i18n key <strong>raises</strong> rather than silently rendering English</li>
+    <li><code>web/index.html</code> must contain <strong>zero</strong> Vietnamese characters</li>
+    <li>switching language <strong>re-runs the diagnosis</strong> server-side rather than translating in the browser</li>
+    <li>the trajectory, the numbers and the fragility verdict are asserted identical across languages</li>
+  </ul>
+  <p>The Vietnamese is written, not translated. That applies to the ~20,000
+  words of prose in the ASEAN run too.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Ten components — and three of them are unmeasurable</h2>
+  <p class="lede">A polity is ten capacity components on [0, 1]. The source paper
+  defines no usable proxy for three of them.</p>
+  <div class="tscroll"><table>
+    <tr><th>key</th><th>component</th><th>data status</th></tr>
+    <tr><td class="k">s1</td><td>Fiscal Extraction Capacity</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">s2</td><td>Coercive Monopoly Index</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">s3</td><td>Legitimacy Capital</td><td class="blocked">BLOCKED</td></tr>
+    <tr><td class="k">s4</td><td>Administrative Penetration Depth</td><td class="blocked">BLOCKED</td></tr>
+    <tr><td class="k">s5</td><td>Temporal Leverage</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c1</td><td>Private Capital Concentration</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c2</td><td>Civil Organisation Density</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c3</td><td>Information Autonomy</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c4</td><td>Exit Option Availability</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c5</td><td>Preference Fragmentation</td><td class="blocked">BLOCKED</td></tr>
+  </table></div>
+  <p>The three blocked components are disproportionately the ones the whole
+  non-linear core turns on. You supply them, and whatever you supply is a
+  judgment. The engine labels it as one.</p>
+  <h3 class="sub3">Eight feedback loops</h3>
+  <p>L1 Regulatory Capture Accelerator · L2 Legitimacy Death Spiral ·
+  L3 Polarisation Trap · L4 Exit-Fragmentation Coupling ·
+  L5 Agency-Legitimacy Spiral · L6 Legibility-Extraction Spiral ·
+  L7 Demographic Inversion Trap · L8 Youth-Surplus Discharge</p>
+  <p>A loop activating is usually more informative than the headline number
+  moving, because the loop tells you <em>which mechanism</em> is doing the work.</p>
+</div></section>
+
+<section id="asean"><div class="wrap">
+  <h2>The 2027 ASEAN run</h2>
+  <p class="lede">A complete worked application: all eleven ASEAN polities
+  through the engine, data retrieved 2026-10-09, 44 pre-built PDFs in two sets.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>pdf/ — the instrument</h3>
+      <p>The instrument's output: tables, per-component provenance tags, OAT
+      rows, gate projections, the trajectory. 5–6 pages each, 11 polities × 2
+      languages.</p>
+      <a class="go" href="https://github.com/REPO_SLUG/tree/main/sea2027/pdf">browse →</a>
+    </div>
+    <div class="card">
+      <h3>pdf_prose/ — the argument</h3>
+      <p>The argument about what that output <em>means</em>. 2 pages each,
+      ~20,000 words across the 22, with a strip of figures so every claim can be
+      checked against the run behind it.</p>
+      <a class="go" href="https://github.com/REPO_SLUG/tree/main/sea2027/pdf_prose">browse →</a>
+    </div>
+  </div>
+  <p style="margin-top:1rem">The split is the same discipline the engine keeps
+  internally: <strong>the engine emits codes and never a sentence</strong>, and
+  prose lives in one place where it can be audited. The prose files are
+  INTERPRETATION and say so on every document.</p>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <h2>Honest limits</h2>
+  <div class="note"><strong>The v2 outputs are ORDINAL.</strong> They are a
+  ranking and a threshold-crossing map, not a level. The engine states this
+  itself at the end of every validation run: 36 of 83 v1 parameters carry a
+  value from the source paper; 46 do not. All 46 v2 parameters are ANALYST or
+  DERIVED2, because the two new papers are qualitative and state no
+  coefficients.</div>
+  <div class="note crit"><strong>Three CRITICAL inconsistencies in the source
+  model are reproduced faithfully rather than fixed silently.</strong>
+  <code>INC-7</code>: in dC₅/dt all three endogenous terms are positive and
+  there is no depolarisation term, so C₅ rises monotonically toward 1 on every
+  trajectory and Ψ → 0 regardless of scenario. <code>INC-8</code>: in dS₃/dt
+  both endogenous terms are negative, so the model cannot generate the
+  legitimacy reconstitution Part V documents for 1980–86. <code>INC-9</code>:
+  §2.1 writes a dC₁/dt equation but §7.1 omits C₁ from the state vector, so
+  there is no closed feedback loop in the non-linear system at all.
+  <code>validate_v1.py</code> prints all of them; <code>c1_dynamic=True</code>
+  closes the last one.</div>
+  <p><strong>What you may claim:</strong> that one polity ranks above another;
+  that a threshold is crossed, or the order in which gates fall; which loops
+  activate; whether a conclusion is robust to <code>router_mode</code>.</p>
+  <p><strong>What you may not:</strong> a v2-derived number as a level,
+  magnitude or probability; a date as a forecast; the ten built-in presets as
+  measurements — the payload's own disclaimer notes that only four values in the
+  whole file are paper-stated and none carries a confidence interval.</p>
+  <blockquote>If a conclusion survives both router modes, both
+  <code>c1_dynamic</code> settings, and a sweep of the BLOCKED components, then
+  you have something structural. That is worth more than a number with false
+  precision.</blockquote>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Documentation</h2>
+  <div class="cards">
+    <div class="card"><h3>Full guide</h3><p>Every endpoint and command, and what you may claim from each.</p><a class="go" href="docs/GUIDE.en.md">read →</a></div>
+    <div class="card"><h3>Engine notes</h3><p>The four structural results, in depth.</p><a class="go" href="docs/engine-notes-en.md">read →</a></div>
+    <div class="card"><h3>The Wheel of Fate</h3><p>Block D's source paper.</p><a class="go" href="docs/Degrow.pdf">PDF →</a></div>
+    <div class="card"><h3>The Displacement Hypothesis</h3><p>Block A's source paper, 2nd ed.</p><a class="go" href="docs/The_Displacement_Hypothesis_v2.pdf">PDF →</a></div>
+  </div>
+</div></section>
+
+</div>
+
+<!-- ============================ VIETNAMESE ============================ -->
+<div data-lang="vi">
+
+<header class="hero"><div class="wrap">
+  <h1>Một engine tự nói cho bạn biết con số nào của chính nó thì bạn không nên tin</h1>
+  <p class="sub">Engine cấu trúc định tính cho chính trị thế giới: mười thành
+  phần năng lực, tám vòng phản hồi, hai khối cưỡng bức — và một nhãn nguồn gốc
+  trên mọi trường dẫn xuất, vì 46 tham số của nó không mang giá trị từ bất kỳ
+  bài báo nào, và nó <strong>nói ra</strong> điều đó thay vì để người đọc hiểu
+  lầm.</p>
+  <div class="cta">
+    <a class="btn primary" href="docs/GUIDE.vi.md">Đọc hướng dẫn</a>
+    <a class="btn" href="https://github.com/REPO_SLUG">Mã nguồn trên GitHub</a>
+    <a class="btn" href="#asean-vi">Đợt chạy ASEAN 2027</a>
+    <a class="btn" href="#limits-vi">Giới hạn, nói thẳng</a>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Chạy nó trong ba dòng</h2>
+  <p class="lede">Python 3.9+. <code>numpy</code> là thứ duy nhất bắt buộc.</p>
+<pre>git clone https://github.com/REPO_SLUG.git
+cd sccdx-engine &amp;&amp; pip install numpy
+python serve.py        # → http://127.0.0.1:8777</pre>
+  <p>Engine chạy ở local chứ không phải một trang được host, vì phần chẩn đoán
+  được tính ở server <strong>một cách có chủ đích</strong>: mọi chuỗi bạn thấy
+  trong trình duyệt đều đến từ API, và bản thân trang không chứa văn xuôi nào
+  của riêng nó.</p>
+<pre>python validate2.py              # 119 kiểm tra
+python validate_v1.py            # các bất nhất của chính mô hình nguồn
+python sea2027/run.py            # mười một quốc gia ASEAN</pre>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Cái lỗ mà nó được dựng để lấp</h2>
+  <p class="lede"><code>sccd</code> v1.00 để hai số hạng của chính hệ ODE của nó
+  hoàn toàn ngoại sinh — và đó đúng là hai cái điều khiển mọi thứ còn lại.</p>
+<pre>dS₃/dt = <strong>S₃_natural</strong>    − ρ_b(1−λ/λmax)² − ζ·C₅^ψ·(S₃−S₃floor)
+dC₅/dt = <strong>C₅_structural</strong> + ε_p·C₅(1−C₅)·RevPol + η·C₅²·C₃ + ξ·Ĉ₄Ĉ₁(1−C₅)</pre>
+  <p>S₃ dẫn λ, và λ nhân vào <em>toàn bộ</em> S. C₅ vừa là mẫu số của C
+  <em>vừa</em> là thừa số (1−C₅) trong Ψ. v1.00 không nói gì về cả hai độ trôi
+  đó. v2.00 cấp cả hai, từ hai bài báo nữa trên hai thang thời gian khác nhau:</p>
+  <div class="tscroll"><table>
+    <tr><th>khối</th><th>bài báo</th><th>thang thời gian</th></tr>
+    <tr><td class="k">D · DEGROW</td><td>The Wheel of Fate: từ "bẫy thịnh vượng" cổ đại tới khủng hoảng sinh sản hiện đại</td><td>nhân khẩu</td></tr>
+    <tr><td class="k">A · DISPL</td><td>The Displacement Hypothesis, tái bản lần 2</td><td>tốc độ nhận AI</td></tr>
+  </table></div>
+  <p>Khối D là một <strong>bộ định tuyến</strong>, không phải thêm một áp lực.
+  Tải sinh ra một lượng áp lực điều chỉnh; cái mà bài báo thay đổi là <em>kênh
+  nào gánh nó</em>, và biến phân luồng là độ sẵn có của các công cụ tự nguyện:</p>
+<pre>violent_share = (1 − d₃)^route_sharpness</pre>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Hai ngôn ngữ, tách biệt thật sự</h2>
+  <p class="lede">Không có chế độ song ngữ, và không có trạng thái dịch nửa vời.
+  Điều này được <strong>bộ test cưỡng chế</strong>, không phải chỉ hứa trong
+  README.</p>
+  <ul>
+    <li>406 template phải có <strong>cả hai</strong> mặt, nếu không bộ test fail</li>
+    <li>160 chuỗi UI phải có cả hai mặt</li>
+    <li>thiếu một khoá i18n thì <strong>ném lỗi</strong>, không âm thầm render tiếng Anh</li>
+    <li><code>web/index.html</code> phải chứa <strong>không một</strong> ký tự tiếng Việt</li>
+    <li>đổi ngôn ngữ thì <strong>chạy lại chẩn đoán</strong> ở server, không dịch trong trình duyệt</li>
+    <li>quỹ đạo, các con số và phán quyết độ mong manh được khẳng định <strong>giống hệt nhau</strong> giữa hai ngôn ngữ</li>
+  </ul>
+  <p>Phần tiếng Việt được <strong>viết</strong>, không phải dịch. Điều đó áp dụng
+  cả cho ~20.000 từ văn xuôi trong đợt chạy ASEAN.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Mười thành phần — và ba trong số đó không đo được</h2>
+  <p class="lede">Một quốc gia là mười thành phần năng lực trên [0, 1]. Bài báo
+  gốc <strong>không</strong> định nghĩa proxy dùng được nào cho ba cái.</p>
+  <div class="tscroll"><table>
+    <tr><th>khoá</th><th>thành phần</th><th>tình trạng dữ liệu</th></tr>
+    <tr><td class="k">s1</td><td>Năng lực trích xuất tài khoá</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">s2</td><td>Chỉ số độc quyền cưỡng chế</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">s3</td><td>Vốn chính danh</td><td class="blocked">BLOCKED</td></tr>
+    <tr><td class="k">s4</td><td>Độ sâu thâm nhập hành chính</td><td class="blocked">BLOCKED</td></tr>
+    <tr><td class="k">s5</td><td>Đòn bẩy thời gian</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c1</td><td>Mức tập trung vốn tư nhân</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c2</td><td>Mật độ tổ chức dân sự</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c3</td><td>Tự chủ thông tin</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c4</td><td>Độ sẵn có của lối ra</td><td class="paper">PAPER proxy</td></tr>
+    <tr><td class="k">c5</td><td>Phân mảnh ưa thích</td><td class="blocked">BLOCKED</td></tr>
+  </table></div>
+  <p>Ba thành phần bị BLOCKED lại chính là những thành phần mà toàn bộ phần lõi
+  phi tuyến xoay quanh. Bạn tự cấp chúng, và cái bạn cấp là một
+  <strong>phán đoán</strong>. Engine dán nhãn nó đúng như vậy.</p>
+  <h3 class="sub3">Tám vòng phản hồi</h3>
+  <p>L1 Bộ gia tốc thâu tóm quy định · L2 Vòng xoáy chết của tính chính danh ·
+  L3 Bẫy phân cực · L4 Ghép nối lối-ra ↔ phân mảnh ·
+  L5 Vòng xoáy năng-lực-hành-động ↔ chính danh ·
+  L6 Vòng xoáy khả-đọc ↔ trích xuất · L7 Bẫy đảo ngược nhân khẩu ·
+  L8 Xả nhóm thanh niên dư thừa</p>
+  <p>Một vòng <strong>bật lên</strong> thường mang nhiều thông tin hơn là con số
+  chính dịch chuyển, vì cái vòng cho bạn biết <em>cơ chế nào</em> đang làm việc
+  đó.</p>
+</div></section>
+
+<section id="asean-vi"><div class="wrap">
+  <h2>Đợt chạy ASEAN 2027</h2>
+  <p class="lede">Một ứng dụng hoàn chỉnh: cả mười một quốc gia ASEAN đi qua
+  engine, dữ liệu lấy 2026-10-09, 44 PDF dựng trước chia hai bộ.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>pdf/ — dụng cụ đo</h3>
+      <p>Output của dụng cụ: bảng, nhãn nguồn gốc từng thành phần, các dòng OAT,
+      phóng chiếu cổng, quỹ đạo. Mỗi bản 5–6 trang, 11 quốc gia × 2 ngôn ngữ.</p>
+      <a class="go" href="https://github.com/REPO_SLUG/tree/main/sea2027/pdf">xem →</a>
+    </div>
+    <div class="card">
+      <h3>pdf_prose/ — lập luận</h3>
+      <p>Lập luận về việc output đó <em>nghĩa là gì</em>. Mỗi bản 2 trang,
+      ~20.000 từ cho cả 22 bản, có dải hình để mọi khẳng định đối chiếu được với
+      đợt chạy đứng sau nó.</p>
+      <a class="go" href="https://github.com/REPO_SLUG/tree/main/sea2027/pdf_prose">xem →</a>
+    </div>
+  </div>
+  <p style="margin-top:1rem">Cách chia này là đúng cái kỷ luật mà engine giữ ở
+  bên trong: <strong>engine phát ra mã và không bao giờ phát ra một câu
+  văn</strong>, còn văn xuôi sống ở một chỗ duy nhất nơi nó kiểm toán được. Các
+  file văn xuôi là <strong>DIỄN GIẢI</strong> và nói rõ điều đó trên mọi tài
+  liệu.</p>
+</div></section>
+
+<section id="limits-vi"><div class="wrap">
+  <h2>Giới hạn, nói thẳng</h2>
+  <div class="note"><strong>Các output của v2 là THỨ TỰ.</strong> Chúng là một
+  bảng xếp hạng và một bản đồ vượt ngưỡng, <strong>không</strong> phải một mức.
+  Chính engine nêu điều này ở cuối mỗi đợt kiểm tra: 36 trong 83 tham số v1 mang
+  giá trị từ bài báo gốc; 46 cái thì không. Toàn bộ 46 tham số v2 đều là ANALYST
+  hoặc DERIVED2, vì hai bài báo mới là định tính và không nêu hệ số nào.</div>
+  <div class="note crit"><strong>Ba bất nhất CRITICAL trong mô hình nguồn được
+  tái tạo trung thực thay vì sửa ngầm.</strong>
+  <code>INC-7</code>: trong dC₅/dt cả ba số hạng nội sinh đều dương và không có
+  số hạng giảm phân cực, nên C₅ tăng đơn điệu về 1 trên mọi quỹ đạo và Ψ → 0 bất
+  kể kịch bản. <code>INC-8</code>: trong dS₃/dt cả hai số hạng nội sinh đều âm,
+  nên mô hình không thể sinh ra sự tái lập tính chính danh mà Phần V ghi lại cho
+  1980–86. <code>INC-9</code>: §2.1 viết hẳn một phương trình dC₁/dt nhưng §7.1
+  lại bỏ C₁ khỏi vector trạng thái, nên trong hệ phi tuyến không có vòng phản hồi
+  kín nào cả. <code>validate_v1.py</code> in ra tất cả;
+  <code>c1_dynamic=True</code> khép kín cái cuối.</div>
+  <p><strong>Bạn ĐƯỢC khẳng định:</strong> rằng quốc gia này xếp trên quốc gia
+  kia; rằng một ngưỡng bị vượt, hoặc thứ tự các cổng sụp; vòng lặp nào bật; một
+  kết luận có vững hay không khi đổi <code>router_mode</code>.</p>
+  <p><strong>Bạn KHÔNG ĐƯỢC:</strong> trích một con số dẫn xuất từ v2 như một
+  mức, một độ lớn hay một xác suất; báo một mốc thời gian như một dự báo; coi
+  mười preset sẵn là số đo — chính disclaimer trong payload ghi rằng trong cả
+  file chỉ có bốn giá trị là do bài báo nêu, và không giá trị nào mang khoảng tin
+  cậy.</p>
+  <blockquote>Nếu một kết luận sống sót qua cả hai router mode, cả hai cài đặt
+  <code>c1_dynamic</code>, và một đợt quét các thành phần BLOCKED, thì bạn có một
+  thứ mang tính cấu trúc. Thứ đó đáng giá hơn một con số có độ chính xác giả.</blockquote>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Tài liệu</h2>
+  <div class="cards">
+    <div class="card"><h3>Hướng dẫn đầy đủ</h3><p>Từng endpoint và từng lệnh, kèm điều bạn được khẳng định từ mỗi cái.</p><a class="go" href="docs/GUIDE.vi.md">đọc →</a></div>
+    <div class="card"><h3>Ghi chú engine</h3><p>Bốn kết quả cấu trúc, phân tích sâu.</p><a class="go" href="docs/engine-notes-en.md">đọc →</a></div>
+    <div class="card"><h3>The Wheel of Fate</h3><p>Bài báo nguồn của Khối D.</p><a class="go" href="docs/Degrow.pdf">PDF →</a></div>
+    <div class="card"><h3>The Displacement Hypothesis</h3><p>Bài báo nguồn của Khối A, tái bản lần 2.</p><a class="go" href="docs/The_Displacement_Hypothesis_v2.pdf">PDF →</a></div>
+  </div>
+</div></section>
+
+</div>
+
+<footer><div class="wrap">
+  <div>© 2026 Vi Nhật Sơn · <a href="LICENSE">Apache License 2.0</a></div>
+  <div data-lang="en" class="on">Cite the papers, not the repository — see <a href="CITATION.cff">CITATION.cff</a>.</div>
+  <div data-lang="vi">Hãy trích dẫn các bài báo, không phải repo — xem <a href="CITATION.cff">CITATION.cff</a>.</div>
+</div></footer>
+
+<script>
+(function(){
+  var KEY_L="sccdx.lang", KEY_T="sccdx.theme";
+  function show(lang){
+    document.querySelectorAll("[data-lang]").forEach(function(el){
+      el.classList.toggle("on", el.getAttribute("data-lang")===lang);
+    });
+    document.documentElement.lang = lang;
+    document.getElementById("b-en").setAttribute("aria-pressed", String(lang==="en"));
+    document.getElementById("b-vi").setAttribute("aria-pressed", String(lang==="vi"));
+    try{ localStorage.setItem(KEY_L, lang); }catch(e){}
+  }
+  var saved=null;
+  try{ saved=localStorage.getItem(KEY_L); }catch(e){}
+  if(!saved){
+    saved=(navigator.language||"").toLowerCase().indexOf("vi")===0 ? "vi" : "en";
+  }
+  show(saved);
+  document.getElementById("b-en").onclick=function(){ show("en"); };
+  document.getElementById("b-vi").onclick=function(){ show("vi"); };
+
+  var tbtn=document.getElementById("b-theme");
+  function applyTheme(t){
+    if(t) document.documentElement.setAttribute("data-theme", t);
+    else  document.documentElement.removeAttribute("data-theme");
+    tbtn.setAttribute("aria-pressed", String(!!t));
+    try{ t ? localStorage.setItem(KEY_T,t) : localStorage.removeItem(KEY_T); }catch(e){}
+  }
+  var st=null;
+  try{ st=localStorage.getItem(KEY_T); }catch(e){}
+  if(st) applyTheme(st);
+  tbtn.onclick=function(){
+    var cur=document.documentElement.getAttribute("data-theme");
+    var prefDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if(!cur) applyTheme(prefDark ? "light" : "dark");
+    else if(cur==="dark") applyTheme("light");
+    else applyTheme("dark");
+  };
+})();
+</script>
+</body>
+</html>

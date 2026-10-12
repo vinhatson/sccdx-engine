@@ -1,0 +1,17 @@
+# SCCD-X Engine v2.00
+
+numpy>=1.24
+
+# Optional. Part IV 8.1 of the source paper mandates an adaptive STIFF solver
+# (LSODA / Radau / BDF). Without scipy the engine falls back to the explicit
+# DP45 in sccdx/integrate.py and reports that it did so in
+# trajectory.solver and in the returned notes. DP45 is not a stiff solver;
+# it tracks this system to ~1e-6 at the coefficient magnitudes in spec/spec2,
+# but install scipy before raising any rate by an order of magnitude or
+# adding sub-year shock pulses.
+# scipy>=1.11
+
+# Optional. serve.py is the primary server and needs neither of these.
+# Install only to run api_fastapi.py instead, for OpenAPI docs and ASGI.
+# fastapi>=0.110
+# uvicorn>=0.27

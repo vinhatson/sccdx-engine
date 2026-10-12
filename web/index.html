@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCCD-X Engine</title>
+<style>
+/* ===================================================================
+   Tokens. Dark values are declared under BOTH the media query (OS
+   setting) and the data-theme scope (explicit toggle), so the toggle
+   wins either way.
+   =================================================================== */
+:root{
+  color-scheme: light;
+  --plane:#f9f9f7; --surface:#fcfcfb; --surface-2:#f2f1ed;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+  --ok-text:#006300;
+  --r:10px; --sp:14px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --surface-2:#232321;
+    --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --ok-text:#0ca30c;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0d0d0d; --surface:#1a1a19; --surface-2:#232321;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --ok-text:#0ca30c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--plane);color:var(--ink);font:14px/1.55 var(--sans);
+  -webkit-text-size-adjust:100%}
+h1,h2,h3,h4{margin:0 0 .5em;line-height:1.25;font-weight:650}
+h1{font-size:19px} h2{font-size:16px} h3{font-size:14px} h4{font-size:13px}
+p{margin:0 0 .7em}
+a{color:var(--s1)}
+code,kbd{font-family:var(--mono);font-size:.92em}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1500px;margin:0 auto;padding:0 16px 56px}
+header.top{position:sticky;top:0;z-index:30;background:var(--plane);
+  border-bottom:1px solid var(--ring);padding:10px 0;margin-bottom:16px}
+.topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.brand{font-weight:700;letter-spacing:-.01em;font-size:16px;margin-right:auto}
+.brand small{display:block;font-weight:400;font-size:11px;color:var(--muted);
+  letter-spacing:0;max-width:62ch}
+.tabs{display:flex;gap:4px;background:var(--surface-2);padding:3px;
+  border-radius:var(--r)}
+.tabs button{border:0;background:transparent;color:var(--ink-2);
+  padding:6px 13px;border-radius:7px;font:inherit;font-weight:550;
+  cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);
+  box-shadow:0 1px 2px rgba(0,0,0,.08)}
+/* language tabs: deliberately look like the primary mode switch they are */
+.langtabs{display:flex;border:1px solid var(--ring);border-radius:var(--r);
+  overflow:hidden}
+.langtabs button{border:0;background:var(--surface);color:var(--ink-2);
+  padding:7px 15px;font:inherit;font-weight:600;cursor:pointer}
+.langtabs button + button{border-left:1px solid var(--ring)}
+.langtabs button[aria-selected="true"]{background:var(--s1);color:#fff}
+.langtabs button:not([aria-selected="true"]):hover{background:var(--surface-2)}
+.iconbtn{border:1px solid var(--ring);background:var(--surface);
+  color:var(--ink-2);border-radius:8px;padding:6px 10px;font:inherit;
+  cursor:pointer}
+.iconbtn:hover{color:var(--ink)}
+
+/* ---------- layout ---------- */
+.cols{display:grid;grid-template-columns:375px minmax(0,1fr);gap:16px;
+  align-items:start}
+@media (max-width:1040px){.cols{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--ring);
+  border-radius:var(--r);padding:var(--sp);margin-bottom:14px}
+.card > h2:first-child,.card > h3:first-child{margin-top:0}
+.sticky-panel{position:sticky;top:64px;max-height:calc(100vh - 80px);
+  overflow-y:auto;padding-right:2px}
+@media (max-width:1040px){.sticky-panel{position:static;max-height:none}}
+
+/* ---------- form ---------- */
+details.grp{border-top:1px solid var(--ring);padding:8px 0}
+details.grp:first-of-type{border-top:0}
+details.grp > summary{cursor:pointer;font-weight:600;font-size:13px;
+  list-style:none;display:flex;align-items:center;gap:7px;padding:3px 0}
+details.grp > summary::-webkit-details-marker{display:none}
+details.grp > summary::before{content:"\25B8";color:var(--muted);
+  font-size:11px;transition:transform .12s}
+details.grp[open] > summary::before{transform:rotate(90deg)}
+summary .cnt{margin-left:auto;font-weight:400;font-size:11px;
+  color:var(--muted);font-family:var(--mono)}
+.row{display:grid;grid-template-columns:1fr 60px;gap:8px;align-items:center;
+  padding:5px 0}
+.row label{font-size:12px;color:var(--ink-2);min-width:0}
+.row label b{font-weight:600;color:var(--ink);display:block;
+  overflow-wrap:anywhere}
+.tag{font-size:10px;font-family:var(--mono);color:var(--muted);
+  border:1px solid var(--ring);border-radius:4px;padding:0 4px;
+  margin-left:5px;white-space:nowrap}
+.tag.blk{color:var(--crit);border-color:var(--crit)}
+input[type=range]{width:100%;accent-color:var(--s1);margin:3px 0 0}
+input[type=number],input[type=text],select{width:100%;
+  background:var(--surface-2);color:var(--ink);border:1px solid var(--ring);
+  border-radius:6px;padding:5px 6px;font:12px var(--mono)}
+input[type=number]{text-align:right}
+.hint{font-size:11px;color:var(--muted);margin:2px 0 6px;line-height:1.45}
+.btn{width:100%;background:var(--s1);color:#fff;border:0;border-radius:8px;
+  padding:11px;font:inherit;font-weight:650;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}
+.btn[disabled]{opacity:.55;cursor:progress}
+
+/* events */
+.ev{border-top:1px solid var(--grid);padding:7px 0}
+.ev:first-child{border-top:0}
+.ev .eh{display:flex;gap:7px;align-items:flex-start}
+.ev .eh input[type=checkbox]{margin:3px 0 0;accent-color:var(--s1);
+  flex:0 0 auto}
+.ev .eh span{font-size:12px;line-height:1.4}
+.ev .ec{display:none;grid-template-columns:1fr 54px;gap:7px;
+  align-items:center;margin:6px 0 2px 23px}
+.ev.on .ec{display:grid}
+.ev .ec .lab{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.ev .note{display:none;margin:4px 0 2px 23px;font-size:11px;
+  color:var(--muted);line-height:1.45}
+.ev.on .note{display:block}
+
+/* ---------- result bits ---------- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));
+  gap:10px}
+.tile{background:var(--surface-2);border-radius:8px;padding:11px 12px}
+.tile .k{font-size:10px;text-transform:uppercase;letter-spacing:.055em;
+  color:var(--muted);font-weight:600}
+.tile .v{font-size:25px;font-weight:650;letter-spacing:-.02em;margin:3px 0 1px}
+.tile .s{font-size:11px;color:var(--ink-2)}
+.meter{height:6px;background:var(--grid);border-radius:3px;margin-top:8px;
+  position:relative}
+.meter i{position:absolute;inset:0 auto 0 0;background:var(--s1);
+  border-radius:3px}
+.meter u{position:absolute;top:-3px;bottom:-3px;width:2px;
+  background:var(--crit);border-radius:1px}
+
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;
+  font-weight:600;border-radius:5px;padding:2px 7px;border:1px solid}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:currentColor;flex:0 0 auto}
+.b-good{color:var(--ok-text);border-color:var(--good)}
+.b-warn{color:var(--ink);border-color:var(--warn)}
+.b-ser{color:var(--ink);border-color:var(--serious)}
+.b-crit{color:var(--crit);border-color:var(--crit)}
+.b-mut{color:var(--muted);border-color:var(--ring)}
+
+.headline{font-size:14px;line-height:1.6;background:var(--surface-2);
+  border-left:3px solid var(--s1);border-radius:0 7px 7px 0;
+  padding:10px 12px;margin:10px 0}
+
+.strip{display:grid;gap:2px;margin:10px 0 4px}
+.strip .cell{background:var(--surface-2);border-radius:4px;padding:6px 7px;
+  font-size:10.5px;text-align:center;color:var(--muted);line-height:1.3}
+.strip .cell.hit{background:var(--s1);color:#fff;font-weight:650}
+.strip .cell em{display:block;font-style:normal;font-family:var(--mono);
+  font-size:10px;opacity:.85}
+
+.loops{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  gap:8px}
+.loop{border:1px solid var(--ring);border-radius:8px;padding:9px 10px;
+  background:var(--surface-2)}
+.loop.on{border-color:var(--crit);border-width:1.5px}
+.loop .lh{display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.loop .lid{font-family:var(--mono);font-weight:700;font-size:12px}
+.loop .ln{font-size:12px;font-weight:600;line-height:1.3}
+.loop .ld{font-size:10.5px;color:var(--muted);font-family:var(--mono);
+  line-height:1.45;overflow-wrap:anywhere;margin-top:4px}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--grid)}
+th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--muted);font-weight:650;white-space:nowrap}
+td.n,th.n{text-align:right;font-family:var(--mono);
+  font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--surface-2)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));
+  gap:12px}
+.panel{background:var(--surface-2);border-radius:8px;padding:10px 10px 4px}
+.panel .pt{font-size:12px;font-weight:650;margin-bottom:1px}
+.panel .ps{font-size:10.5px;color:var(--muted);margin-bottom:5px;
+  line-height:1.4}
+.panel svg{display:block;width:100%;height:auto;overflow:visible}
+.tipbox{position:fixed;z-index:60;pointer-events:none;opacity:0;
+  transition:opacity .08s;background:var(--surface);color:var(--ink);
+  border:1px solid var(--ring);border-radius:7px;padding:6px 9px;
+  font:11px/1.5 var(--mono);box-shadow:0 4px 16px rgba(0,0,0,.16);
+  max-width:260px}
+
+pre.nar{white-space:pre-wrap;overflow-wrap:anywhere;
+  font:11.5px/1.62 var(--mono);background:var(--surface-2);border-radius:8px;
+  padding:12px;margin:0;max-height:620px;overflow:auto}
+.muted{color:var(--muted)}
+.warnlist{list-style:none;padding:0;margin:0}
+.warnlist li{font-size:11.5px;line-height:1.55;padding:7px 0 7px 20px;
+  border-top:1px solid var(--grid);position:relative;color:var(--ink-2)}
+.warnlist li:first-child{border-top:0}
+.warnlist li::before{content:"!";position:absolute;left:0;top:7px;
+  font-weight:700;color:var(--warn);font-family:var(--mono)}
+.err{border-left:3px solid var(--crit);background:var(--surface-2);
+  padding:10px 12px;border-radius:0 7px 7px 0;font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{font-size:11px;border:1px solid var(--ring);border-radius:20px;
+  padding:3px 10px;background:var(--surface-2);cursor:pointer;
+  color:var(--ink-2)}
+.chip[aria-pressed="true"]{border-color:var(--s1);color:var(--ink);
+  font-weight:600}
+.flexrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.grow{flex:1 1 150px;min-width:0}
+.sk{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="topbar">
+  <div class="brand">SCCD-X <span class="muted">v2.00</span>
+    <small id="tagline"></small></div>
+  <div class="langtabs" role="tablist" aria-label="Language">
+    <button role="tab" id="L-vi" aria-selected="true" lang="vi">VI</button>
+    <button role="tab" id="L-en" aria-selected="false" lang="en">EN</button>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="t-one" aria-selected="true"></button>
+    <button role="tab" id="t-world" aria-selected="false"></button>
+    <button role="tab" id="t-audit" aria-selected="false"></button>
+  </div>
+  <button class="iconbtn" id="theme" title="">&#9686;</button>
+</div></div></header>
+
+<div class="wrap">
+
+<section id="p-one">
+<div class="cols">
+  <div class="sticky-panel">
+    <div class="card">
+      <h2 id="h-inputs"></h2>
+      <div class="flexrow" style="margin-bottom:10px">
+        <div class="grow"><div class="hint" id="l-preset"></div>
+          <select id="preset"></select></div>
+        <div style="flex:0 0 78px"><div class="hint" id="l-year"></div>
+          <input type="number" id="year" value="2026" step="1"></div>
+      </div>
+      <div class="flexrow" style="margin-bottom:8px">
+        <div class="grow"><div class="hint" id="l-stype"></div>
+          <select id="state_type"></select></div>
+        <div style="flex:0 0 78px"><div class="hint" id="l-horizon"></div>
+          <input type="number" id="horizon" value="15" min="1" max="40"></div>
+      </div>
+      <div id="prov" class="hint"></div>
+      <button class="btn" id="run"></button>
+    </div>
+    <div class="card">
+      <h3 id="h-comps"></h3>
+      <p class="hint" id="help-comps"></p>
+      <div id="f-core"></div><div id="f-demo"></div><div id="f-disp"></div>
+      <div id="f-scal"></div><div id="f-opts"></div>
+    </div>
+    <div class="card">
+      <h3 id="h-events"></h3>
+      <p class="hint" id="help-events"></p>
+      <div id="f-ev"></div>
+    </div>
+  </div>
+  <div id="out-one"><div class="card"><p class="sk" id="pick"></p></div></div>
+</div>
+</section>
+
+<section id="p-world" hidden>
+  <div class="card">
+    <h2 id="h-world"></h2>
+    <p class="hint" id="help-world"></p>
+    <div class="chips" id="w-chips"></div>
+    <div class="flexrow">
+      <div style="flex:0 0 120px"><div class="hint" id="l-whorizon"></div>
+        <input type="number" id="w-horizon" value="15" min="1" max="40"></div>
+      <div style="flex:0 0 160px"><div class="hint" id="l-wsync"></div>
+        <input type="number" id="w-sync" value="0.58" step="0.01" min="0"
+          max="0.95"></div>
+      <div style="flex:1 1 180px;align-self:flex-end">
+        <button class="btn" id="w-run"></button></div>
+    </div>
+  </div>
+  <div id="out-world"></div>
+</section>
+
+<section id="p-audit" hidden>
+  <div id="out-audit"><div class="card"><p class="sk" id="a-loading"></p>
+  </div></div>
+</section>
+
+</div>
+<div class="tipbox" id="tip"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   SCCD-X front end.
+
+   The page holds NO prose of its own. Every label, heading, hint and
+   column header arrives from /api/v2/schema?lang=..., and every engine
+   string arrives already rendered in the requested language. Switching
+   language re-fetches the reference payloads and re-runs whatever is on
+   screen, so VI and EN are two separate views rather than one view with
+   some words swapped - which is what stops an English loop detail from
+   appearing under a Vietnamese heading.
+   =================================================================== */
+const API = (location.protocol === "file:")
+  ? "http://127.0.0.1:8777" : location.origin;
+
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,
+  c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num = (v,d=3) => (v==null||Number.isNaN(v)) ? "—" : (+v).toFixed(d);
+const sgn = (v,d=3) => (v==null||Number.isNaN(v)) ? "—"
+  : ((+v>=0?"+":"") + (+v).toFixed(d));
+const clamp01 = v => Math.max(0, Math.min(1, v));
+
+let LANG = "vi";
+let SCHEMA=null, EVENTS=null, PRESETS=null, U={};
+let LAST=null, LASTW=null, AUDIT_LOADED=false;
+
+/* U is the UI string table from the API. A missing key renders as the key
+   itself rather than as English, so a gap is visible instead of silently
+   bilingual. */
+const T = k => (U && U[k] != null) ? U[k] : k;
+
+/* ---------- theme ---------- */
+(function(){
+  const saved = (()=>{try{return localStorage.getItem("sccdx-theme")}
+                      catch(e){return null}})();
+  if(saved) document.documentElement.dataset.theme = saved;
+  $("#theme").onclick = () => {
+    const next = document.documentElement.dataset.theme === "dark"
+      ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try{localStorage.setItem("sccdx-theme", next)}catch(e){}
+    if(LAST) renderOne(LAST);
+    if(LASTW) renderWorld(LASTW);
+  };
+})();
+
+/* ---------- language tabs ---------- */
+async function setLang(lang){
+  if(lang === LANG && SCHEMA) return;
+  LANG = lang;
+  document.documentElement.lang = lang;
+  try{ localStorage.setItem("sccdx-lang", lang); }catch(e){}
+  $("#L-vi").setAttribute("aria-selected", lang==="vi");
+  $("#L-en").setAttribute("aria-selected", lang==="en");
+  const keep = snapshotForm();
+  await loadRefs();
+  buildForm();
+  restoreForm(keep);
+  applyChrome();
+  /* Re-run whatever is on screen so the results match the chrome. Engine
+     output is localised server-side, so it has to be fetched again - there
+     is deliberately no client-side translation of it. */
+  if(LAST) await runOne();
+  if(LASTW) await runWorld();
+  if(AUDIT_LOADED){ AUDIT_LOADED=false; await loadAudit(); }
+}
+$("#L-vi").onclick = () => setLang("vi");
+$("#L-en").onclick = () => setLang("en");
+
+/* ---------- content tabs ---------- */
+const TABS = [["#t-one","#p-one"],["#t-world","#p-world"],
+              ["#t-audit","#p-audit"]];
+TABS.forEach(([b,p]) => $(b).onclick = () => {
+  TABS.forEach(([bb,pp])=>{
+    $(bb).setAttribute("aria-selected", bb===b);
+    $(pp).hidden = pp!==p;
+  });
+  if(p === "#p-audit" && !AUDIT_LOADED) loadAudit();
+});
+
+/* ---------- tooltip ---------- */
+const TIP = $("#tip");
+function showTip(e, html){
+  TIP.innerHTML = html; TIP.style.opacity = 1;
+  const r = TIP.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if(x + r.width > innerWidth - 8) x = e.clientX - r.width - 14;
+  if(y + r.height > innerHeight - 8) y = e.clientY - r.height - 14;
+  TIP.style.left = Math.max(8,x)+"px"; TIP.style.top = Math.max(8,y)+"px";
+}
+const hideTip = () => TIP.style.opacity = 0;
+
+/* ===================================================================
+   CHROME
+   =================================================================== */
+function applyChrome(){
+  $("#tagline").textContent     = T("app.tagline");
+  $("#t-one").textContent       = T("tab.one");
+  $("#t-world").textContent     = T("tab.world");
+  $("#t-audit").textContent     = T("tab.audit");
+  $("#theme").title             = T("btn.theme");
+  $("#L-vi").title = $("#L-en").title = T("lang.switch_hint");
+
+  $("#h-inputs").textContent    = T("in.title");
+  $("#l-preset").textContent    = T("in.preset");
+  $("#l-year").textContent      = T("in.year");
+  $("#l-stype").textContent     = T("in.state_type");
+  $("#l-horizon").textContent   = T("in.horizon");
+  $("#run").textContent         = T("in.run");
+  $("#h-comps").textContent     = T("comps.title");
+  $("#help-comps").textContent  = T("comps.help");
+  $("#h-events").textContent    = T("events.title");
+  $("#help-events").textContent = T("events.help");
+  if($("#pick")) $("#pick").textContent = T("res.pick");
+
+  $("#h-world").textContent     = T("w.title");
+  $("#help-world").textContent  = T("w.help");
+  $("#l-whorizon").textContent  = T("in.horizon");
+  $("#l-wsync").textContent     = T("w.sync_prior");
+  $("#w-run").textContent       = T("w.run");
+  if($("#a-loading")) $("#a-loading").textContent = T("a.loading");
+}
+
+/* ===================================================================
+   FORM
+   =================================================================== */
+function sliderRow(key, label, help, def, min, max, step, tag){
+  const id = "in-"+key;
+  const tg = tag ? `<span class="tag${/BLOCK/.test(tag)?" blk":""}">${
+    esc(tag)}</span>` : "";
+  return `<div class="row">
+    <label for="${id}"><b>${esc(label)}${tg}</b>
+      <input type="range" id="${id}" data-key="${key}"
+        min="${min}" max="${max}" step="${step}" value="${def}"></label>
+    <input type="number" id="${id}-n" data-mirror="${id}"
+      min="${min}" max="${max}" step="${step}" value="${def}"></div>
+  ${help ? `<div class="hint">${esc(help)}</div>` : ""}`;
+}
+function bindMirrors(root){
+  $$("input[data-mirror]", root).forEach(n=>{
+    const r = $("#"+n.dataset.mirror);
+    n.oninput = () => { r.value = n.value; };
+    r.oninput = () => { n.value = r.value; };
+  });
+}
+function grp(title, cnt, inner, open){
+  return `<details class="grp"${open?" open":""}>
+    <summary>${esc(title)}<span class="cnt">${esc(cnt)}</span></summary>
+    ${inner}</details>`;
+}
+
+function buildForm(){
+  $("#f-core").innerHTML = grp(T("grp.core"), "s1-s5 · c1-c5",
+    SCHEMA.core.map(c => sliderRow(c.key, c.label, c.help, c.default,
+      0, 1, 0.01, c.data_status === "BLOCKED" ? "BLOCKED" : "")).join(""),
+    true);
+  $("#f-demo").innerHTML = grp(T("grp.demo"), "d1-d5",
+    SCHEMA.demo.map(c => sliderRow(c.key, c.label, c.help, c.default,
+      0, 1, 0.01, "ANALYST")).join(""));
+  $("#f-disp").innerHTML = grp(T("grp.disp"), "a1-a6",
+    SCHEMA.disp.map(c => sliderRow(c.key, c.label, c.help, c.default,
+      0, 1, 0.01, "ANALYST")).join(""));
+  $("#f-scal").innerHTML = grp(T("grp.scalars"), SCHEMA.scalars.length,
+    SCHEMA.scalars.map(c => sliderRow(c.key, c.label, c.help, c.default,
+      c.min, c.max, 0.005)).join(""));
+
+  const o = SCHEMA.options;
+  $("#f-opts").innerHTML = grp(T("grp.assumptions"), "2",
+    `<div class="row" style="grid-template-columns:1fr">
+      <label><b>router_mode</b><select id="in-router_mode">
+        ${o.router_mode.values.map(v=>`<option value="${esc(v)}">${
+          esc((o.router_mode.value_labels||{})[v]||v)}</option>`).join("")}
+      </select></label></div>
+     <div class="hint">${esc(o.router_mode.help)}</div>
+     <div class="row" style="grid-template-columns:1fr">
+      <label><b>haven_single_channel</b>
+        <select id="in-haven_single_channel">
+          <option value="false">false</option>
+          <option value="true">true</option>
+        </select></label></div>
+     <div class="hint">${esc(o.haven_single_channel.help)}</div>`);
+
+  const byg = {};
+  EVENTS.events.forEach(e => (byg[e.group] = byg[e.group] || []).push(e));
+  $("#f-ev").innerHTML = Object.entries(EVENTS.groups).map(([gk, gl]) => {
+    const list = byg[gk] || [];
+    return grp(gl.label, list.length, list.map(e => `
+      <div class="ev" data-id="${esc(e.id)}">
+        <div class="eh"><input type="checkbox" id="ev-${esc(e.id)}">
+          <span><label for="ev-${esc(e.id)}">${esc(e.label)}</label></span>
+        </div>
+        <div class="ec">
+          <div><div class="lab">${esc(T("events.intensity"))}</div>
+            <input type="range" class="ev-i" min="0" max="1" step="0.05"
+              value="1"></div>
+          <div><div class="lab">${esc(T("events.weight"))}</div>
+            <input type="number" class="ev-w" min="0" max="3" step="0.1"
+              value="${e.default_weight}"></div>
+        </div>
+        <div class="note">→ ${Object.entries(e.effects).map(([k,v])=>
+            `<code>${esc(k)} ${v>0?"+":""}${v}</code>`).join(" · ")}
+          ${e.note ? `<br>${esc(e.note)}` : ""}</div>
+      </div>`).join(""));
+  }).join("");
+  $$("#f-ev .ev").forEach(d => {
+    $("input[type=checkbox]", d).onchange = ev =>
+      d.classList.toggle("on", ev.target.checked);
+  });
+
+  ["#f-core","#f-demo","#f-disp","#f-scal"].forEach(s=>bindMirrors($(s)));
+
+  $("#preset").innerHTML = PRESETS.polities.map(p =>
+    `<option value="${esc(p.code)}">${esc(p.code)} — ${
+      esc(p.name)}</option>`).join("");
+  $("#state_type").innerHTML = Object.keys(SCHEMA.state_types).map(k =>
+    `<option value="${esc(k)}">${esc(k)}</option>`).join("");
+  $("#preset").onchange = () => fillPreset($("#preset").value);
+
+  $("#w-chips").innerHTML = PRESETS.polities.map(p =>
+    `<button class="chip" data-code="${esc(p.code)}" aria-pressed="true">${
+      esc(p.code)}</button>`).join("");
+  $$("#w-chips .chip").forEach(c => c.onclick = () =>
+    c.setAttribute("aria-pressed", c.getAttribute("aria-pressed")!=="true"));
+}
+
+/* keep the user's numbers and selections across a language switch */
+function snapshotForm(){
+  if(!SCHEMA) return null;
+  const vals = {};
+  $$("input[type=range][data-key]").forEach(r => vals[r.dataset.key]=r.value);
+  return {
+    vals,
+    preset: $("#preset") ? $("#preset").value : null,
+    year: $("#year").value,
+    state_type: $("#state_type") ? $("#state_type").value : null,
+    horizon: $("#horizon").value,
+    router: $("#in-router_mode") ? $("#in-router_mode").value : null,
+    haven: $("#in-haven_single_channel")
+      ? $("#in-haven_single_channel").value : null,
+    wHorizon: $("#w-horizon").value, wSync: $("#w-sync").value,
+    wCodes: $$("#w-chips .chip")
+      .filter(c=>c.getAttribute("aria-pressed")==="true")
+      .map(c=>c.dataset.code),
+    events: $$("#f-ev .ev").filter(d=>$("input[type=checkbox]",d).checked)
+      .map(d=>({id:d.dataset.id, i:$(".ev-i",d).value,
+                w:$(".ev-w",d).value}))
+  };
+}
+function restoreForm(s){
+  if(!s){ fillPreset(PRESETS.polities[0].code); return; }
+  Object.entries(s.vals||{}).forEach(([k,v])=>setVal(k,v));
+  if(s.preset) $("#preset").value = s.preset;
+  if(s.year) $("#year").value = s.year;
+  if(s.state_type) $("#state_type").value = s.state_type;
+  if(s.horizon) $("#horizon").value = s.horizon;
+  if(s.router) $("#in-router_mode").value = s.router;
+  if(s.haven) $("#in-haven_single_channel").value = s.haven;
+  if(s.wHorizon) $("#w-horizon").value = s.wHorizon;
+  if(s.wSync) $("#w-sync").value = s.wSync;
+  if(s.wCodes) $$("#w-chips .chip").forEach(c =>
+    c.setAttribute("aria-pressed", s.wCodes.includes(c.dataset.code)));
+  (s.events||[]).forEach(e=>{
+    const d = $(`#f-ev .ev[data-id="${e.id}"]`);
+    if(!d) return;
+    $("input[type=checkbox]", d).checked = true;
+    d.classList.add("on");
+    $(".ev-i", d).value = e.i; $(".ev-w", d).value = e.w;
+  });
+  showProvenance($("#preset").value);
+}
+
+function setVal(key, v){
+  const r = $("#in-"+key), n = $("#in-"+key+"-n");
+  if(r){ r.value = v; if(n) n.value = v; }
+}
+function getVal(key, dflt){
+  const n = $("#in-"+key+"-n") || $("#in-"+key);
+  if(!n) return dflt;
+  const v = parseFloat(n.value);
+  return Number.isFinite(v) ? v : dflt;
+}
+function showProvenance(code){
+  const p = PRESETS.polities.find(x => x.code === code);
+  if(!p) return;
+  $("#prov").innerHTML = `<b>${esc(p.provenance)}</b> · ${
+    esc(T("in.confidence"))}: <b>${esc(p.confidence_text)}</b>`
+    + (p.rationale ? `<br>${esc(p.rationale)}` : "");
+}
+function fillPreset(code){
+  const p = PRESETS.polities.find(x => x.code === code);
+  if(!p) return;
+  Object.entries(p.sub).forEach(([k,v]) => setVal(k, v));
+  Object.entries(p.demo).forEach(([k,v]) => setVal(k, v));
+  Object.entries(p.disp).forEach(([k,v]) => { if(v!=null) setVal(k, v); });
+  ["revenue_polarisation","security_pressure","base_revenue_demand"]
+    .forEach(k => setVal(k, p[k]));
+  $("#state_type").value = p.state_type;
+  showProvenance(code);
+}
+
+function collectBody(){
+  const sub={}, demo={}, disp={};
+  SCHEMA.core.forEach(c => sub[c.key]  = getVal(c.key, c.default));
+  SCHEMA.demo.forEach(c => demo[c.key] = getVal(c.key, c.default));
+  SCHEMA.disp.forEach(c => disp[c.key] = getVal(c.key, c.default));
+  disp.luxury_contraction = getVal("luxury_contraction", 0);
+  disp.physical_share = getVal("physical_share", 0.45);
+  const events = $$("#f-ev .ev")
+    .filter(d => $("input[type=checkbox]", d).checked)
+    .map(d => ({id:d.dataset.id,
+                intensity: parseFloat($(".ev-i",d).value),
+                weight: parseFloat($(".ev-w",d).value)}));
+  const chosen = PRESETS.polities.find(p=>p.code===$("#preset").value) || {};
+  return {
+    preset: $("#preset").value, code: $("#preset").value,
+    name: chosen.name,
+    year: parseInt($("#year").value,10) || 2026,
+    state_type: $("#state_type").value,
+    sub, demo, disp, events, lang: LANG,
+    revenue_polarisation: getVal("revenue_polarisation", 0),
+    security_pressure: getVal("security_pressure", 0),
+    base_revenue_demand: getVal("base_revenue_demand", 0),
+    g_shock: getVal("g_shock", 0),
+    horizon_years: parseFloat($("#horizon").value) || 15,
+    router_mode: $("#in-router_mode").value,
+    haven_single_channel: $("#in-haven_single_channel").value === "true",
+    with_sensitivity: true, with_trajectory: true,
+    sigma: {s1:.06,s2:.05,s3:.08,s4:.07,s5:.06,
+            c1:.06,c2:.06,c3:.06,c4:.06,c5:.05},
+    mc_draws: 600
+  };
+}
+
+/* ===================================================================
+   CHARTS - small multiples. One series per panel, so each variable keeps
+   its own scale and its own PAPER threshold. A single plot carrying Psi
+   (0-2.5), Delta_norm (-0.4-1) and S3 (0-1) would need two y-axes, which
+   invents a correlation that is not in the data.
+   =================================================================== */
+function sparkPanel(cfg){
+  const {title, sub, key, t: ts, v, thr, thrLabel, thrDir, fmt} = cfg;
+  const W=300, H=120, L=37, R=8, TOP=8, B=21;
+  const pw=W-L-R, ph=H-TOP-B;
+  const finite = v.filter(Number.isFinite);
+  if(!finite.length) return "";
+  let lo=Math.min(...finite), hi=Math.max(...finite);
+  if(thr!=null){ lo=Math.min(lo,thr); hi=Math.max(hi,thr); }
+  const pad=(hi-lo)*0.14 || 0.06; lo-=pad; hi+=pad;
+  const t0=ts[0], t1=ts[ts.length-1];
+  const X=u=>L+(t1===t0?0:(u-t0)/(t1-t0))*pw;
+  const Y=u=>TOP+(1-(u-lo)/(hi-lo||1))*ph;
+  const d = ts.map((u,i)=>(Number.isFinite(v[i])
+    ? `${i?"L":"M"}${X(u).toFixed(1)},${Y(v[i]).toFixed(1)}` : "")).join("");
+
+  let band="", thrLine="";
+  if(thr!=null){
+    const yt=Y(thr);
+    const y0 = thrDir==="below" ? yt : TOP;
+    const hh = thrDir==="below" ? (TOP+ph-yt) : (yt-TOP);
+    if(hh>0.5) band=`<rect x="${L}" y="${y0.toFixed(1)}" width="${pw}"
+      height="${hh.toFixed(1)}" fill="var(--crit)" opacity="0.07"/>`;
+    thrLine=`<line x1="${L}" x2="${W-R}" y1="${yt.toFixed(1)}"
+        y2="${yt.toFixed(1)}" stroke="var(--crit)" stroke-width="1.5"/>
+      <text x="${W-R}" y="${(yt-4).toFixed(1)}" text-anchor="end"
+        font-size="10" fill="var(--crit)" font-family="var(--mono)"
+        font-weight="600">${esc(thrLabel)}</text>`;
+  }
+  const first=v[0], last=v[v.length-1];
+  const grid=[lo,(lo+hi)/2,hi].map(g=>
+    `<line x1="${L}" x2="${W-R}" y1="${Y(g).toFixed(1)}"
+       y2="${Y(g).toFixed(1)}" stroke="var(--grid)" stroke-width="1"/>
+     <text x="${L-5}" y="${(Y(g)+3).toFixed(1)}" text-anchor="end"
+       font-size="10" fill="var(--muted)" font-family="var(--mono)"
+       >${(fmt||(x=>x.toFixed(2)))(g)}</text>`).join("");
+  const pts=ts.map((u,i)=>`<circle class="hp" cx="${X(u).toFixed(1)}"
+      cy="${Y(v[i]).toFixed(1)}" r="9" fill="transparent"
+      data-t="${u.toFixed(1)}" data-v="${v[i]}"/>`).join("");
+
+  return `<div class="panel" data-key="${esc(key)}">
+    <div class="pt">${esc(title)}</div>
+    <div class="ps">${esc(sub)}</div>
+    <svg viewBox="0 0 ${W} ${H}" role="img"
+      aria-label="${esc(title)}: ${num(first)} → ${num(last)}">
+      ${grid}${band}
+      <line x1="${L}" x2="${W-R}" y1="${TOP+ph}" y2="${TOP+ph}"
+        stroke="var(--axis)" stroke-width="1"/>
+      <path d="${d}" fill="none" stroke="var(--s1)" stroke-width="2"
+        stroke-linejoin="round" stroke-linecap="round"/>
+      ${thrLine}
+      <circle cx="${X(t1).toFixed(1)}" cy="${Y(last).toFixed(1)}" r="3.5"
+        fill="var(--s1)" stroke="var(--surface-2)" stroke-width="2"/>
+      <text x="${L}" y="${H-5}" font-size="10" fill="var(--muted)"
+        font-family="var(--mono)">t=0</text>
+      <text x="${W-R}" y="${H-5}" text-anchor="end" font-size="10"
+        fill="var(--muted)" font-family="var(--mono)"
+        >+${t1.toFixed(0)}${esc(T("val.years"))}</text>
+      <text x="${(L+pw/2).toFixed(0)}" y="${H-5}" text-anchor="middle"
+        font-size="10" fill="var(--ink-2)" font-family="var(--mono)"
+        font-weight="600">${num(first,3)} → ${num(last,3)}</text>
+      ${pts}
+    </svg></div>`;
+}
+function bindSpark(root){
+  $$(".hp", root).forEach(c => {
+    c.addEventListener("mousemove", e => {
+      const pan = c.closest(".panel");
+      const k = pan ? (pan.dataset.key || "v") : "v";
+      showTip(e, `t = +${c.dataset.t} ${esc(T("val.years"))}<br><b>${
+        esc(k)} = ${num(+c.dataset.v, 4)}</b>`);
+    });
+    c.addEventListener("mouseleave", hideTip);
+  });
+}
+
+function barChart(rows, thr){
+  const mx = Math.max(thr*1.1, ...rows.map(r=>r.v)) || 1;
+  return `<div class="scroll"><table><thead><tr>
+      <th>${esc(T("th.code"))}</th><th class="n">&Psi;</th>
+      <th style="width:58%">&Psi; ${esc(T("res.vs"))} &Psi;_crit = ${thr}</th>
+    </tr></thead><tbody>${rows.map(r=>{
+      const pc=clamp01(r.v/mx)*100, tp=clamp01(thr/mx)*100;
+      return `<tr><td><b>${esc(r.k)}</b></td><td class="n">${num(r.v)}</td>
+        <td><div style="position:relative;height:16px">
+          <div style="position:absolute;left:0;top:4px;height:8px;
+            width:${pc.toFixed(1)}%;background:var(--s1);
+            border-radius:0 4px 4px 0"></div>
+          <div style="position:absolute;left:${tp.toFixed(1)}%;top:0;bottom:0;
+            width:2px;background:var(--crit)"></div>
+          <span style="position:absolute;left:calc(${pc.toFixed(1)}% + 6px);
+            top:0;font:10px var(--mono);color:var(--ink-2);white-space:nowrap"
+            >${r.v<thr?esc(T("w.below_thresh")):""}</span>
+        </div></td></tr>`;}).join("")}</tbody></table></div>`;
+}
+
+/* ===================================================================
+   RENDER - single polity
+   =================================================================== */
+const TIER_CLS = {Coherent:"b-good", Strained:"b-warn", Incoherent:"b-crit"};
+const MODE_CLS = {VOLUNTARY:"b-warn", VIOLENT_EXPOSED:"b-crit",
+                  MIXED:"b-ser", SLACK:"b-mut"};
+const gateBad = c => /CLOSED|NEAR|BOTH/.test(c||"");
+
+function fill(tpl, map){
+  let s = tpl;
+  Object.entries(map).forEach(([k,v]) => { s = s.split("{"+k+"}").join(v); });
+  return s;
+}
+
+function renderOne(d){
+  LAST = d;
+  const V=d.verdict, cap=d.capacity, F=d.forcing, L=d.loops;
+  const TH=SCHEMA.thresholds_paper, H=[];
+
+  H.push(`<div class="card">
+    <h2>${esc(d.country)} ${d.year} — ${esc(T("res.verdict"))}</h2>
+    <div class="flexrow" style="gap:6px;margin-bottom:4px">
+      <span class="badge ${V.R_B?"b-crit":"b-mut"}">R_B = ${V.R_B}</span>
+      <span class="badge ${TIER_CLS[V.coherence_tier]||"b-mut"}">${
+        esc(V.coherence_tier_text)}</span>
+      <span class="badge ${MODE_CLS[V.adjustment_mode]||"b-mut"}">${
+        esc(V.adjustment_mode_text)}</span>
+      <span class="badge ${gateBad(V.gate_code)?"b-crit":"b-good"}">&theta;&#8322;&#8325; ${
+        esc(V.gate_text)}</span>
+      ${V.decoupling_active
+        ? `<span class="badge b-ser">G/S&#8323;</span>`:""}
+    </div>
+    <div class="headline">${esc(V.headline)}</div>
+    <div class="tiles">
+      <div class="tile"><div class="k">&Psi; ${esc(T("res.vs"))} &Psi;_crit</div>
+        <div class="v">${num(cap.psi)}</div>
+        <div class="s">&Psi;_crit = ${TH.psi_crit}
+          <span class="muted">[PAPER]</span></div>
+        <div class="meter"><i style="width:${clamp01(cap.psi/1.2)*100}%"></i>
+          <u style="left:${clamp01(TH.psi_crit/1.2)*100}%"></u></div></div>
+      <div class="tile"><div class="k">&Delta;_norm</div>
+        <div class="v">${sgn(cap.delta_norm)}</div>
+        <div class="s">S = ${num(cap.S)} · C = ${num(cap.C)}</div></div>
+      <div class="tile"><div class="k">&theta;&#8322;&#8325;</div>
+        <div class="v">${num(cap.theta25)}</div>
+        <div class="s">&lambda; = ${num(cap.lam)}</div></div>
+      <div class="tile"><div class="k">CAI</div>
+        <div class="v">${num(L.cai_core,1)}
+          <span class="muted" style="font-size:15px">/ ${
+            num(L.cai_ext,1)}</span></div>
+        <div class="s">${esc(L.cai_core_band)} · ${
+          esc(L.cai_ext_band)}</div></div>
+    </div>
+    <h4 style="margin-top:16px">${esc(T("res.regime"))}</h4>
+    <div class="strip" style="grid-template-columns:repeat(${
+      SCHEMA.regime_bands.length},1fr)">
+      ${SCHEMA.regime_bands.map(b=>`<div class="cell${
+        V.regime===b.name?" hit":""}">${esc(b.label)}
+        <em>${b.lo} … ${b.hi}</em></div>`).join("")}
+    </div>
+    <div class="hint">${esc(T("res.regime_strip_help"))} (&Delta;_norm = ${
+      sgn(cap.delta_norm)})</div>
+  </div>`);
+
+  /* gates */
+  H.push(`<div class="card"><h3>${esc(T("res.gates"))}</h3>
+    <p class="hint">${esc(V.adjustment_mode_desc||"")}</p>
+    <div class="scroll"><table><thead><tr>
+      <th>${esc(T("th.variable"))}</th>
+      <th class="n">${esc(T("th.level"))}</th>
+      <th class="n">${esc(T("th.drift"))}</th>
+      <th class="n">${esc(T("th.threshold"))}</th>
+      <th>${esc(T("th.source"))}</th>
+      <th class="n">${esc(T("th.time"))}</th>
+      <th>${esc(T("th.meaning"))}</th></tr></thead><tbody>
+      ${F.gates.map(g=>{
+        const yrs = g.crossed ? T("val.crossed")
+          : (g.years_to_gate==null ? T("val.no_approach")
+             : `~${g.years_to_gate.toFixed(0)} ${T("val.years")}`);
+        return `<tr><td><b>${esc(g.component.toUpperCase())}</b></td>
+          <td class="n">${num(g.level)}</td>
+          <td class="n" style="color:${g.drift<0?"var(--crit)":
+            (g.drift>0?"var(--ink-2)":"var(--muted)")}">${
+            sgn(g.drift,4)}</td>
+          <td class="n">${num(g.threshold,2)}</td>
+          <td><span class="tag${g.threshold_status!=="PAPER"?" blk":""}">${
+            esc(g.threshold_status)}</span></td>
+          <td class="n">${esc(yrs)}</td>
+          <td class="muted" style="font-size:11px">${esc(g.meaning)}</td>
+        </tr>`;}).join("")}
+    </tbody></table></div>
+    <div class="hint">router_mode = ${esc(F.demo.router_mode_text)} · ${
+      esc(fill(T("res.forcing_line"), {
+        total: num(F.demo.pressure_total),
+        violent: num(F.demo.pressure_violent),
+        voluntary: num(F.demo.pressure_voluntary),
+        s3nat: sgn(F.s3_natural,4), c5str: sgn(F.c5_structural,4),
+        g: num(F.g_multiplier),
+        squeeze: sgn(F.disp.extraction_squeeze,4)}))}</div>
+  </div>`);
+
+  /* loops */
+  H.push(`<div class="card"><h3>${esc(T("res.loops"))}</h3>
+    <div class="hint">${esc(T("res.cai_core"))} = ${num(L.cai_core,1)} (${
+      esc(L.cai_core_band)}): ${esc(L.cai_core_horizon)}<br>
+      ${esc(T("res.cai_ext"))} = ${num(L.cai_ext,1)} (${
+      esc(L.cai_ext_band)})</div>
+    <div class="loops">${Object.keys(L.loops).sort().map(k=>{
+      const s=L.loops[k], on=s.active;
+      return `<div class="loop${on?" on":""}">
+        <div class="lh"><span class="lid">${esc(k)}</span>
+          <span class="badge ${on?"b-crit":"b-mut"}">${
+            esc(on?T("loop.active"):T("loop.damped"))}</span></div>
+        <div class="ln">${esc(s.name)}</div>
+        <div class="ld">${esc(s.detail)}</div></div>`;}).join("")}</div>
+    ${L.synchronised.length ? `<p class="hint" style="margin-top:10px">${
+      esc(fill(T("res.synced"), {loops: L.synchronised.join(", ")}))
+      }</p>`:""}
+    ${L.loops.L6 && L.loops.L6.active ? `<p class="hint"
+      style="margin-top:8px"><b>[L6]</b> ${esc(T("res.l6_note"))}</p>`:""}
+    ${(L.overlap_warnings||[]).length ? `<ul class="warnlist"
+      style="margin-top:8px">${L.overlap_warnings.map(w=>
+        `<li>${esc(w)}</li>`).join("")}</ul>`:""}
+  </div>`);
+
+  /* bifurcation */
+  const rb=d.bifurcation;
+  H.push(`<div class="card">
+    <h3>${esc(T("res.bifurcation"))} — R_B = ${rb.R_B}</h3>
+    <p class="hint">${esc(T("res.rb_help"))}</p>
+    <div class="scroll"><table><tbody>
+      <tr><td>${esc(T("res.cond_delta"))}</td>
+        <td class="n">${rb.cond_delta_below_crit?"✓":"✗"}</td>
+        <td class="n muted">&Delta;_norm = ${sgn(cap.delta_norm)}</td></tr>
+      <tr><td>${esc(T("res.cond_momentum"))}</td>
+        <td class="n">${rb.cond_momentum?"✓":"✗"}</td>
+        <td class="n muted">d&Delta;/dt = ${sgn(rb.d_delta_dt,4)}</td></tr>
+      <tr><td>${esc(T("res.cond_coherence"))}</td>
+        <td class="n">${rb.cond_low_coherence?"✓":"✗"}</td>
+        <td class="n muted">&Psi; = ${num(cap.psi)}</td></tr>
+    </tbody></table></div>
+    <div class="hint">${esc(rb.d_delta_dt_source||"")}</div>
+    ${rb.R_B===1 ? `<p class="hint">→ ${esc(T("res.attractor"))}: <b>${
+      esc(d.attractor.most_likely_text||d.attractor.most_likely)}</b></p>`:""}
+  </div>`);
+
+  /* trajectory */
+  if(d.trajectory){
+    const T2=d.trajectory;
+    const panels=[
+      {key:"psi",        thr:TH.psi_crit,     lbl:"Ψ_crit "+TH.psi_crit,       dir:"below"},
+      {key:"delta_norm", thr:TH.delta_crit,   lbl:"Crisis "+TH.delta_crit,          dir:"below"},
+      {key:"theta25",    thr:null},
+      {key:"s3",         thr:TH.L2_s3_thresh, lbl:"L2 "+TH.L2_s3_thresh,            dir:"below"},
+      {key:"s5",         thr:TH.s5_crit,      lbl:"θ₂₅ "+TH.s5_crit, dir:"below"},
+      {key:"s2",         thr:TH.s2_crit,      lbl:"θ₂₅ "+TH.s2_crit, dir:"below"},
+      {key:"c5",         thr:null},
+      {key:"c1",         thr:TH.c1_crit,      lbl:"C₁crit "+TH.c1_crit,        dir:"above"},
+    ];
+    H.push(`<div class="card">
+      <h3>${esc(T("res.traj"))} → +${
+        T2.t[T2.t.length-1].toFixed(0)} ${esc(T("val.years"))}</h3>
+      <p class="hint">${esc(T("res.traj_help"))} ${esc(T2.notes[0]||"")}</p>
+      <div class="sm">${panels.map(p=>sparkPanel({
+        title:T("pan."+p.key), sub:T("pan."+p.key+".sub"), key:p.key,
+        t:T2.t, v:T2[p.key], thr:p.thr, thrLabel:p.lbl||"",
+        thrDir:p.dir||"below"})).join("")}</div>
+      ${d.horizon_verdict?`<div class="headline" style="margin-top:14px">
+        <b>${esc(T("res.at_horizon"))}:</b> ${
+          esc(d.horizon_verdict.headline)}</div>`:""}
+      ${T2.crossings.length?`<h4 style="margin-top:12px">${
+        esc(T("res.crossings"))}</h4>
+        <div class="scroll"><table><thead><tr>
+          <th>${esc(T("th.variable"))}</th>
+          <th>${esc(T("th.direction"))}</th>
+          <th class="n">${esc(T("th.threshold"))}</th>
+          <th>${esc(T("th.source"))}</th><th class="n">t</th>
+          <th>${esc(T("th.meaning"))}</th></tr></thead><tbody>
+        ${T2.crossings.map(c=>`<tr><td><b>${esc(c.variable)}</b></td>
+          <td>${esc(c.direction_text)}</td>
+          <td class="n">${num(c.threshold,2)}</td>
+          <td><span class="tag${c.threshold_status!=="PAPER"?" blk":""}">${
+            esc(c.threshold_status)}</span></td>
+          <td class="n">+${c.year_offset.toFixed(1)}</td>
+          <td class="muted" style="font-size:11px">${esc(c.meaning)}</td>
+        </tr>`).join("")}</tbody></table></div>`:""}
+      <details style="margin-top:12px"><summary class="hint"
+        style="cursor:pointer"><b>${esc(T("res.data_table"))}</b></summary>
+        <div class="scroll" style="max-height:300px;overflow:auto">
+        <table><thead><tr><th class="n">t</th>${panels.map(p=>
+          `<th class="n">${esc(p.key)}</th>`).join("")}
+          <th>${esc(T("res.regime"))}</th>
+          <th>${esc(T("res.tier"))}</th></tr></thead><tbody>
+          ${T2.t.map((tv,i)=>`<tr><td class="n">${tv.toFixed(1)}</td>${
+            panels.map(p=>`<td class="n">${num(T2[p.key][i])}</td>`).join("")}
+            <td>${esc(T2.regime_at_text[i])}</td>
+            <td>${esc(T2.tier_at_text[i])}</td></tr>`).join("")}
+        </tbody></table></div></details>
+    </div>`);
+  }
+
+  /* uncertainty */
+  if(d.uncertainty){
+    const u=d.uncertainty;
+    H.push(`<div class="card"><h3>${esc(T("res.uncertainty"))}</h3>
+      <div class="tiles">
+        <div class="tile"><div class="k">&Delta;_norm ${
+          esc(T("res.median"))}</div>
+          <div class="v">${sgn(u.median_delta_norm)}</div>
+          <div class="s">${esc(T("res.ci80"))} [${num(u.ci80[0])}, ${
+            num(u.ci80[1])}]</div></div>
+        <div class="tile"><div class="k">&Psi; ${esc(T("res.median"))}</div>
+          <div class="v">${num(u.median_psi)}</div>
+          <div class="s">${esc(T("res.ci80"))} [${num(u.psi_ci80[0])}, ${
+            num(u.psi_ci80[1])}]</div></div>
+        <div class="tile"><div class="k">${esc(T("res.mc_draws"))}</div>
+          <div class="v">${u.draws}</div>
+          <div class="s">${esc(T("res.width80"))} ${
+            num(u.width80)}</div></div>
+      </div>
+      <h4 style="margin-top:12px">${esc(T("res.regime_dist"))}</h4>
+      <div class="scroll"><table><tbody>${
+        Object.entries(u.regime_distribution).map(([k,v])=>{
+          const hit=SCHEMA.regime_bands.find(x=>x.name===k);
+          return `<tr><td>${esc(hit?hit.label:k)}</td>
+            <td class="n">${(v*100).toFixed(1)}%</td>
+            <td><div style="height:8px;border-radius:4px;background:var(--s1);
+              width:${(v*100).toFixed(1)}%"></div></td></tr>`;}).join("")}
+      </tbody></table></div>
+      <div class="hint">${esc(u.expected_width_note)}</div></div>`);
+  }
+
+  /* fragility */
+  H.push(`<div class="card"><h3>${esc(T("res.fragility"))}</h3>
+    ${d.fragility.length ? `<p class="hint">${
+      esc(fill(T("res.frag_some"), {n: d.fragility.length}))}</p>
+      <div class="scroll"><table><thead><tr>
+        <th>${esc(T("th.parameter"))}</th>
+        <th>${esc(T("th.provenance"))}</th>
+        <th class="n">${esc(T("th.baseline"))}</th>
+        <th class="n">−20%</th><th class="n">+20%</th>
+        <th>${esc(T("th.changes"))}</th></tr></thead><tbody>
+      ${d.fragility.map(f=>`<tr><td><code>${esc(f.parameter)}</code></td>
+        <td><span class="tag${f.status!=="PAPER"?" blk":""}">${
+          esc(f.status)}</span></td>
+        <td class="n">${num(f.baseline,4)}</td>
+        <td class="n">${f.flips_low?"⚠ "+esc(T("val.flips")):"—"}</td>
+        <td class="n">${f.flips_high?"⚠ "+esc(T("val.flips")):"—"}</td>
+        <td style="font-size:11px">${(f.changed_text||[]).map(esc)
+          .join("<br>")}</td></tr>`).join("")}
+      </tbody></table></div>`
+      : `<p class="hint">${esc(T("res.frag_none"))}</p>`}
+  </div>`);
+
+  /* events applied */
+  if(d.events && d.events.audit.length){
+    H.push(`<div class="card"><h3>${esc(T("events.applied"))}</h3>
+      <div class="scroll"><table><thead><tr>
+        <th>${esc(T("events.title"))}</th>
+        <th class="n">${esc(T("events.intensity"))}</th>
+        <th class="n">${esc(T("events.weight"))}</th>
+        <th>${esc(T("events.shift"))}</th></tr></thead><tbody>
+      ${d.events.audit.map(a=>`<tr><td>${esc(a.label)}</td>
+        <td class="n">${a.intensity}</td><td class="n">${a.weight}</td>
+        <td><code>${Object.entries(a.applied).map(([k,v])=>
+          `${esc(k)} ${v>0?"+":""}${v}`).join(" · ")}</code></td>
+      </tr>`).join("")}</tbody></table></div>
+      ${(d.events.notes||[]).map(n=>
+        `<div class="hint">${esc(n)}</div>`).join("")}</div>`);
+  }
+
+  H.push(`<div class="card"><h3>${esc(T("res.warnings"))}</h3>
+    <ul class="warnlist">${d.warnings.map(w=>
+      `<li>${esc(w)}</li>`).join("")}</ul></div>`);
+  H.push(`<div class="card"><h3>${esc(T("res.narrative"))}</h3>
+    <pre class="nar">${esc(d.narrative)}</pre></div>`);
+
+  $("#out-one").innerHTML = H.join("");
+  bindSpark($("#out-one"));
+}
+
+/* ===================================================================
+   RENDER - world
+   =================================================================== */
+function renderWorld(d){
+  LASTW = d;
+  const TH=SCHEMA.thresholds_paper, H=[];
+  const below = d.psi_G < d.psi_G_crit;
+
+  H.push(`<div class="card"><h2>${esc(T("w.title"))} ${d.year}</h2>
+    <div class="headline">${esc(d.verdict)}</div>
+    <div class="tiles">
+      <div class="tile"><div class="k">&Psi;_G</div>
+        <div class="v">${num(d.psi_G)}</div>
+        <div class="s">crit ${d.psi_G_crit}
+          <span class="muted">[PAPER]</span> — ${
+            below?"<b>"+esc(T("w.below"))+"</b>":esc(T("w.above"))}</div>
+        <div class="meter"><i style="width:${clamp01(d.psi_G/0.9)*100}%"></i>
+          <u style="left:${clamp01(d.psi_G_crit/0.9)*100}%"></u></div></div>
+      <div class="tile"><div class="k">Sync_Risk</div>
+        <div class="v">${num(d.sync_risk)}</div>
+        <div class="s">${esc(T("w.prior"))} ${num(d.sync_risk_prior,2)} + ${
+          esc(T("w.haven_term"))} ${num(d.sync_risk_haven)}</div></div>
+      <div class="tile"><div class="k">CAI_weighted</div>
+        <div class="v">${num(d.cai_weighted,2)}</div>
+        <div class="s">crit ${TH.CAI_G_crit}
+          <span class="muted">[PAPER, 1929-39]</span></div></div>
+      <div class="tile"><div class="k">R_B,G</div>
+        <div class="v">${d.global_bifurcation.R_B_G}</div>
+        <div class="s">${esc(T("w.structural_not_forecast"))}</div></div>
+    </div></div>`);
+
+  H.push(`<div class="card"><h3>${esc(T("w.two_channel"))}</h3>
+    <p class="hint"><b>${esc(T("w.divergence"))} = ${
+      num(d.adjustment_divergence)}</b>. ${esc(T("w.divergence_help"))}</p>
+    <div class="tiles">${Object.entries(d.adjustment_split_text||{})
+      .filter(([,v])=>v.length).map(([k,v])=>`<div class="tile">
+        <div class="k">${esc(k)}</div>
+        <div class="v" style="font-size:18px">${v.join(" · ")}</div>
+        <div class="s">${v.length} ${esc(T("w.polities_count"))}</div>
+      </div>`).join("")}</div>
+    ${d.talent_gradient.length?`<h4 style="margin-top:14px">${
+      esc(T("w.talent"))}</h4>
+      <div class="scroll"><table><thead><tr>
+        <th>${esc(T("th.origin"))}</th>
+        <th>${esc(T("th.destination"))}</th>
+        <th class="n">${esc(T("th.push"))}</th>
+        <th class="n">${esc(T("th.pull"))}</th>
+        <th class="n">${esc(T("th.pressure"))}</th></tr></thead><tbody>
+      ${d.talent_gradient.slice(0,8).map(g=>`<tr>
+        <td><b>${esc(g.origin)}</b></td><td><b>${esc(g.destination)}</b></td>
+        <td class="n">${num(g.push_d5,2)}</td>
+        <td class="n">${num(g.pull_d4,2)}</td>
+        <td class="n">${num(g.pressure,4)}</td></tr>`).join("")}
+      </tbody></table></div>`:""}</div>`);
+
+  const tt=d.thucydides;
+  if(tt.hegemon){
+    H.push(`<div class="card"><h3>${esc(T("w.hegemony"))}</h3>
+      <p><b>${esc(tt.hegemon)}</b> <span class="muted">(${
+        esc(T("w.hegemon"))})</span> ${esc(T("res.vs"))} <b>${
+        esc(tt.challenger)}</b></p>
+      <div class="tiles">
+        <div class="tile"><div class="k">${esc(T("w.gap"))}</div>
+          <div class="v">${sgn(tt.hegemonic_gap)}</div>
+          <div class="s">crit 0.25 <span class="muted">[PAPER]</span></div>
+        </div>
+        <div class="tile"><div class="k">T_trap</div>
+          <div class="v">${tt.T_trap}</div>
+          <div class="s">${esc(T("res.rb_help"))}</div></div>
+      </div>
+      <div class="scroll" style="margin-top:10px"><table><tbody>
+        <tr><td>${esc(T("w.cond_gap"))}</td>
+          <td class="n">${tt.cond_gap_below_crit?"✓":"✗"}</td></tr>
+        <tr><td>${esc(T("w.cond_converge"))}</td>
+          <td class="n">${tt.cond_converging?"✓":"✗"}</td></tr>
+        <tr><td>${esc(T("w.cond_sustained"))}</td>
+          <td class="n">${tt.cond_sustained?"✓":"✗"}</td></tr>
+      </tbody></table></div>
+      <div class="hint">${esc(tt.d_gap_dt_source||"")}</div></div>`);
+  }
+
+  const rows=Object.entries(d.polities);
+  H.push(`<div class="card"><h3>${esc(T("w.per_polity"))}</h3>
+    <div class="scroll"><table><thead><tr>
+      <th>${esc(T("th.code"))}</th><th>${esc(T("res.regime"))}</th>
+      <th>${esc(T("res.tier"))}</th><th>${esc(T("res.mode"))}</th>
+      <th>${esc(T("th.gate"))}</th><th class="n">&Psi;</th>
+      <th class="n">&Delta;_norm</th><th class="n">CAI</th>
+      <th class="n">R_B</th>
+      <th>${esc(T("th.loops_active"))}</th></tr></thead><tbody>
+    ${rows.map(([c,p])=>{
+      const v=p.verdict;
+      return `<tr><td><b>${esc(c)}</b></td>
+        <td>${esc(v.regime_text)}</td>
+        <td><span class="badge ${TIER_CLS[v.coherence_tier]||"b-mut"}">${
+          esc(v.coherence_tier_text)}</span></td>
+        <td><span class="badge ${MODE_CLS[v.adjustment_mode]||"b-mut"}">${
+          esc(v.adjustment_mode_text)}</span></td>
+        <td style="font-size:11px${gateBad(v.gate_code)?
+          ";color:var(--crit)":""}">${esc(v.gate_text)}</td>
+        <td class="n">${num(p.capacity.psi)}</td>
+        <td class="n">${sgn(p.capacity.delta_norm)}</td>
+        <td class="n">${num(v.cai_core,1)}/${num(v.cai_ext,1)}</td>
+        <td class="n">${v.R_B}</td>
+        <td><code style="font-size:11px">${v.active_loops.map(x=>x.slice(1))
+          .join("+")||"—"}</code></td></tr>`;}).join("")}
+    </tbody></table></div></div>`);
+
+  H.push(`<div class="card"><h3>${esc(T("w.psi_by_polity"))}</h3>
+    <p class="hint">${esc(fill(T("w.psi_bar_help"),
+      {crit: TH.psi_crit}))}</p>
+    ${barChart(rows.map(([c,p])=>({k:c, v:p.capacity.psi}))
+      .sort((a,b)=>b.v-a.v), TH.psi_crit)}</div>`);
+
+  H.push(`<div class="card"><h3>${esc(T("res.warnings"))}</h3>
+    <ul class="warnlist">${d.warnings.map(w=>
+      `<li>${esc(w)}</li>`).join("")}</ul></div>`);
+  H.push(`<div class="card"><h3>${esc(T("res.narrative"))}</h3>
+    <pre class="nar">${esc(d.narrative)}</pre></div>`);
+
+  $("#out-world").innerHTML = H.join("");
+}
+
+/* ===================================================================
+   AUDIT
+   =================================================================== */
+async function loadAudit(){
+  const el = $("#out-audit");
+  el.innerHTML = `<div class="card"><p class="sk">${
+    esc(T("a.loading"))}</p></div>`;
+  try{
+    const a = await fetch(`${API}/api/v2/audit?lang=${LANG}`)
+      .then(r=>r.json());
+    const cnt = o => Object.entries(o).map(([k,v])=>
+      `<span class="tag">${esc(k)} ${v}</span>`).join(" ");
+    const sevCls = s => /CRIT/.test(s) ? "b-crit"
+      : (s==="HIGH" ? "b-ser" : (s==="medium" ? "b-warn" : "b-mut"));
+
+    el.innerHTML = `
+      <div class="card"><h2>${esc(T("a.title"))}</h2>
+        <div class="headline">${esc(a.combined.headline)}</div>
+        <div class="tiles">
+          <div class="tile"><div class="k">sccd v1.00</div>
+            <div class="v">${a.combined.v1.total}</div>
+            <div class="s">${cnt(a.combined.v1.counts)}</div></div>
+          <div class="tile"><div class="k">sccdx v2.00</div>
+            <div class="v">${a.combined.v2.total}</div>
+            <div class="s">${cnt(a.combined.v2.counts)}</div></div>
+        </div>
+        <h4 style="margin-top:14px">${esc(T("a.level_drift"))}</h4>
+        <div class="hint">${esc(a.level_vs_drift.note)}</div>
+        <div class="hint">${esc(a.theta25_gate_note)}</div></div>
+
+      <div class="card"><h3>${esc(T("a.open_problems"))} (${
+        a.open_problems_v2.length})</h3>
+        <div class="scroll"><table><thead><tr>
+          <th>${esc(T("th.id"))}</th><th>${esc(T("th.severity"))}</th>
+          <th>${esc(T("th.where"))}</th><th>${esc(T("th.issue"))}</th>
+        </tr></thead><tbody>
+        ${a.open_problems_v2.map(o=>`<tr><td><b>${esc(o.id)}</b></td>
+          <td><span class="badge ${sevCls(o.severity)}">${
+            esc(o.severity_text)}</span></td>
+          <td style="font-size:11px">${esc(o.where)}</td>
+          <td style="font-size:11.5px">${esc(o.issue)}</td></tr>`).join("")}
+        </tbody></table></div></div>
+
+      <div class="card"><h3>${esc(T("a.inconsistencies"))} (${
+        a.known_inconsistencies_v1.length})</h3>
+        <p class="hint">${esc(T("a.patch_note"))}</p>
+        <div class="scroll"><table><thead><tr>
+          <th>${esc(T("th.id"))}</th><th>${esc(T("th.severity"))}</th>
+          <th>${esc(T("th.where"))}</th><th>${esc(T("th.issue"))}</th>
+        </tr></thead><tbody>
+        ${a.known_inconsistencies_v1.map(o=>`<tr><td><b>${esc(o.id)}</b></td>
+          <td><span class="badge ${sevCls(o.severity)}">${
+            esc(o.severity_text)}</span></td>
+          <td style="font-size:11px">${esc(o.where)}</td>
+          <td style="font-size:11.5px">${esc(o.issue)}</td></tr>`).join("")}
+        </tbody></table></div></div>
+
+      <div class="card"><h3>${esc(T("a.v2_params"))} (${
+        a.v2_rows.length})</h3>
+        <div class="scroll" style="max-height:460px;overflow:auto">
+        <table><thead><tr><th>${esc(T("th.group"))}</th>
+          <th>${esc(T("th.name"))}</th>
+          <th class="n">${esc(T("th.value"))}</th>
+          <th>${esc(T("th.provenance"))}</th>
+          <th>${esc(T("th.source"))}</th>
+          <th>${esc(T("th.note"))}</th></tr></thead><tbody>
+        ${a.v2_rows.map(r=>`<tr><td>${esc(r.group)}</td>
+          <td><code>${esc(r.name)}</code></td>
+          <td class="n">${r.value}</td>
+          <td><span class="tag blk">${esc(r.status)}</span></td>
+          <td style="font-size:11px">${esc(r.src)}</td>
+          <td style="font-size:11px">${esc(r.note)}</td></tr>`).join("")}
+        </tbody></table></div></div>
+
+      <div class="card"><h3>${esc(T("a.degrow_anchors"))}</h3>
+        <div class="scroll"><table><thead><tr>
+          <th>${esc(T("th.case"))}</th><th>${esc(T("th.metric"))}</th>
+          <th>${esc(T("th.value"))}</th><th>${esc(T("th.stage"))}</th>
+        </tr></thead><tbody>
+        ${a.degrow_anchors.map(r=>`<tr><td>${esc(r.case)}</td>
+          <td>${esc(r.metric)}</td><td><b>${esc(r.value)}</b></td>
+          <td>${esc(r.stage)}${r.note?`<br><span class="muted"
+            style="font-size:11px">${esc(r.note)}</span>`:""}</td>
+        </tr>`).join("")}</tbody></table></div></div>
+
+      <div class="card"><h3>${esc(T("a.displ_numbers"))}</h3>
+        <div class="scroll"><table><thead><tr>
+          <th>${esc(T("th.metric"))}</th><th>${esc(T("th.value"))}</th>
+          <th>${esc(T("th.section"))}</th></tr></thead><tbody>
+        ${a.displacement_numbers.map(r=>`<tr><td>${esc(r.k)}</td>
+          <td><b>${esc(r.v)}</b></td>
+          <td class="muted">${esc(r.src)}</td></tr>`).join("")}
+        </tbody></table></div>
+        <div class="hint">${esc(T("a.backtest_only"))}</div></div>`;
+    AUDIT_LOADED = true;
+  }catch(e){ fail("#out-audit", e); }
+}
+
+/* ===================================================================
+   WIRING
+   =================================================================== */
+async function post(path, body){
+  const r = await fetch(API+path, {method:"POST",
+    headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)});
+  const j = await r.json().catch(()=>({error:"response was not JSON"}));
+  if(!r.ok || j.error) throw new Error(j.error
+    ? j.error + (j.detail?"\n"+j.detail:"") : "HTTP "+r.status);
+  return j;
+}
+function fail(sel, e){
+  $(sel).innerHTML = `<div class="card"><div class="err">
+    <b>${esc(T("res.error"))}</b>
+    <pre class="nar" style="margin-top:8px">${esc(e.message)}</pre>
+    <div class="hint">${esc(fill(T("res.error_hint"), {url: API}))}</div>
+  </div></div>`;
+}
+
+async function runOne(){
+  const b=$("#run"); b.disabled=true; b.textContent=T("in.running");
+  $("#out-one").innerHTML = `<div class="card"><p class="sk">${
+    esc(T("in.running"))}</p></div>`;
+  try{ renderOne(await post("/api/v2/diagnose", collectBody())); }
+  catch(e){ fail("#out-one", e); }
+  finally{ b.disabled=false; b.textContent=T("in.run"); }
+}
+async function runWorld(){
+  const b=$("#w-run"); b.disabled=true; b.textContent=T("in.running");
+  $("#out-world").innerHTML = `<div class="card"><p class="sk">${
+    esc(T("in.running"))}</p></div>`;
+  const codes = $$("#w-chips .chip")
+    .filter(c=>c.getAttribute("aria-pressed")==="true")
+    .map(c=>c.dataset.code);
+  try{
+    renderWorld(await post("/api/v2/world", {
+      year: parseInt($("#year").value,10)||2026, codes, lang: LANG,
+      horizon_years: parseFloat($("#w-horizon").value)||15,
+      sync_risk_prior: parseFloat($("#w-sync").value),
+      with_trajectory:true, with_sensitivity:false}));
+  }catch(e){ fail("#out-world", e); }
+  finally{ b.disabled=false; b.textContent=T("w.run"); }
+}
+$("#run").onclick = runOne;
+$("#w-run").onclick = runWorld;
+
+async function loadRefs(){
+  const q = `?lang=${LANG}`;
+  const [sc, ev, pr] = await Promise.all([
+    fetch(API+"/api/v2/schema"+q).then(r=>r.json()),
+    fetch(API+"/api/v2/events"+q).then(r=>r.json()),
+    fetch(API+"/api/v2/presets"+q).then(r=>r.json())
+  ]);
+  SCHEMA=sc; EVENTS=ev; PRESETS=pr;
+  U = SCHEMA.ui || {};
+}
+
+(async function init(){
+  try{
+    const saved = (()=>{try{return localStorage.getItem("sccdx-lang")}
+                        catch(e){return null}})();
+    if(saved === "en" || saved === "vi") LANG = saved;
+    document.documentElement.lang = LANG;
+    $("#L-vi").setAttribute("aria-selected", LANG==="vi");
+    $("#L-en").setAttribute("aria-selected", LANG==="en");
+    await loadRefs();
+    buildForm();
+    fillPreset(PRESETS.polities[0].code);
+    applyChrome();
+  }catch(e){ fail("#out-one", e); }
+})();
+</script>
+</body>
+</html>

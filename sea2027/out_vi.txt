@@ -1,0 +1,1124 @@
+==============================================================================
+SCCD-X v2.00  -  11 ASEAN polities  -  run 2026-10-09  -  lang=vi
+==============================================================================
+
+--- 1. EFFECTIVE INPUTS (post boundary compression, pre forcing) ----
+code      s1     s2     s3     s4     s5     c1     c2     c3     c4     c5    wt  state_type
+ID     0.431  0.603  0.297  0.662  0.662  0.644  0.702  0.511  0.408  0.522  1.000  liberal_democracy
+SG     0.466  0.926  0.851  0.980  0.407  0.431  0.437  0.472  0.932  0.340  0.418  developmental_autocracy
+TH     0.530  0.594  0.386  0.739  0.441  0.604  0.643  0.601  0.398  0.692  0.399  liberal_democracy
+VN     0.522  0.718  0.460  0.659  0.701  0.522  0.400  0.221  0.417  0.190  0.356  developmental_autocracy
+PH     0.544  0.536  0.304  0.536  0.571  0.772  0.695  0.523  0.546  0.679  0.337  liberal_democracy
+MY     0.517  0.762  0.576  0.813  0.519  0.636  0.718  0.614  0.489  0.714  0.327  liberal_democracy
+MM     0.343  0.161  0.139  0.089  0.480  0.606  0.197  0.102  0.284  0.820  0.057  failed_state
+KH     0.432  0.630  0.384  0.424  0.721  0.632  0.235  0.246  0.677  0.222  0.035  extractive_patrimonial
+LA     0.324  0.722  0.368  0.345  0.599  0.624  0.165  0.186  0.253  0.190  0.013  developmental_autocracy
+BN     0.811  0.895  0.751  0.774  0.700  0.460  0.107  0.428  0.635  0.122  0.010  extractive_patrimonial
+TL     0.612  0.721  0.586  0.434  0.714  0.286  0.733  0.677  0.342  0.452  0.001  liberal_democracy
+
+code      d1     d2     d3     d4     d5  |     a1     a2     a3     a4     a5     a6
+ID     0.680  0.447  0.449  0.224  0.534  |  0.148  0.135  0.137  0.660  0.080  0.159
+SG     0.037  0.797  0.977  0.448  0.039  |  0.643  0.842  0.802  0.400  0.140  0.783
+TH     0.478  0.617  0.645  0.592  0.298  |  0.210  0.199  0.201  0.560  0.100  0.339
+VN     0.549  0.495  0.544  0.344  0.394  |  0.279  0.273  0.274  0.700  0.050  0.506
+PH     0.609  0.568  0.329  0.174  0.472  |  0.207  0.255  0.246  0.380  0.070  0.226
+MY     0.366  0.426  0.434  0.247  0.235  |  0.250  0.268  0.265  0.440  0.080  0.344
+MM     0.683  0.292  0.223  0.172  0.495  |  0.050  0.033  0.037  0.780  0.030  0.071
+KH     0.631  0.421  0.167  0.129  0.506  |  0.085  0.061  0.066  0.420  0.030  0.110
+LA     0.843  0.305  0.188  0.069  0.797  |  0.055  0.038  0.041  0.580  0.030  0.072
+BN     0.236  0.336  0.737  0.242  0.288  |  0.240  0.235  0.236  0.250  0.040  0.447
+TL     0.914  0.209  0.154  0.166  0.793  |  0.035  0.023  0.026  0.200  0.030  0.021
+
+provenance over 176 derived fields: ANALYST=11, MEASURED=72, MIXED=93
+
+--- 2. THE 2027 VERDICT  (state at t=1.23y, from horizon_verdict) ---
+
+[ID] Indonesia   (liberal_democracy)
+   2026 : Cân bằng / Căng ; HỖN HỢP ; Psi=0.367 th25=0.999 Dn=+0.008
+   2027 : Cân bằng / Căng ; HỖN HỢP ; Psi=0.355 th25=0.999 Dn=-0.001
+   gate : MỞ (cổng gần nhất ~68 năm)
+   loops: L2+L6   CAI core=1.000 ext=2.000   R_B=0   decoupled=False
+   dDn/dt=-0.0075/yr  measured dD/dt=-0.0075
+   MC   : Dn median=+0.013 ci80=[-0.081,+0.130] Psi median=0.356
+          regime mix: Cân bằng 65%, Thương lượng 25%, Khủng hoảng 10%
+   OAT  : 3 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, a4_flight_thresh, L3_revpol_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          a4_flight_thresh high: active_loops ['L2', 'L6'] -> ['L2']
+          L3_revpol_thresh low: active_loops ['L2', 'L6'] -> ['L2', 'L3', 'L6']
+
+[SG] Singapore   (developmental_autocracy)
+   2026 : Bá quyền / Mạch lạc ; ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=1.339 th25=0.994 Dn=+0.392
+   2027 : Bá quyền / Mạch lạc ; ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=1.269 th25=0.993 Dn=+0.371
+   gate : MỞ (cổng gần nhất ~32 năm)
+   loops: L5   CAI core=0.000 ext=1.000   R_B=0   decoupled=True
+   dDn/dt=-0.0166/yr  measured dD/dt=-0.0166
+   MC   : Dn median=+0.382 ci80=[+0.313,+0.441] Psi median=1.305
+          regime mix: Bá quyền 93%, Thương lượng 7%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d4_inversion_thresh, a1_mass_thresh
+          d4_inversion_thresh low: active_loops ['L5'] -> ['L5', 'L7']
+          a1_mass_thresh high: active_loops ['L5'] -> []
+
+[TH] Thailand   (liberal_democracy)
+   2026 : Thương lượng / Căng ; ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=0.324 th25=0.996 Dn=+0.105
+   2027 : Thương lượng / Căng ; ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=0.320 th25=0.995 Dn=+0.096
+   gate : MỞ (cổng gần nhất ~27 năm)
+   loops: L3+L6+L7   CAI core=1.000 ext=3.000   R_B=0   decoupled=False
+   dDn/dt=-0.0072/yr  measured dD/dt=-0.0072
+   MC   : Dn median=+0.109 ci80=[-0.008,+0.220] Psi median=0.299
+          regime mix: Thương lượng 60%, Cân bằng 39%, Khủng hoảng 0%
+   OAT  : 5 of 42 parameters flip the verdict at +/-20% -> d3_voluntary_thresh, d4_inversion_thresh, d2_trap_thresh, a4_flight_thresh, L3_revpol_thresh
+          d3_voluntary_thresh high: adjustment_mode VOLUNTARY -> MIXED
+          d3_voluntary_thresh high: active_loops ['L3', 'L6', 'L7'] -> ['L3', 'L6']
+          d4_inversion_thresh high: active_loops ['L3', 'L6', 'L7'] -> ['L3', 'L6']
+          d2_trap_thresh high: active_loops ['L3', 'L6', 'L7'] -> ['L3', 'L6']
+
+[VN] Viet Nam   (developmental_autocracy)
+   2026 : Thương lượng / Mạch lạc ; HỖN HỢP ; Psi=1.042 th25=1.000 Dn=+0.170
+   2027 : Thương lượng / Mạch lạc ; HỖN HỢP ; Psi=1.009 th25=1.000 Dn=+0.158
+   gate : MỞ (cổng gần nhất ~89 năm)
+   loops: L6   CAI core=0.000 ext=1.000   R_B=0   decoupled=False
+   dDn/dt=-0.0104/yr  measured dD/dt=-0.0104
+   MC   : Dn median=+0.173 ci80=[+0.048,+0.281] Psi median=1.024
+          regime mix: Thương lượng 77%, Cân bằng 18%, Bá quyền 5%
+   OAT  : 1 of 42 parameters flip the verdict at +/-20% -> d3_voluntary_thresh
+          d3_voluntary_thresh low: adjustment_mode MIXED -> VOLUNTARY
+
+[PH] Philippines   (liberal_democracy)
+   2026 : Cân bằng / Căng ; HỖN HỢP ; Psi=0.254 th25=0.996 Dn=+0.017
+   2027 : Cân bằng / Mất mạch lạc ; HỖN HỢP ; Psi=0.234 th25=0.996 Dn=+0.008
+   gate : MỞ (cổng gần nhất ~57 năm)
+   loops: L1+L2+L3   CAI core=3.000 ext=3.000   R_B=0   decoupled=False
+   dDn/dt=-0.0076/yr  measured dD/dt=-0.0076
+   MC   : Dn median=+0.022 ci80=[-0.072,+0.133] Psi median=0.228
+          regime mix: Cân bằng 68%, Thương lượng 26%, Khủng hoảng 6%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, L4_c4_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          d5_violent_thresh low: active_loops ['L1', 'L2', 'L3'] -> ['L1', 'L2', 'L3', 'L8']
+          L4_c4_thresh low: active_loops ['L1', 'L2', 'L3'] -> ['L1', 'L2', 'L3', 'L4']
+
+[MY] Malaysia   (liberal_democracy)
+   2026 : Thương lượng / Mạch lạc ; HỖN HỢP ; Psi=0.455 th25=0.999 Dn=+0.249
+   2027 : Thương lượng / Mạch lạc ; HỖN HỢP ; Psi=0.451 th25=0.999 Dn=+0.236
+   gate : MỞ (cổng gần nhất ~83 năm)
+   loops: L3   CAI core=1.000 ext=1.000   R_B=0   decoupled=False
+   dDn/dt=-0.0108/yr  measured dD/dt=-0.0108
+   MC   : Dn median=+0.249 ci80=[+0.138,+0.335] Psi median=0.437
+          regime mix: Thương lượng 72%, Bá quyền 24%, Cân bằng 3%
+   OAT  : none of 42 parameters flips the verdict at +/-20%
+
+[MM] Myanmar   (failed_state)
+   2026 : Cân bằng / Mất mạch lạc ; HỖN HỢP ; Psi=0.010 th25=0.144 Dn=-0.040
+   2027 : Cân bằng / Mất mạch lạc ; HỖN HỢP ; Psi=0.008 th25=0.127 Dn=-0.043
+   gate : CỔNG S₂ ĐÃ ĐÓNG (điểm cuối bạo lực/thanh niên)
+   loops: L2+L3+L6   CAI core=2.000 ext=3.000   R_B=0   decoupled=False
+   dDn/dt=-0.0022/yr  measured dD/dt=-0.0022
+   MC   : Dn median=-0.035 ci80=[-0.057,+0.003] Psi median=0.008
+          regime mix: Cân bằng 100%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, L3_revpol_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          d5_violent_thresh low: active_loops ['L2', 'L3', 'L6'] -> ['L2', 'L3', 'L6', 'L8']
+          L3_revpol_thresh high: active_loops ['L2', 'L3', 'L6'] -> ['L2', 'L6']
+
+[KH] Cambodia   (extractive_patrimonial)
+   2026 : Cân bằng / Mạch lạc ; HỖN HỢP ; Psi=0.816 th25=0.999 Dn=+0.060
+   2027 : Cân bằng / Mạch lạc ; HỖN HỢP ; Psi=0.749 th25=0.999 Dn=+0.046
+   gate : MỞ (cổng gần nhất ~61 năm)
+   loops: none   CAI core=0.000 ext=0.000   R_B=0   decoupled=False
+   dDn/dt=-0.0111/yr  measured dD/dt=-0.0111
+   MC   : Dn median=+0.061 ci80=[-0.038,+0.160] Psi median=0.812
+          regime mix: Cân bằng 57%, Thương lượng 41%, Khủng hoảng 2%
+   OAT  : 2 of 42 parameters flip the verdict at +/-20% -> d5_violent_thresh, L4_c1_thresh
+          d5_violent_thresh low: adjustment_mode MIXED -> VIOLENT_EXPOSED
+          L4_c1_thresh low: active_loops [] -> ['L4']
+
+[LA] Lao PDR   (developmental_autocracy)
+   2026 : Cân bằng / Mạch lạc ; PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.808 th25=1.000 Dn=+0.031
+   2027 : Cân bằng / Mạch lạc ; PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.721 th25=1.000 Dn=+0.023
+   gate : MỞ (cổng gần nhất ~38 năm)
+   loops: L6   CAI core=0.000 ext=1.000   R_B=0   decoupled=False
+   dDn/dt=-0.0063/yr  measured dD/dt=-0.0063
+   MC   : Dn median=+0.033 ci80=[-0.040,+0.118] Psi median=0.806
+          regime mix: Cân bằng 73%, Thương lượng 26%, Khủng hoảng 1%
+   OAT  : 1 of 42 parameters flip the verdict at +/-20% -> a4_flight_thresh
+          a4_flight_thresh high: active_loops ['L6'] -> []
+
+[BN] Brunei Darussalam   (extractive_patrimonial)
+   2026 : Bá quyền / Mạch lạc ; CHƯA CHỊU ÁP ; Psi=1.681 th25=1.000 Dn=+0.450
+   2027 : Bá quyền / Mạch lạc ; CHƯA CHỊU ÁP ; Psi=1.651 th25=1.000 Dn=+0.419
+   gate : MỞ (cổng gần nhất ~126 năm)
+   loops: none   CAI core=0.000 ext=0.000   R_B=0   decoupled=False
+   dDn/dt=-0.0253/yr  measured dD/dt=-0.0253
+   MC   : Dn median=+0.451 ci80=[+0.359,+0.521] Psi median=1.655
+          regime mix: Bá quyền 97%, Thương lượng 3%
+   OAT  : none of 42 parameters flips the verdict at +/-20%
+
+[TL] Timor-Leste   (liberal_democracy)
+   2026 : Thương lượng / Mạch lạc ; PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.885 th25=1.000 Dn=+0.224
+   2027 : Thương lượng / Mạch lạc ; PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.826 th25=1.000 Dn=+0.214
+   gate : MỞ (cổng gần nhất ~34 năm)
+   loops: none   CAI core=0.000 ext=0.000   R_B=0   decoupled=False
+   dDn/dt=-0.0089/yr  measured dD/dt=-0.0089
+   MC   : Dn median=+0.217 ci80=[+0.114,+0.299] Psi median=0.858
+          regime mix: Thương lượng 86%, Bá quyền 10%, Cân bằng 4%
+   OAT  : none of 42 parameters flips the verdict at +/-20%
+
+--- 3. GATE ORDER AND LOOP SET OVER 15 YEARS ------------------------
+code  2041 band / tier                 gate            loops
+ID    Khủng hoảng / Mất mạch lạc       OPEN_NEAREST    L2+L6
+SG    Thương lượng / Mạch lạc          OPEN_NEAREST    L5
+TH    Cân bằng / Mất mạch lạc          OPEN_NEAREST    L3+L6+L7
+VN    Cân bằng / Mạch lạc              OPEN_NEAREST    L6
+PH    Khủng hoảng / Mất mạch lạc       OPEN_NEAREST    L1+L2+L3
+MY    Thương lượng / Mạch lạc          OPEN_NEAREST    L3
+MM    Cân bằng / Mất mạch lạc          S2_GATE_CLOSED  L2+L3+L6
+KH    Khủng hoảng / Mất mạch lạc       OPEN_NEAREST    none
+LA    Khủng hoảng / Mất mạch lạc       OPEN_NEAREST    L6
+BN    Bá quyền / Mạch lạc              OPEN_NEAREST    none
+TL    Cân bằng / Mất mạch lạc          OPEN_NEAREST    none
+
+ID: s3->0.30 in 0.0y, c5->0.50 in 0.0y, s2->0.25 in 68.4y, s5->0.15 in 127.2y
+SG: c5->0.50 in 12.7y, s3->0.30 in 20.9y, s5->0.15 in 31.9y, s2->0.25 in 69378.0y
+TH: c5->0.50 in 0.0y, s3->0.30 in 10.1y, s5->0.15 in 27.3y, s2->0.25 in 207.6y
+VN: s3->0.30 in 18.1y, c5->0.50 in 65.6y, s5->0.15 in 88.9y, s2->0.25 in 167.6y
+PH: c5->0.50 in 0.0y, s3->0.30 in 0.4y, s2->0.25 in 57.1y, s5->0.15 in 134.9y
+MY: c5->0.50 in 0.0y, s3->0.30 in 37.2y, s5->0.15 in 82.8y, s2->0.25 in 368.6y
+MM: s2->0.25 in 0.0y, s3->0.30 in 0.0y, c5->0.50 in 0.0y, s5->0.15 in 106.2y
+KH: s3->0.30 in 8.4y, c5->0.50 in 39.6y, s2->0.25 in 61.3y, s5->0.15 in 247.0y
+LA: s3->0.30 in 5.8y, c5->0.50 in 22.0y, s2->0.25 in 38.0y, s5->0.15 in 362.9y
+BN: s3->0.30 in 79.6y, s5->0.15 in 126.4y, c5->0.50 in 172.9y, s2->0.25 in 1011.2y
+TL: c5->0.50 in 3.2y, s3->0.30 in 22.0y, s2->0.25 in 34.4y, s5->0.15 in 188.7y
+
+--- 4. THE SYSTEM THEY FORM ----------------------------------------
+
+Psi_G is a SNAPSHOT aggregate over the eleven current capacity vectors, not
+a trajectory, so the 2027 and 2041 passes return the same number by construction;
+the horizon only moves each polity's own path. One row is printed, plus the
+stress branch, which does move it because events shift the levels Psi_G reads.
+
+[baseline] Psi_G=0.1035 (crit 0.400)  Sync_Risk=0.774 (prior 0.580 + haven 0.194)
+      CAI_weighted=0.965  adjustment divergence=0.410  AI divergence=0.329  haven pressure=0.556
+      hegemon=ID  challenger=SG  R_B,G=0
+      MIXED: KH ID MY MM PH VN
+      SLACK: BN
+      VIOLENT_EXPOSED: LA TL
+      VOLUNTARY: SG TH
+      verdict: Ψ_G = 0.104 so với ngưỡng 0.40 (DƯỚI ngưỡng); Sync_Risk = 0.774 (tiên nghiệm 0.58 + thành phần trú ẩn 0.194); CAI_weighted = 0.97 so với ngưỡng 1.50; R_B,G = 0; phân tán điều chỉnh 0.41 (2 tự nguyện so với 2 phơi nhiễm bạo lực)
+      ! Ψ_G vốn đã là UNCALIBRATED trong chính sccd v1.00 — Part IV §6.1 nêu các tính chất mà nó phải có nhưng không nêu dạng đóng, nên engine dùng một trung bình hình học có trọng số nhân với (1 − Sync_Risk), thỏa cả hai tính chất đó. Mọi thứ lớp v2 thêm lên trên đều là ANALYST.
+      ! R_B,G xác định một ĐIỀU KIỆN CẤU TRÚC — nguyên văn sccd Part IV §6.3 gọi đó là 'overloaded-fault analogy' — và KHÔNG phải một dự báo về bất kỳ sự kiện hay thời điểm nào.
+      ! Đầu vào của BN, KH, ID, LA, MY, MM, PH, SG, TH, TL, VN được đánh dấu là tiên nghiệm phân tích độ tin cậy thấp, không phải phép đo. sccd Part III §5.3 từ chối trả Δ đã hiệu chuẩn khi hơn 30% một chuỗi là số gán; giá trị điểm nhập tay còn yếu hơn số gán, vì không có chuỗi nào để kiểm định.
+      talent gradient: LA->TH 0.1322, TL->TH 0.1315, ID->TH 0.0886, KH->TH 0.0839, MM->TH 0.0821
+
+[stress  ] Psi_G=0.0770 (crit 0.400)  Sync_Risk=0.774 (prior 0.580 + haven 0.194)
+      CAI_weighted=1.100  adjustment divergence=0.410  AI divergence=0.329  haven pressure=0.556
+      hegemon=ID  challenger=SG  R_B,G=0
+      MIXED: KH ID MY MM PH VN
+      VIOLENT_EXPOSED: LA TL
+      VOLUNTARY: BN SG TH
+      verdict: Ψ_G = 0.077 so với ngưỡng 0.40 (DƯỚI ngưỡng); Sync_Risk = 0.774 (tiên nghiệm 0.58 + thành phần trú ẩn 0.194); CAI_weighted = 1.10 so với ngưỡng 1.50; R_B,G = 0; phân tán điều chỉnh 0.41 (3 tự nguyện so với 2 phơi nhiễm bạo lực)
+      ! Ψ_G vốn đã là UNCALIBRATED trong chính sccd v1.00 — Part IV §6.1 nêu các tính chất mà nó phải có nhưng không nêu dạng đóng, nên engine dùng một trung bình hình học có trọng số nhân với (1 − Sync_Risk), thỏa cả hai tính chất đó. Mọi thứ lớp v2 thêm lên trên đều là ANALYST.
+      ! R_B,G xác định một ĐIỀU KIỆN CẤU TRÚC — nguyên văn sccd Part IV §6.3 gọi đó là 'overloaded-fault analogy' — và KHÔNG phải một dự báo về bất kỳ sự kiện hay thời điểm nào.
+      ! Đầu vào của BN, KH, ID, LA, MY, MM, PH, SG, TH, TL, VN được đánh dấu là tiên nghiệm phân tích độ tin cậy thấp, không phải phép đo. sccd Part III §5.3 từ chối trả Δ đã hiệu chuẩn khi hơn 30% một chuỗi là số gán; giá trị điểm nhập tay còn yếu hơn số gán, vì không có chuỗi nào để kiểm định.
+      talent gradient: LA->TH 0.1322, TL->TH 0.1315, ID->TH 0.0886, KH->TH 0.0839, MM->TH 0.0821
+
+--- 5. THE TWO MOST ARGUABLE ANALYST INPUTS -------------------------
+
+SG state_type: developmental_autocracy (used) vs liberal_democracy
+   used: 2027 Bá quyền / Mạch lạc ; Psi=1.269 Dn=+0.371 R_B=0 loops=L5
+   alt : 2027 Bá quyền / Mạch lạc ; Psi=1.269 Dn=+0.329 R_B=0 loops=L5
+
+VN a4 haven: 0.70 from the premium (used) vs 0.40 from the volume
+   used: 2027 Thương lượng / Mạch lạc ; Psi=1.009 Dn=+0.158 R_B=0 loops=L6
+   alt : 2027 Thương lượng / Mạch lạc ; Psi=1.010 Dn=+0.162 R_B=0 loops=none
+
+--- 6. THE 2027 STRESS BRANCH (prospective events only) -------------
+Baseline -> stress, both read at t=1.23y. Events are level shifts for
+things that have NOT happened; see STRESS in this file for what was
+deliberately left out of each row to avoid charging it twice.
+
+[ID] verdict holds   events: tariff_war@0.50, sovereign_debt_stress@0.50, currency_crisis@0.40
+   base  : Cân bằng / Căng / HỖN HỢP ; Psi=0.355 Dn=-0.001 th25=0.999 R_B=0 loops=L2+L6
+   stress: Cân bằng / Căng / HỖN HỢP ; Psi=0.336 Dn=-0.015 th25=0.999 R_B=0 loops=L2+L6
+   why   : a breach of the 3% deficit cap crystallising the Moody's negative outlook, plus rupiah pressure. Neither is in the baseline; the protests already are.
+   shift  tariff_war@0.50: s1-0.025 c4-0.030 c5+0.025 d1+0.030
+   shift  sovereign_debt_stress@0.50: s1-0.050 s5-0.070 base_revenue_demand+0.010
+   shift  currency_crisis@0.40: s1-0.048 s5-0.048 c4+0.032 a4+0.064
+
+[SG] verdict holds   events: tariff_war@0.60, whitecollar_displacement@0.60, agency_crisis_visible@0.40
+   base  : Bá quyền / Mạch lạc / ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=1.269 Dn=+0.371 th25=0.993 R_B=0 loops=L5
+   stress: Bá quyền / Mạch lạc / ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=1.077 Dn=+0.329 th25=0.993 R_B=0 loops=L5
+   why   : the displacement OUTCOME of an adoption rate already measured at 64.3%. a1 is what people use; whitecollar_displacement is what it does to them, and that has not happened yet.
+   shift  tariff_war@0.60: s1-0.030 c4-0.036 c5+0.030 d1+0.036
+   shift  whitecollar_displacement@0.60: a2+0.120 a3+0.084 c1+0.060 s1-0.048 d2+0.048 s3-0.042
+   shift  agency_crisis_visible@0.40: a3+0.080 c5+0.032 s3-0.040 a5+0.032
+
+[TH] VERDICT MOVES   events: tariff_war@0.55, constitutional_crisis@0.50, pension_reform_failure@0.40
+   base  : Thương lượng / Căng / ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=0.320 Dn=+0.096 th25=0.995 R_B=0 loops=L3+L6+L7
+   stress: Cân bằng / Mất mạch lạc / ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=0.157 Dn=+0.012 th25=0.989 R_B=0 loops=L2+L3+L6+L7
+   why   : the Article 151 motion resolving against the government, plus the pension commitment failing rather than being reformed. pension=0.70 is the size of the commitment, not its failure.
+   shift  tariff_war@0.55: s1-0.028 c4-0.033 c5+0.028 d1+0.033
+   shift  constitutional_crisis@0.50: s3-0.080 s4-0.045 c5+0.050 c1+0.035
+   shift  pension_reform_failure@0.40: d4+0.048 s5-0.048 s3-0.032 base_revenue_demand+0.006
+
+[VN] verdict holds   events: tariff_war@0.70, whitecollar_displacement@0.40, inflation_surge@0.40
+   base  : Thương lượng / Mạch lạc / HỖN HỢP ; Psi=1.009 Dn=+0.158 th25=1.000 R_B=0 loops=L6
+   stress: Thương lượng / Mạch lạc / HỖN HỢP ; Psi=0.811 Dn=+0.103 th25=1.000 R_B=0 loops=L6
+   why   : the highest tariff exposure in the set (trade at 190% of GDP), plus the IMF's own inflation path (3.3% in 2025 to 4.9% in 2026 and 4.6% in 2027) and white-collar displacement on a1=0.279.
+   shift  tariff_war@0.70: s1-0.035 c4-0.042 c5+0.035 d1+0.042
+   shift  whitecollar_displacement@0.40: a2+0.080 a3+0.056 c1+0.040 s1-0.032 d2+0.032 s3-0.028
+   shift  inflation_surge@0.40: s1+0.016 s3-0.036 a4+0.048 d2+0.032
+
+[PH] verdict holds   events: tariff_war@0.40, constitutional_crisis@0.45, whitecollar_displacement@0.50
+   base  : Cân bằng / Mất mạch lạc / HỖN HỢP ; Psi=0.234 Dn=+0.008 th25=0.996 R_B=0 loops=L1+L2+L3
+   stress: Cân bằng / Mất mạch lạc / HỖN HỢP ; Psi=0.115 Dn=-0.057 th25=0.996 R_B=0 loops=L1+L2+L3
+   why   : the impeachment verdict and its aftermath, plus BPO displacement on the region's highest white-collar exposure.
+   shift  tariff_war@0.40: s1-0.020 c4-0.024 c5+0.020 d1+0.024
+   shift  constitutional_crisis@0.45: s3-0.072 s4-0.041 c5+0.045 c1+0.032
+   shift  whitecollar_displacement@0.50: a2+0.100 a3+0.070 c1+0.050 s1-0.040 d2+0.040 s3-0.035
+
+[MY] VERDICT MOVES   events: tariff_war@0.55, polarising_election@0.60
+   base  : Thương lượng / Mạch lạc / HỖN HỢP ; Psi=0.451 Dn=+0.236 th25=0.999 R_B=0 loops=L3
+   stress: Thương lượng / Căng / HỖN HỢP ; Psi=0.284 Dn=+0.225 th25=0.999 R_B=0 loops=L3
+   why   : GE16, due by February 2028 and possibly early. The state-level losses are baseline; the national election is not.
+   shift  tariff_war@0.55: s1-0.028 c4-0.033 c5+0.028 d1+0.033
+   shift  polarising_election@0.60: c5+0.072 revenue_polarisation+0.120 s3-0.030
+
+[MM] verdict holds   events: relief_system_failure@0.60, currency_crisis@0.60
+   base  : Cân bằng / Mất mạch lạc / HỖN HỢP ; Psi=0.008 Dn=-0.043 th25=0.127 R_B=0 loops=L2+L3+L6
+   stress: Cân bằng / Mất mạch lạc / HỖN HỢP ; Psi=0.007 Dn=-0.058 th25=0.125 R_B=0 loops=L2+L3+L6
+   why   : relief-system failure and a further currency break. The war itself is baseline - adding civil_conflict would charge the coup twice.
+   shift  relief_system_failure@0.60: s3-0.108 s4-0.072 d1+0.048
+   shift  currency_crisis@0.60: s1-0.072 s5-0.072 c4+0.048 a4+0.096
+
+[KH] verdict holds   events: tariff_war@0.60, interstate_war_onset@0.45
+   base  : Cân bằng / Mạch lạc / HỖN HỢP ; Psi=0.749 Dn=+0.046 th25=0.999 R_B=0 loops=none
+   stress: Cân bằng / Mạch lạc / HỖN HỢP ; Psi=0.842 Dn=+0.085 th25=1.000 R_B=0 loops=none
+   why   : border re-escalation as an ONSET rather than as standing pressure. Note the catalogue has interstate_war_onset RAISING s2 and s3 - the rally effect sccd Part V documents for 1941-45 - so this event is not uniformly adverse, and that is the engine's reading, not mine.
+   shift  tariff_war@0.60: s1-0.030 c4-0.036 c5+0.030 d1+0.036
+   shift  interstate_war_onset@0.45: s2+0.045 s3+0.054 s5-0.081 s1+0.027 security_pressure+0.158 g_shock+0.036
+
+[LA] verdict holds   events: sovereign_debt_stress@0.50, inflation_surge@0.50
+   base  : Cân bằng / Mạch lạc / PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.721 Dn=+0.023 th25=1.000 R_B=0 loops=L6
+   stress: Cân bằng / Mạch lạc / PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.608 Dn=-0.008 th25=0.999 R_B=0 loops=L6
+   why   : a default or restructuring event on liabilities the IMF already calls unsustainable, plus inflation back through 10%.
+   shift  sovereign_debt_stress@0.50: s1-0.050 s5-0.070 base_revenue_demand+0.010
+   shift  inflation_surge@0.50: s1+0.020 s3-0.045 a4+0.060 d2+0.040
+
+[BN] VERDICT MOVES   events: energy_shock@0.60
+   base  : Bá quyền / Mạch lạc / CHƯA CHỊU ÁP ; Psi=1.651 Dn=+0.419 th25=1.000 R_B=0 loops=none
+   stress: Bá quyền / Mạch lạc / ĐIỀU CHỈNH TỰ NGUYỆN ; Psi=1.613 Dn=+0.391 th25=1.000 R_B=0 loops=none
+   why   : an oil-price downside on a single-commodity revenue base with 2025 growth already at 0.7%.
+   shift  energy_shock@0.60: s1-0.042 d1+0.054 s3-0.030
+
+[TL] verdict holds   events: relief_system_failure@0.40, youth_unemployment_surge@0.50
+   base  : Thương lượng / Mạch lạc / PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.826 Dn=+0.214 th25=1.000 R_B=0 loops=none
+   stress: Thương lượng / Mạch lạc / PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC ; Psi=0.621 Dn=+0.146 th25=1.000 R_B=0 loops=none
+   why   : Petroleum Fund drawdown outrunning the ESI, plus the youth cohort arriving with NEET already at 29.1%.
+   shift  relief_system_failure@0.40: s3-0.072 s4-0.048 d1+0.032
+   shift  youth_unemployment_surge@0.50: d5+0.090 d1+0.040 c5+0.035 s3-0.035
+
+--- 7. NARRATIVE PER POLITY ----------------------------------------
+
+### ID Indonesia
+ĐỌC ĐỊNH TÍNH — Indonesia 2026   [spec v1.00 / v2.00, loại nhà nước: liberal_democracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Cân bằng (Bền hoặc Tắc nghẽn)
+      Δ_norm = +0.0079   S = 0.4267   C = 0.4068
+   Tầng mạch lạc: Căng
+      Ψ = 0.3671  so với Ψ_crit = 0.40 [PAPER]  → DƯỚI
+   Chế độ điều chỉnh: HỖN HỢP
+      cả hai kênh đều đang tải áp lực, hoặc không kênh nào trội.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~68 năm)
+     S5  = 0.662 ↓ -0.0040/năm  → 0.15 [PAPER] : ~127 năm
+     S2  = 0.603 ↓ -0.0052/năm  → 0.25 [PAPER] : ~68 năm
+     S3  = 0.297 ↓ -0.0080/năm  → 0.30 [PAPER] : đã vượt
+     C5  = 0.522 ↑ +0.0048/năm  → 0.50 [FREE] : đã vượt
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 1.0 (kiểm soát được): 1–2 vòng đang chạy; hiệu ứng phi tuyến còn kiểm soát được
+   CAI_ext (L1–L8, băng chia lại 4/8) = 2.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 ĐANG CHẠY Vòng Xoáy Mất Chính danh
+          S₃=0.30 so với ngưỡng 0.30; λ=0.769 so với ngưỡng 0.80 → BÙNG NỔ
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 ĐANG CHẠY Vòng Xoáy Khả-kiến–Thu-trích
+          độ siết=+0.1895 so với 0.10 [True] (đòi 0.2007 so với khả thi 0.0112); a₄=0.66 so với 0.55 [True], tỷ phần vật chất 0.88
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+   [L6] Đây là chỗ hai bài báo mới trùng nhau. Degrow mô tả nhà nước Minh muộn tăng thuế trên sổ đất đã lạc hậu hàng thế kỷ — "như tiếp tục vắt một con bò đã gầy trơ xương". Displacement mô tả cơ sở thuế dịch vào kim loại vật chất mà không sổ nào thấy được. Cùng một vòng xoáy, cách nhau sáu thế kỷ, một đến từ dân số học và một từ tâm lý học. Sự bất đối xứng khiến nó khó thoát: nâng a₄ là một quyết định riêng tư làm một lần, hạ nó xuống lại đòi người giữ phải tin lại vào sổ sách.
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0075, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: True
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Cân bằng / Căng
+   Tại mốc   : Cân bằng / Căng
+     vượt s3 xuống dưới 0.30 [PAPER] tại t≈0.0: vòng xoáy mất chính danh L2 của sccd trở thành bùng nổ
+     vượt psi xuống dưới 0.40 [PAPER] tại t≈0.0: Ψ_crit của sccd — điều kiện mạch lạc của R_B bật
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   3 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d5_violent_thresh [ANALYST] = 0.5500
+        chế độ điều chỉnh: HỖN HỢP → PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC [−20%]
+     a4_flight_thresh [ANALYST] = 0.5500
+        vòng đang chạy: L2+L6 → L2 [+20%]
+     L3_revpol_thresh [FREE] = 0.5000
+        vòng đang chạy: L2+L6 → L2+L3+L6 [−20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### SG Singapore
+ĐỌC ĐỊNH TÍNH — Singapore 2026   [spec v1.00 / v2.00, loại nhà nước: developmental_autocracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Bá quyền (Á bền)
+      Δ_norm = +0.3919   S = 1.3974   C = 0.4177
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 1.3385  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: ĐIỀU CHỈNH TỰ NGUYỆN
+      d₃ cao, d₅ thấp — áp lực xả qua đường từ chối sinh sản rồi đến đảo chiều phụ thuộc. Đây là đường hiện đại của Degrow. Cổng kết thúc: Ŝ₅ tụt xuống dưới sàn 0.15 của θ₂₅.
+
+2. TÁCH RỜI G/S₃ ĐANG HOẠT ĐỘNG — vì sao cần ba trục
+   TÁCH RỜI G/S₃ ĐANG HOẠT ĐỘNG: năng lực sinh thặng dư đang được nâng (×1.313) trong khi tính chính danh trôi xuống (-0.0155/năm). Không một cú hích nào trong sccd Parts I–V hành xử như vậy — ca 1941–45 ở Part V nâng cả hai cùng lúc. Hệ quả: Δ_norm và Ψ có thể đi NGƯỢC chiều, điều mà năm băng Δ của Part II Table 2 tự thân không diễn đạt nổi; hãy đọc tầng mạch lạc song song với băng.
+
+3. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~32 năm)
+     S5  = 0.407 ↓ -0.0081/năm  → 0.15 [PAPER] : ~32 năm
+     S2  = 0.926 ↓ -0.0000/năm  → 0.25 [PAPER] : ~69378 năm
+     S3  = 0.851 ↓ -0.0264/năm  → 0.30 [PAPER] : ~21 năm
+     C5  = 0.340 ↑ +0.0126/năm  → 0.50 [FREE] : ~13 năm
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+4. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 0.0 (tắt): động lực học tuyến tính chiếm ưu thế
+   CAI_ext (L1–L8, băng chia lại 4/8) = 1.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 ĐANG CHẠY Vòng Xoáy Tự chủ–Chính danh
+          a₁=0.64 so với 0.60 [True]; a₃=0.80 so với 0.55 [True]; dS₃/dt=-0.0264/năm [True] → λ hiện tại 2.040
+     L6 tắt       Vòng Xoáy Khả-kiến–Thu-trích
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+5. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0166, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+6. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Bá quyền / Mạch lạc
+   Tại mốc   : Bá quyền / Mạch lạc
+
+7. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   2 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d4_inversion_thresh [ANALYST] = 0.5500
+        vòng đang chạy: L5 → L5+L7 [−20%]
+     a1_mass_thresh [ANALYST] = 0.6000
+        vòng đang chạy: L5 → — [+20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### TH Thailand
+ĐỌC ĐỊNH TÍNH — Thailand 2026   [spec v1.00 / v2.00, loại nhà nước: liberal_democracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Thương lượng (Bền có điều kiện)
+      Δ_norm = +0.1052   S = 0.6139   C = 0.3508
+   Tầng mạch lạc: Căng
+      Ψ = 0.3244  so với Ψ_crit = 0.40 [PAPER]  → DƯỚI
+   Chế độ điều chỉnh: ĐIỀU CHỈNH TỰ NGUYỆN
+      d₃ cao, d₅ thấp — áp lực xả qua đường từ chối sinh sản rồi đến đảo chiều phụ thuộc. Đây là đường hiện đại của Degrow. Cổng kết thúc: Ŝ₅ tụt xuống dưới sàn 0.15 của θ₂₅.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~27 năm)
+     S5  = 0.441 ↓ -0.0107/năm  → 0.15 [PAPER] : ~27 năm
+     S2  = 0.594 ↓ -0.0017/năm  → 0.25 [PAPER] : ~208 năm
+     S3  = 0.386 ↓ -0.0085/năm  → 0.30 [PAPER] : ~10 năm
+     C5  = 0.692 ↑ +0.0012/năm  → 0.50 [FREE] : đã vượt
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 1.0 (kiểm soát được): 1–2 vòng đang chạy; hiệu ứng phi tuyến còn kiểm soát được
+   CAI_ext (L1–L8, băng chia lại 4/8) = 3.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 ĐANG CHẠY Bẫy Phân cực
+          C₅=0.69 so với 0.50; Phân cực nguồn thu=0.56 so với 0.50 (PROXY THEO MỨC — bài kiểm chính thức cần ε_p, η và tốc độ giảm phân cực tự nhiên)
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 ĐANG CHẠY Vòng Xoáy Khả-kiến–Thu-trích
+          độ siết=+0.2841 so với 0.10 [True] (đòi 0.3045 so với khả thi 0.0204); a₄=0.56 so với 0.55 [True], tỷ phần vật chất 0.85
+     L7 ĐANG CHẠY Bẫy Đảo chiều Dân số
+          d₄=0.59 so với 0.55 [True]; d₂=0.62 so với 0.60 [True]; d₃=0.65 so với 0.60 [True]
+     L8 tắt       Xả áp Thanh niên Dư thừa
+   GHÉP CHÉO & ĐANG CHẠY: L6, L7 → gia tốc hợp thành đang vận hành
+
+   [L6] Đây là chỗ hai bài báo mới trùng nhau. Degrow mô tả nhà nước Minh muộn tăng thuế trên sổ đất đã lạc hậu hàng thế kỷ — "như tiếp tục vắt một con bò đã gầy trơ xương". Displacement mô tả cơ sở thuế dịch vào kim loại vật chất mà không sổ nào thấy được. Cùng một vòng xoáy, cách nhau sáu thế kỷ, một đến từ dân số học và một từ tâm lý học. Sự bất đối xứng khiến nó khó thoát: nâng a₄ là một quyết định riêng tư làm một lần, hạ nó xuống lại đòi người giữ phải tin lại vào sổ sách.
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0072, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: True
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Thương lượng / Căng
+   Tại mốc   : Thương lượng / Căng
+     vượt psi xuống dưới 0.40 [PAPER] tại t≈0.0: Ψ_crit của sccd — điều kiện mạch lạc của R_B bật
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   5 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d3_voluntary_thresh [ANALYST] = 0.6000
+        chế độ điều chỉnh: ĐIỀU CHỈNH TỰ NGUYỆN → HỖN HỢP [+20%]
+        vòng đang chạy: L3+L6+L7 → L3+L6 [+20%]
+     d4_inversion_thresh [ANALYST] = 0.5500
+        vòng đang chạy: L3+L6+L7 → L3+L6 [+20%]
+     d2_trap_thresh [ANALYST] = 0.6000
+        vòng đang chạy: L3+L6+L7 → L3+L6 [+20%]
+     a4_flight_thresh [ANALYST] = 0.5500
+        vòng đang chạy: L3+L6+L7 → L3+L7 [+20%]
+     L3_revpol_thresh [FREE] = 0.5000
+        vòng đang chạy: L3+L6+L7 → L6+L7 [+20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### VN Viet Nam
+ĐỌC ĐỊNH TÍNH — Viet Nam 2026   [spec v1.00 / v2.00, loại nhà nước: developmental_autocracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Thương lượng (Bền có điều kiện)
+      Δ_norm = +0.1704   S = 0.7966   C = 0.3707
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 1.0422  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: HỖN HỢP
+      cả hai kênh đều đang tải áp lực, hoặc không kênh nào trội.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~89 năm)
+     S5  = 0.701 ↓ -0.0062/năm  → 0.15 [PAPER] : ~89 năm
+     S2  = 0.718 ↓ -0.0028/năm  → 0.25 [PAPER] : ~168 năm
+     S3  = 0.460 ↓ -0.0088/năm  → 0.30 [PAPER] : ~18 năm
+     C5  = 0.190 ↑ +0.0047/năm  → 0.50 [FREE] : ~66 năm
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 0.0 (tắt): động lực học tuyến tính chiếm ưu thế
+   CAI_ext (L1–L8, băng chia lại 4/8) = 1.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 ĐANG CHẠY Vòng Xoáy Khả-kiến–Thu-trích
+          độ siết=+0.2235 so với 0.10 [True] (đòi 0.2450 so với khả thi 0.0215); a₄=0.70 so với 0.55 [True], tỷ phần vật chất 0.90
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+   [L6] Đây là chỗ hai bài báo mới trùng nhau. Degrow mô tả nhà nước Minh muộn tăng thuế trên sổ đất đã lạc hậu hàng thế kỷ — "như tiếp tục vắt một con bò đã gầy trơ xương". Displacement mô tả cơ sở thuế dịch vào kim loại vật chất mà không sổ nào thấy được. Cùng một vòng xoáy, cách nhau sáu thế kỷ, một đến từ dân số học và một từ tâm lý học. Sự bất đối xứng khiến nó khó thoát: nâng a₄ là một quyết định riêng tư làm một lần, hạ nó xuống lại đòi người giữ phải tin lại vào sổ sách.
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0104, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Thương lượng / Mạch lạc
+   Tại mốc   : Thương lượng / Mạch lạc
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   1 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d3_voluntary_thresh [ANALYST] = 0.6000
+        chế độ điều chỉnh: HỖN HỢP → ĐIỀU CHỈNH TỰ NGUYỆN [−20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### PH Philippines
+ĐỌC ĐỊNH TÍNH — Philippines 2026   [spec v1.00 / v2.00, loại nhà nước: liberal_democracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Cân bằng (Bền hoặc Tắc nghẽn)
+      Δ_norm = +0.0171   S = 0.4272   C = 0.3843
+   Tầng mạch lạc: Căng
+      Ψ = 0.2536  so với Ψ_crit = 0.40 [PAPER]  → DƯỚI
+   Chế độ điều chỉnh: HỖN HỢP
+      cả hai kênh đều đang tải áp lực, hoặc không kênh nào trội.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~57 năm)
+     S5  = 0.571 ↓ -0.0031/năm  → 0.15 [PAPER] : ~135 năm
+     S2  = 0.536 ↓ -0.0050/năm  → 0.25 [PAPER] : ~57 năm
+     S3  = 0.304 ↓ -0.0102/năm  → 0.30 [PAPER] : ~0 năm
+     C5  = 0.679 ↑ +0.0057/năm  → 0.50 [FREE] : đã vượt
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 3.0 (hợp thành): 3 vòng đang chạy; khủng hoảng có khả năng xảy ra trong 5–10 năm
+   CAI_ext (L1–L8, băng chia lại 4/8) = 3.0 (kiểm soát được)
+     L1 ĐANG CHẠY Bộ Gia tốc Thâu tóm Quy chế
+          Ĉ₁=0.80 so với ngưỡng 0.70 (VƯỢT); Ŝ₂=0.54 so với ngưỡng 0.60 (DƯỚI)
+     L2 ĐANG CHẠY Vòng Xoáy Mất Chính danh
+          S₃=0.30 so với ngưỡng 0.30; λ=0.793 so với ngưỡng 0.80 → BÙNG NỔ
+     L3 ĐANG CHẠY Bẫy Phân cực
+          C₅=0.68 so với 0.50; Phân cực nguồn thu=0.72 so với 0.50 (PROXY THEO MỨC — bài kiểm chính thức cần ε_p, η và tốc độ giảm phân cực tự nhiên)
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 tắt       Vòng Xoáy Khả-kiến–Thu-trích
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+   GHÉP CHÉO & ĐANG CHẠY: L1, L2, L3 → gia tốc hợp thành đang vận hành
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0076, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: True
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Cân bằng / Căng
+   Tại mốc   : Cân bằng / Mất mạch lạc
+   → Băng và/hoặc tầng mạch lạc CHUYỂN trong kỳ. Đọc đây là thứ tự và chiều, không phải thời điểm.
+     vượt s3 xuống dưới 0.30 [PAPER] tại t≈0.3: vòng xoáy mất chính danh L2 của sccd trở thành bùng nổ
+     vượt c1 lên trên 0.70 [PAPER] tại t≈0.0: ngưỡng thâu tóm C₁,crit của sccd — Γ bật
+     vượt psi xuống dưới 0.40 [PAPER] tại t≈0.0: Ψ_crit của sccd — điều kiện mạch lạc của R_B bật
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   2 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d5_violent_thresh [ANALYST] = 0.5500
+        chế độ điều chỉnh: HỖN HỢP → PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC [−20%]
+        vòng đang chạy: L1+L2+L3 → L1+L2+L3+L8 [−20%]
+     L4_c4_thresh [FREE] = 0.7000
+        vòng đang chạy: L1+L2+L3 → L1+L2+L3+L4 [−20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### MY Malaysia
+ĐỌC ĐỊNH TÍNH — Malaysia 2026   [spec v1.00 / v2.00, loại nhà nước: liberal_democracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Thương lượng (Bền có điều kiện)
+      Δ_norm = +0.2488   S = 0.9891   C = 0.3670
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 0.4547  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: HỖN HỢP
+      cả hai kênh đều đang tải áp lực, hoặc không kênh nào trội.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~83 năm)
+     S5  = 0.519 ↓ -0.0045/năm  → 0.15 [PAPER] : ~83 năm
+     S2  = 0.762 ↓ -0.0014/năm  → 0.25 [PAPER] : ~369 năm
+     S3  = 0.576 ↓ -0.0074/năm  → 0.30 [PAPER] : ~37 năm
+     C5  = 0.714 ↑ +0.0017/năm  → 0.50 [FREE] : đã vượt
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 1.0 (kiểm soát được): 1–2 vòng đang chạy; hiệu ứng phi tuyến còn kiểm soát được
+   CAI_ext (L1–L8, băng chia lại 4/8) = 1.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 ĐANG CHẠY Bẫy Phân cực
+          C₅=0.71 so với 0.50; Phân cực nguồn thu=0.72 so với 0.50 (PROXY THEO MỨC — bài kiểm chính thức cần ε_p, η và tốc độ giảm phân cực tự nhiên)
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 tắt       Vòng Xoáy Khả-kiến–Thu-trích
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0108, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Thương lượng / Mạch lạc
+   Tại mốc   : Thương lượng / Mạch lạc
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   Không tham số nào đảo phán quyết dưới nhiễu OAT ±20%. Đó là độ bền trước sai số THAM SỐ mà thôi — nó không nói gì về việc cấu trúc mô hình hay mức đầu vào có đúng hay không.
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### MM Myanmar
+ĐỌC ĐỊNH TÍNH — Myanmar 2026   [spec v1.00 / v2.00, loại nhà nước: failed_state]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Cân bằng (Bền hoặc Tắc nghẽn)
+      Δ_norm = -0.0400   S = 0.0893   C = 0.1893
+   Tầng mạch lạc: Mất mạch lạc
+      Ψ = 0.0100  so với Ψ_crit = 0.40 [PAPER]  → DƯỚI
+   Chế độ điều chỉnh: HỖN HỢP
+      cả hai kênh đều đang tải áp lực, hoặc không kênh nào trội.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: CỔNG S₂ ĐÃ ĐÓNG (điểm cuối bạo lực/thanh niên)
+     S5  = 0.480 ↓ -0.0031/năm  → 0.15 [PAPER] : ~106 năm
+     S2  = 0.161 ↓ -0.0061/năm  → 0.25 [PAPER] : đã vượt
+     S3  = 0.139 ↓ -0.0091/năm  → 0.30 [PAPER] : đã vượt
+     C5  = 0.820 ↑ +0.0068/năm  → 0.50 [FREE] : đã vượt
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 2.0 (kiểm soát được): 1–2 vòng đang chạy; hiệu ứng phi tuyến còn kiểm soát được
+   CAI_ext (L1–L8, băng chia lại 4/8) = 3.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 ĐANG CHẠY Vòng Xoáy Mất Chính danh
+          S₃=0.14 so với ngưỡng 0.30; λ=0.386 so với ngưỡng 0.80 → BÙNG NỔ
+     L3 ĐANG CHẠY Bẫy Phân cực
+          C₅=0.82 so với 0.50; Phân cực nguồn thu=0.50 so với 0.50 (PROXY THEO MỨC — bài kiểm chính thức cần ε_p, η và tốc độ giảm phân cực tự nhiên)
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 ĐANG CHẠY Vòng Xoáy Khả-kiến–Thu-trích
+          độ siết=+0.2753 so với 0.10 [True] (đòi 0.2807 so với khả thi 0.0054); a₄=0.78 so với 0.55 [True], tỷ phần vật chất 0.92
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+   GHÉP CHÉO & ĐANG CHẠY: L2, L3 → gia tốc hợp thành đang vận hành
+
+   [L6] Đây là chỗ hai bài báo mới trùng nhau. Degrow mô tả nhà nước Minh muộn tăng thuế trên sổ đất đã lạc hậu hàng thế kỷ — "như tiếp tục vắt một con bò đã gầy trơ xương". Displacement mô tả cơ sở thuế dịch vào kim loại vật chất mà không sổ nào thấy được. Cùng một vòng xoáy, cách nhau sáu thế kỷ, một đến từ dân số học và một từ tâm lý học. Sự bất đối xứng khiến nó khó thoát: nâng a₄ là một quyết định riêng tư làm một lần, hạ nó xuống lại đòi người giữ phải tin lại vào sổ sách.
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0022, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: True
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Cân bằng / Mất mạch lạc
+   Tại mốc   : Cân bằng / Mất mạch lạc
+     vượt s2 xuống dưới 0.25 [PAPER] tại t≈0.0: cổng θ₂₅ đóng — điểm cuối bạo lực/thanh niên của Degrow
+     vượt s3 xuống dưới 0.30 [PAPER] tại t≈0.0: vòng xoáy mất chính danh L2 của sccd trở thành bùng nổ
+     vượt psi xuống dưới 0.40 [PAPER] tại t≈0.0: Ψ_crit của sccd — điều kiện mạch lạc của R_B bật
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   2 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d5_violent_thresh [ANALYST] = 0.5500
+        chế độ điều chỉnh: HỖN HỢP → PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC [−20%]
+        vòng đang chạy: L2+L3+L6 → L2+L3+L6+L8 [−20%]
+     L3_revpol_thresh [FREE] = 0.5000
+        vòng đang chạy: L2+L3+L6 → L2+L6 [+20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### KH Cambodia
+ĐỌC ĐỊNH TÍNH — Cambodia 2026   [spec v1.00 / v2.00, loại nhà nước: extractive_patrimonial]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Cân bằng (Bền hoặc Tắc nghẽn)
+      Δ_norm = +0.0598   S = 0.5137   C = 0.3642
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 0.8157  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: HỖN HỢP
+      cả hai kênh đều đang tải áp lực, hoặc không kênh nào trội.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~61 năm)
+     S5  = 0.721 ↓ -0.0023/năm  → 0.15 [PAPER] : ~247 năm
+     S2  = 0.630 ↓ -0.0062/năm  → 0.25 [PAPER] : ~61 năm
+     S3  = 0.384 ↓ -0.0099/năm  → 0.30 [PAPER] : ~8 năm
+     C5  = 0.222 ↑ +0.0070/năm  → 0.50 [FREE] : ~40 năm
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 0.0 (tắt): động lực học tuyến tính chiếm ưu thế
+   CAI_ext (L1–L8, băng chia lại 4/8) = 0.0 (tắt)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 tắt       Vòng Xoáy Khả-kiến–Thu-trích
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0111, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Cân bằng / Mạch lạc
+   Tại mốc   : Cân bằng / Mạch lạc
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   2 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     d5_violent_thresh [ANALYST] = 0.5500
+        chế độ điều chỉnh: HỖN HỢP → PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC [−20%]
+     L4_c1_thresh [FREE] = 0.7000
+        vòng đang chạy: — → L4 [−20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### LA Lao PDR
+ĐỌC ĐỊNH TÍNH — Lao PDR 2026   [spec v1.00 / v2.00, loại nhà nước: developmental_autocracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Cân bằng (Bền hoặc Tắc nghẽn)
+      Δ_norm = +0.0309   S = 0.3874   C = 0.3102
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 0.8082  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC
+      d₃ thấp, d₅ cao — không có công cụ tự nguyện và có một lớp thanh niên lớn không phần. Đây là đường cổ đại của Degrow. Cổng kết thúc: Ŝ₂ tụt xuống dưới sàn 0.25 của θ₂₅.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~38 năm)
+     S5  = 0.599 ↓ -0.0012/năm  → 0.15 [PAPER] : ~363 năm
+     S2  = 0.722 ↓ -0.0124/năm  → 0.25 [PAPER] : ~38 năm
+     S3  = 0.368 ↓ -0.0117/năm  → 0.30 [PAPER] : ~6 năm
+     C5  = 0.190 ↑ +0.0141/năm  → 0.50 [FREE] : ~22 năm
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 0.0 (tắt): động lực học tuyến tính chiếm ưu thế
+   CAI_ext (L1–L8, băng chia lại 4/8) = 1.0 (kiểm soát được)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 ĐANG CHẠY Vòng Xoáy Khả-kiến–Thu-trích
+          độ siết=+0.1548 so với 0.10 [True] (đòi 0.1702 so với khả thi 0.0154); a₄=0.58 so với 0.55 [True], tỷ phần vật chất 0.90
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+   [L6] Đây là chỗ hai bài báo mới trùng nhau. Degrow mô tả nhà nước Minh muộn tăng thuế trên sổ đất đã lạc hậu hàng thế kỷ — "như tiếp tục vắt một con bò đã gầy trơ xương". Displacement mô tả cơ sở thuế dịch vào kim loại vật chất mà không sổ nào thấy được. Cùng một vòng xoáy, cách nhau sáu thế kỷ, một đến từ dân số học và một từ tâm lý học. Sự bất đối xứng khiến nó khó thoát: nâng a₄ là một quyết định riêng tư làm một lần, hạ nó xuống lại đòi người giữ phải tin lại vào sổ sách.
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0063, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Cân bằng / Mạch lạc
+   Tại mốc   : Cân bằng / Mạch lạc
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   1 tham số làm ĐẢO phán quyết định tính dưới nhiễu OAT ±20% mà sccd eq (SA) bắt buộc. Một phán quyết dịch chuyển khi đẩy nhẹ 20% một hệ số ANALYST là một GIẢ THUYẾT, không phải một phát hiện.
+     a4_flight_thresh [ANALYST] = 0.5500
+        vòng đang chạy: L6 → — [+20%]
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### BN Brunei Darussalam
+ĐỌC ĐỊNH TÍNH — Brunei Darussalam 2026   [spec v1.00 / v2.00, loại nhà nước: extractive_patrimonial]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Bá quyền (Á bền)
+      Δ_norm = +0.4502   S = 1.4750   C = 0.3495
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 1.6808  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: CHƯA CHỊU ÁP
+      tải đủ thấp để chưa có điều chỉnh nào bị đòi.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~126 năm)
+     S5  = 0.700 ↓ -0.0044/năm  → 0.15 [PAPER] : ~126 năm
+     S2  = 0.895 ↓ -0.0006/năm  → 0.25 [PAPER] : ~1011 năm
+     S3  = 0.751 ↓ -0.0057/năm  → 0.30 [PAPER] : ~80 năm
+     C5  = 0.122 ↑ +0.0022/năm  → 0.50 [FREE] : ~173 năm
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 0.0 (tắt): động lực học tuyến tính chiếm ưu thế
+   CAI_ext (L1–L8, băng chia lại 4/8) = 0.0 (tắt)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 tắt       Vòng Xoáy Khả-kiến–Thu-trích
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0253, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Bá quyền / Mạch lạc
+   Tại mốc   : Bá quyền / Mạch lạc
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   Không tham số nào đảo phán quyết dưới nhiễu OAT ±20%. Đó là độ bền trước sai số THAM SỐ mà thôi — nó không nói gì về việc cấu trúc mô hình hay mức đầu vào có đúng hay không.
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### TL Timor-Leste
+ĐỌC ĐỊNH TÍNH — Timor-Leste 2026   [spec v1.00 / v2.00, loại nhà nước: liberal_democracy]
+==========================================================================
+1. BỘ BA CẤU TRÚC
+   Băng Δ: Thương lượng (Bền có điều kiện)
+      Δ_norm = +0.2244   S = 0.9291   C = 0.3680
+   Tầng mạch lạc: Mạch lạc
+      Ψ = 0.8853  so với Ψ_crit = 0.40 [PAPER]  → trên
+   Chế độ điều chỉnh: PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC
+      d₃ thấp, d₅ cao — không có công cụ tự nguyện và có một lớp thanh niên lớn không phần. Đây là đường cổ đại của Degrow. Cổng kết thúc: Ŝ₂ tụt xuống dưới sàn 0.25 của θ₂₅.
+
+2. CỔNG θ₂₅ — Wheel of Fate viết bằng biến của sccd
+   Phán quyết: MỞ (cổng gần nhất ~34 năm)
+     S5  = 0.714 ↓ -0.0030/năm  → 0.15 [PAPER] : ~189 năm
+     S2  = 0.721 ↓ -0.0137/năm  → 0.25 [PAPER] : ~34 năm
+     S3  = 0.586 ↓ -0.0130/năm  → 0.30 [PAPER] : ~22 năm
+     C5  = 0.452 ↑ +0.0150/năm  → 0.50 [FREE] : ~3 năm
+   Hai kênh điều chỉnh của Degrow kết thúc ở CÙNG một đối tượng — θ₂₅ — qua hai cửa khác nhau: đường tự nguyện/già hóa đóng cửa S₅ (crit 0.15, PAPER), đường bạo lực/thanh niên đóng cửa S₂ (crit 0.25, PAPER). Đóng cửa nào thì Ψ = λ·θ₂₅·(1−C₅) cũng → 0, làm bật điều kiện thứ ba của R_B.
+
+3. VÒNG PHẢN HỒI
+   CAI_core (L1–L4, băng theo PAPER) = 0.0 (tắt): động lực học tuyến tính chiếm ưu thế
+   CAI_ext (L1–L8, băng chia lại 4/8) = 0.0 (tắt)
+     L1 tắt       Bộ Gia tốc Thâu tóm Quy chế
+     L2 tắt       Vòng Xoáy Mất Chính danh
+     L3 tắt       Bẫy Phân cực
+     L4 tắt       Ghép Thoát–Phân mảnh
+     L5 tắt       Vòng Xoáy Tự chủ–Chính danh
+     L6 tắt       Vòng Xoáy Khả-kiến–Thu-trích
+     L7 tắt       Bẫy Đảo chiều Dân số
+     L8 tắt       Xả áp Thanh niên Dư thừa
+
+4. RỦI RO PHÂN NHÁNH  R_B = 0  (sccd eq 23 — cần CẢ BA điều kiện)
+   Δ_norm dưới ngưỡng: False
+   động lượng: False   (dΔ/dt = -0.0089, đo trên 3 năm đầu của quỹ đạo)
+   mạch lạc thấp: False
+
+5. QUỸ ĐẠO ĐẾN MỐC +1 NĂM (KỊCH BẢN CẤU TRÚC, không phải dự báo)
+   Hiện tại      : Thương lượng / Mạch lạc
+   Tại mốc   : Thương lượng / Mạch lạc
+
+6. ĐIỀU GÌ KHIẾN CÁCH ĐỌC NÀY SAI
+   Không tham số nào đảo phán quyết dưới nhiễu OAT ±20%. Đó là độ bền trước sai số THAM SỐ mà thôi — nó không nói gì về việc cấu trúc mô hình hay mức đầu vào có đúng hay không.
+
+GIỚI HẠN NHẬN THỨC
+   36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức.
+   sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST.
+
+### WORLD
+ĐỌC ĐỊNH TÍNH THẾ GIỚI — 2026
+==========================================================================
+
+1. MẠCH LẠC TOÀN CỤC
+   Ψ_G = 0.1035  so với Ψ_G,crit = 0.40 [PAPER] → DƯỚI
+   Sync_Risk = 0.774  = tiên nghiệm 0.58 + trú ẩn 0.194
+   Sync_Risk trong sccd v1.00 chỉ là bốn số lịch sử trần trụi (0.12/0.24/0.41/0.58 cho 1980/95/2010/2024) không có cơ chế sinh. Displacement cấp một cơ chế: dòng vốn trú ẩn đồng pha xuyên quốc gia vì nguyên nhân là một dịch chuyển tâm lý dùng chung, không phải điều kiện nội địa của nước nào. Engine tách riêng hai phần để tiên nghiệm không bị ghi đè âm thầm.
+   CAI_weighted = 0.97  so với 1.50 [PAPER, 1929-39]
+
+2. THẾ GIỚI HAI KÊNH  [Wheel of Fate ở quy mô hệ thống]
+   ĐIỀU CHỈNH TỰ NGUYỆN (2): SG, TH
+   PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC (2): LA, TL
+   HỖN HỢP (6): KH, ID, MY, MM, PH, VN
+   CHƯA CHỊU ÁP (1): BN
+   Độ phân tán điều chỉnh (độ lệch d₃ trọng số) = 0.410
+   Độ phân tán này không phải một chỉ số phụ: nó CHÍNH LÀ chênh lệch áp lực di cư. Nước ở chế độ tự nguyện có kim tự tháp đảo và cần lao động; nước phơi nhiễm bạo lực có thanh niên dư thừa không phần. Một thế giới mà mọi nước cùng d₃ thì không có chênh lệch này, dù áp lực cao đến đâu.
+   Chênh lệch tài năng mạnh nhất (đẩy d₅ × hút d₄):
+     LA → TH   d₅=0.80 × d₄=0.59 = 0.1322
+     TL → TH   d₅=0.79 × d₄=0.59 = 0.1315
+     ID → TH   d₅=0.53 × d₄=0.59 = 0.0886
+     KH → TH   d₅=0.51 × d₄=0.59 = 0.0839
+     MM → TH   d₅=0.49 × d₄=0.59 = 0.0821
+
+3. CHUYỂN DỊCH BÁ QUYỀN
+   Cặp: ID (bá quyền theo trọng số hệ thống) đối SG
+   δ_hc = -0.3839  so với 0.25 [PAPER]
+   T_trap = 0   (khoảng cách dưới ngưỡng: True; đang hội tụ: False; bền (T_min): True)
+   LƯU Ý: hiệu của hai dΔ/dt đã đo; sustained_years được GIẢ ĐỊNH là 10 và KHÔNG được đo — engine chỉ có một năm đầu vào, không có chuỗi, nên điều kiện T_min của sccd không thể được kiểm định thực sự
+
+4. ĐIỀU KIỆN PHÂN NHÁNH TOÀN CỤC  R_B,G = 0
+   mạch lạc toàn cục thấp: True
+   bẫy Thucydides: False
+   gia tốc hợp thành: False
+   R_B,G=1 xác định một ĐIỀU KIỆN CẤU TRÚC (ví tương tự đường đứt gãy đã quá tải), KHÔNG phải một dự báo về một sự kiện hay một thời điểm cụ thể (sccd Part IV §6.3).
+
+5. BẢNG THEO CHỦ THỂ
+   Mã    Băng Δ / Tầng mạch lạc         Chế độ điều chỉnh            Vòng chạy           Ψ
+   ---------------------------------------------------------------------------------------
+   BN    Bá quyền / Mạch lạc            CHƯA CHỊU ÁP                 —               1.681
+   KH    Cân bằng / Mạch lạc            HỖN HỢP                      —               0.816
+   ID    Cân bằng / Căng                HỖN HỢP                      2+6             0.367
+   LA    Cân bằng / Mạch lạc            PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC 6               0.808
+   MY    Thương lượng / Mạch lạc        HỖN HỢP                      3               0.455
+   MM    Cân bằng / Mất mạch lạc        HỖN HỢP                      2+3+6           0.010
+   PH    Cân bằng / Căng                HỖN HỢP                      1+2+3           0.254
+   SG    Bá quyền / Mạch lạc            ĐIỀU CHỈNH TỰ NGUYỆN         5               1.339
+   TH    Thương lượng / Căng            ĐIỀU CHỈNH TỰ NGUYỆN         3+6+7           0.324
+   TL    Thương lượng / Mạch lạc        PHƠI NHIỄM ĐIỀU CHỈNH BẠO LỰC —               0.885
+   VN    Thương lượng / Mạch lạc        HỖN HỢP                      6               1.042
+
+CẢNH BÁO HIỆU CHUẨN
+   ! Ψ_G vốn đã là UNCALIBRATED trong chính sccd v1.00 — Part IV §6.1 nêu các tính chất mà nó phải có nhưng không nêu dạng đóng, nên engine dùng một trung bình hình học có trọng số nhân với (1 − Sync_Risk), thỏa cả hai tính chất đó. Mọi thứ lớp v2 thêm lên trên đều là ANALYST.
+   ! R_B,G xác định một ĐIỀU KIỆN CẤU TRÚC — nguyên văn sccd Part IV §6.3 gọi đó là 'overloaded-fault analogy' — và KHÔNG phải một dự báo về bất kỳ sự kiện hay thời điểm nào.
+   ! Đầu vào của BN, KH, ID, LA, MY, MM, PH, SG, TH, TL, VN được đánh dấu là tiên nghiệm phân tích độ tin cậy thấp, không phải phép đo. sccd Part III §5.3 từ chối trả Δ đã hiệu chuẩn khi hơn 30% một chuỗi là số gán; giá trị điểm nhập tay còn yếu hơn số gán, vì không có chuỗi nào để kiểm định.
+
+--- 8. CALIBRATION ---------------------------------------------------
+{
+ "spec_version": "1.00",
+ "spec2_version": "2.00",
+ "audit": {
+  "v1": {
+   "total": 83,
+   "counts": {
+    "PAPER": 36,
+    "FREE": 46,
+    "DERIVED": 1
+   },
+   "spec_version": "1.00"
+  },
+  "v2": {
+   "total": 46,
+   "counts": {
+    "ANALYST": 45,
+    "DERIVED2": 1
+   },
+   "spec2_version": "2.00"
+  },
+  "headline": "36 trong 83 tham số v1 mang một giá trị được nêu trong paper gốc; 46 tham số thì không. TOÀN BỘ 46 tham số v2 đều là ANALYST hoặc DERIVED2 — hai bài báo mới là định tính và không nêu hệ số nào. Hãy đọc mọi kết quả phụ thuộc v2 theo nghĩa THỨ TỰ: một bảng xếp hạng và một bản đồ điểm vượt ngưỡng, không phải một mức."
+ },
+ "open_problems_v2": [
+  {
+   "id": "OP2-1",
+   "severity": "HIGH",
+   "where": "Block D, bộ định tuyến",
+   "issue": "Phép chia P_violent/P_voluntary = (1−d₃)/d₃ là cách ĐỌC Degrow của engine, không phải phát biểu của chính Degrow. Paper lập luận rằng hai kênh là \"different manifestations of the same fundamental law\" và rằng công cụ hiện đại cho phép người ta \"cut the spiral at its first stage\" — đó đúng là ý nghĩa của một bộ định tuyến. Nhưng paper không bao giờ nói tổng áp lực được BẢO TOÀN qua phép chia. Nếu điều chỉnh tự nguyện rẻ hơn về tổng áp lực — điều hợp lý, vì nó phòng ngừa chứ không phải dọn dẹp quá tải — thì d₃ phải làm giảm chính P_demo chứ không chỉ chuyển hướng nó. Engine phơi điều này ra thành `router_mode` ('conserve' | 'discount') để giả định là một núm điều chỉnh thay vì một chọn lựa bị che. Mặc định: conserve.",
+   "severity_text": "CAO"
+  },
+  {
+   "id": "OP2-2",
+   "severity": "HIGH",
+   "where": "Block A, sigma_agency",
+   "issue": "Liên kết tự-chủ → chính-danh là tuyên bố chịu lực của toàn bộ lớp v2 và đồng thời là tuyên bố ít bằng chứng nhất. Displacement có tư liệu về xói mòn tự chủ và có tư liệu về tái phân bổ vốn; nó KHÔNG có tư liệu về một sự sụt giảm tính chính danh của chế độ, và không đưa ra chuỗi khảo sát nào về sự đồng thuận. Engine khẳng định liên kết này trên cơ sở rằng sự đồng thuận của người bị trị được cấu thành bởi đúng cái quyền tự tác giả mà paper nói đang tan rã. Đó là một LẬP LUẬN, không phải một PHÉP ĐO. Nếu nó sai thì L5 là giả, và drift S₃ ở các nền dân chủ giàu bị phóng đại.",
+   "severity_text": "CAO"
+  },
+  {
+   "id": "OP2-3",
+   "severity": "medium",
+   "where": "Block A, đếm hai lần a₄",
+   "issue": "Dòng vốn trú ẩn đánh vào S₁ hai lần: trực tiếp qua zeta_base_s1, và gián tiếp vì C₄ được nâng lên sẽ cắt τ_eff thông qua chính hệ số (1−Ĉ₄) của sccd. Đây thực sự là hai kênh khác nhau (quy mô cơ sở so với tỷ lệ thu-trích) nhưng engine không thể chứng minh chúng không chồng lấn. Đặt `haven_single_channel=True` để tắt số hạng trực tiếp và dồn toàn bộ qua Ĉ₄.",
+   "severity_text": "trung bình"
+  },
+  {
+   "id": "OP2-4",
+   "severity": "medium",
+   "where": "Block A so với phép đo Ĉ₄ của sccd",
+   "issue": "Ĉ₄ hiệu dụng giờ trộn hai thứ mà sccd Part III đo như một: thoát theo quyền phán xử (Chinn-Ito, OECD DIOC) và thoát theo hình thái tài sản (tỷ phần trú ẩn). Chúng có động lực đảo chiều khác nhau — kiểm soát vốn có thể đóng đường thoát theo quyền phán xử trong một cuối tuần; kim loại trong két nội địa không bị một sắc lệnh nào thu hồi. Coi chúng là một đại lượng vô hướng duy nhất là đánh giá thấp mức độ khó đảo chiều của thoát theo hình thái tài sản.",
+   "severity_text": "trung bình"
+  },
+  {
+   "id": "OP2-5",
+   "severity": "medium",
+   "where": "Chồng lấn giữa Block D và Block A",
+   "issue": "d₂ (bẫy kỳ vọng) và a₂ (xói mòn tự-hiệu-năng) được đo riêng nhưng cả hai đều kéo lùi việc lập gia đình và cả hai đều rút cạn S₃. Trong một bảng dữ liệu OECD 2026 chúng sẽ cộng tuyến mạnh. Engine không khử cộng tuyến, nên một người gọi đặt cả hai đều cao là đang đếm hai lần một áp lực. Việc kiểm định Cronbach (sccd.normalize) sẽ bắt được nếu có chuỗi số liệu; với giá trị điểm nhập tay thì không gì bắt được.",
+   "severity_text": "trung bình"
+  },
+  {
+   "id": "OP2-6",
+   "severity": "low",
+   "where": "L8 so với L2 của sccd",
+   "issue": "Điều kiện kích hoạt của L8 chồng lấn với L2 của sccd (vòng xoáy mất chính danh) mỗi khi thanh niên dư thừa đã đẩy S₃ xuống dưới 0.30. CAI khi đó đếm hai vòng ở nơi mà có thể lập luận chỉ có một cơ chế đang chạy. Bản đồ ghép chéo đánh dấu cặp này, và engine báo `cai_overlap_warning`, nhưng phép đếm không được hiệu chỉnh.",
+   "severity_text": "thấp"
+  },
+  {
+   "id": "OP2-7",
+   "severity": "low",
+   "where": "thừa hưởng",
+   "issue": "Mọi thứ trong sccd.spec.KNOWN_INCONSISTENCIES vẫn còn hiệu lực. INC-7/8/9 ở mức CRITICAL và vì vậy engine v2 chạy MẶC ĐỊNH với patch=True và c1_dynamic=True của sccd, tức đảo ngược mặc định của v1.00. Lý do: Block A cấp một cơ chế có nguồn cho số hạng giảm phân cực mà INC-7 nói là thiếu (tổ chức phản-công-nghệ thông qua Ĉ₂), và Block D cấp một cơ chế cho số hạng phục hồi chính danh mà INC-8 nói là thiếu (hiệu quả giao hàng chính sách thông qua Ŝ₄). Đặt `faithful_v1=True` để tái lập paper nguyên văn thay thế.",
+   "severity_text": "thấp"
+  }
+ ],
+ "known_inconsistencies_v1": [
+  {
+   "id": "INC-1",
+   "severity": "low",
+   "where": "Part II Table 1",
+   "issue": "Các dòng trọng số theo loại nhà nước đều cộng đúng 1.00 — ràng buộc được thỏa. Không cần hành động.",
+   "severity_text": "thấp"
+  },
+  {
+   "id": "INC-2",
+   "severity": "HIGH",
+   "where": "Part II eq (6) so với eq (7)",
+   "issue": "eq(6) áp phép điều chỉnh thoát Π lên toàn bộ Σ v_j·Ĉ_j; eq(7) áp nó chỉ lên v₁·Ĉ₁. Hai cách này không tương đương. Mặc định của engine là eq(7) (c1_only); đổi qua spec.PI_SCOPE.",
+   "severity_text": "CAO"
+  },
+  {
+   "id": "INC-3",
+   "severity": "medium",
+   "where": "Part I Table 1 so với Part II Table 2",
+   "issue": "Part I nói Δ được chuẩn hóa về (−1,1); Part II dẫn ra Δ_norm ∈ (−0.40, 1.00). Biên các băng khớp nhau; chặn dưới thì không. Engine dùng Part II.",
+   "severity_text": "trung bình"
+  },
+  {
+   "id": "INC-4",
+   "severity": "medium",
+   "where": "Part II §2.1 so với eq (3)",
+   "issue": "Paper nói λ(0.20)≈0.55 và λ(0.38)≈0.93, nhưng eq(2) với các tham số của eq(3) cho ra 0.502 và 1.037. λ(0.50)=1.40 thì khớp chính xác. Hoặc các ví dụ được dẫn dùng k/mid khác, hoặc chúng chỉ là con số xấp xỉ.",
+   "severity_text": "trung bình"
+  },
+  {
+   "id": "INC-5",
+   "severity": "HIGH",
+   "where": "Part III §3.5 so với Part IV §2.3",
+   "issue": "C₅ của Mỹ năm 2024 được nêu là 0.72 (Part III, MFS) và 0.74 (Part IV §2.3 và Part V V.US). Chênh lệch nhỏ nhưng engine buộc phải chọn một; mặc định lấy 0.74 (Part V).",
+   "severity_text": "CAO"
+  },
+  {
+   "id": "INC-6",
+   "severity": "medium",
+   "where": "Part III §3.5 so với Part IV §2.3",
+   "issue": "Mốc nền C₅ của Mỹ năm 1980 được nêu là 0.35 (Part III) và 0.28 (Part IV §2.3).",
+   "severity_text": "trung bình"
+  },
+  {
+   "id": "INC-7",
+   "severity": "CRITICAL",
+   "where": "Part IV eq (NL), dC₅/dt",
+   "issue": "dC₅/dt = C₅_structural + ε_p·C₅(1−C₅)·Rev_Pol + η·C₅²·C₃ + ξ·Ĉ₄Ĉ₁(1−C₅). CẢ BA số hạng nội sinh đều DƯƠNG và không có số hạng giảm phân cực nào, dù §2.3 định nghĩa bài kiểm kích hoạt L3 dựa trên một 'Natural_Depolarisation_Rate'. Như đã viết, C₅ tăng đơn điệu về 1 trên mọi quỹ đạo, do đó Ψ = λ·θ₂₅·(1−C₅) → 0 bất kể kịch bản. CÁCH SỬA: thêm −ν·C₅ (hoặc −ν·C₅·C₂, vì Part IV §2.3 gọi C₂ là 'the primary counterweight to L3') vào dC₅/dt.",
+   "severity_text": "NGHIÊM TRỌNG"
+  },
+  {
+   "id": "INC-8",
+   "severity": "CRITICAL",
+   "where": "Part IV eq (NL), dS₃/dt",
+   "issue": "dS₃/dt = S₃_natural − ρ_b(1−λ/λmax)² − ζ·C₅^ψ(S₃−S₃floor). Cả hai số hạng nội sinh đều ÂM. Với S₃_natural là ngoại sinh, S₃ chỉ có thể suy giảm, nên mô hình không thể sinh ra chính sự TÁI LẬP tính chính danh mà Part V §2.3 ghi nhận cho giai đoạn 1980–86 (λ 1.2 → 1.7) hay cho đợt dựng lực 1941–45. Part IV §2.2 có gọi tên một tốc độ 'natural legitimacy recovery' nhưng nó không bao giờ vào hệ phương trình. CÁCH SỬA: thêm một số hạng phục hồi, ví dụ +σ·(S₃_target(performance) − S₃), được điều khiển bởi mức thành công thực thi S₄.",
+   "severity_text": "NGHIÊM TRỌNG"
+  },
+  {
+   "id": "INC-9",
+   "severity": "CRITICAL",
+   "where": "Part IV §2.1 so với vector trạng thái §7.1",
+   "issue": "§2.1 viết tường minh phương trình C₁ — 'dC₁/dt = v₁·D_drain→C₁ + r(t)C₁(1−C₁/C₁max) − τ_eff·C₁ + μ·Γ' — nhưng §7.1 (INT) liệt kê các biến trạng thái là [S_i, C_i, S₃,i, C₅,i]: C₁ BỊ BỎ SÓT và bị coi là ngoại sinh. Hệ quả: với C₁ ngoại sinh, cả dS₃/dt lẫn dC₅/dt đều không phụ thuộc S hay C, nên [S₃,C₅] thành một hệ con TỰ TRỊ chỉ chạy một chiều vào [S,C]. Trong eq (NL) như đã viết KHÔNG tồn tại vòng phản hồi khép kín nào cả — L1 và L4 bị hở, và bảng ghép chéo ở §2.4 không được phương trình nào hiện thực hóa. Dấu hiệu chẩn đoán: mọi kịch bản đều cho cùng một C₅(t) và cùng một Ψ(t). CÁCH SỬA: nâng C₁ thành biến trạng thái thứ năm bằng chính phương trình của §2.1. Trong engine: simulate(..., c1_dynamic=True).",
+   "severity_text": "NGHIÊM TRỌNG"
+  }
+ ],
+ "patch_defaults": {
+  "sccd_patch": true,
+  "c1_dynamic": true,
+  "rationale_key": "patch.rationale",
+  "rationale": "spec2 OP2-7: INC-7/8/9 ở mức CRITICAL, và hai block mới cấp cơ chế có nguồn cho đúng những số hạng mà INC-7 và INC-8 nói là thiếu. Truyền faithful_v1=True vào lớp dynamics để tái lập paper nguyên văn thay thế."
+ },
+ "epistemic_limit_key": "epistemic.limit",
+ "epistemic_limit": "sccd Part V §1, nguyên văn: 'We do not, at this stage, claim predictive precision — generating quantitatively accurate forecasts from an incompletely calibrated formal model would be epistemically irresponsible. The validation standard is qualitative-structural.' Lớp v2 còn yếu hơn thế nữa, vì toàn bộ 46 tham số của nó đều là ANALYST."
+}
+JSON -> sea2027/sea2027_vi.json
+

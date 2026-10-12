@@ -1,0 +1,218 @@
+========================================================================================
+SCCD ENGINE VALIDATION   spec v1.00
+========================================================================================
+
+[1] LEGITIMACY MULTIPLIER λ(S₃) — Part II eq (2) with eq (3) parameters
+    λ = 0.30 + 2.20 · S₃^2.5 / (S₃^2.5 + 0.50^2.5)
+----------------------------------------------------------------------------------------
+  PASS  λ(0.50) — paper §2.1 'achieves λ ≈ 1.40'             got +1.4000  paper +1.4000  (tol ±0.005)
+  FAIL  λ(0.20) — paper §2.1 'achieves λ ≈ 0.55'             got +0.5022  paper +0.5500  (tol ±0.02)
+  FAIL  λ(0.38) — paper Part V V.US 'λ ≈ 0.93'               got +1.0368  paper +0.9300  (tol ±0.02)
+  PASS  λ(0.4317) — paper Part V 'λ ≈ 1.2 (1980)'            got +1.2003  paper +1.2000  (tol ±0.02)
+  PASS  λ(0.625)  — paper Part V 'λ ≈ 1.7 (1986)'            got +1.6991  paper +1.7000  (tol ±0.02)
+
+    λ CEILING TEST: S₃ = 1.0 (theoretical maximum) → λ = 2.1695
+    λ_max declared in eq (3) = 2.50 (an ASYMPTOTE, unreachable)
+    Paper asserts λ ≈ 2.3 for the US in 1945/1965 (Part V §2.1, §2.2).
+  FAIL  λ ≈ 2.3 is UNREACHABLE: max attainable λ = 2.1695 at S₃ = 1.0
+        → the Hill form caps λ at λ_min + (λ_max−λ_min)·1/(1+0.5^2.5)
+        → = 0.30 + 2.20 × 0.8498 = 2.1695
+        → FIX: either S₃,mid < 0.30, or k > 6, or λ_max ≈ 2.65+, or restate the 1945 figure as ~2.17
+
+[2] COHERENCE INDEX Ψ — Part II eq (22):  Ψ = λ(S₃) · θ₂₅ · (1 − C₅)
+    Paper's own US-2024 inputs: S₃ = 0.38, C₅ = 0.74  (Part V V.US)
+----------------------------------------------------------------------------------------
+    λ(0.38)   = 1.0368
+    θ₂₅       = 0.982012   (S₂=0.90 vs crit 0.25; S₅=0.35 vs crit 0.15)
+    (1 − C₅)  = 0.2600
+  FAIL  Ψ(US 2024) — paper Part V V.US 'Ψ ≈ 0.43'            got +0.2647  paper +0.4300  (tol ±0.03)
+
+    Using the paper's OWN quoted λ = 0.93 instead: Ψ = 0.2375
+    Still ≠ 0.43. The identity Ψ = λ·θ₂₅·(1−C₅) with θ₂₅ ≤ 1 and C₅ = 0.74
+    bounds Ψ ≤ λ × 0.26 = 0.2418. 0.43 is OUTSIDE this bound.
+
+    BACK-SOLVE: to get Ψ = 0.43 at C₅ = 0.74 you need λ = 1.6841
+                → which requires S₃ = 0.6177, not the stated 0.38
+    BACK-SOLVE: to get Ψ = 0.43 at S₃ = 0.38 you need (1−C₅) = 0.4223
+                → C₅ = 0.5777, not the stated 0.74
+
+    CONSEQUENCE — this is not cosmetic. Ψ_crit = 0.40 (eq 23).
+      Paper's Ψ = 0.43  → 'marginally ABOVE critical' → R_B = 0 → no bifurcation flag
+      Engine's Ψ = 0.265 → BELOW critical → R_B = 1 if dΔ/dt < −0.05
+      The headline structural verdict FLIPS on this single arithmetic point.
+
+[3] LOOP ACTIVATION — Part IV §2, Part V (V.US) for the US in 2024
+----------------------------------------------------------------------------------------
+SCCD DIAGNOSIS — United States 2024   [spec v1.00, state_type=liberal_democracy]
+==============================================================================
+  S  = +0.3949    (λ=1.037  θ₂₅=0.9820  core=0.3809)
+  C  = +0.3761    (Π=0.570  num=0.6156  den=1.6366)   [UNCALIBRATED: φ, ψ, α_exit]
+  Δ  = +0.0188   Δ_norm = +0.0075
+  REGIME: Equilibrium  (Stable or Gridlock)
+  Ψ  = 0.2647   vs Ψ_crit = 0.40  → BELOW
+------------------------------------------------------------------------------
+  FEEDBACK LOOPS   CAI = 2.00 (manageable): 1-2 loops active; manageable non-linear effects
+    L1 damped  Regulatory Capture Accelerator
+        Ĉ₁=0.82 vs crit 0.70 (OVER); Ŝ₂=0.90 vs crit 0.60 (above)
+    L2 damped  Legitimacy Death Spiral
+        S₃=0.38 vs crit 0.30; λ=1.037 vs crit 0.80 → APPROACHING
+    L3 ACTIVE  Polarisation Trap [UNCAL]
+        C₅=0.74 vs 0.50; Rev_Pol=0.78 vs 0.50 (LEVEL PROXY — formal test needs ε_p, η, natural rate)
+    L4 ACTIVE  Exit-Fragmentation Coupling [UNCAL]
+        Ĉ₄=0.86 vs 0.70; Ĉ₁=0.82 vs 0.70 (LEVEL PROXY — formal test needs ξ, χ, natural C₅ decay, G_base)
+    CROSS-COUPLED & ACTIVE: L3, L4 → compound acceleration operative
+------------------------------------------------------------------------------
+  BIFURCATION RISK  R_B = 0
+        Δ_norm=+0.008 vs -0.08 [False]; dΔ/dt=-0.006 vs -0.05 [False]; Ψ=0.265 vs 0.40 [True]
+------------------------------------------------------------------------------
+  UNCERTAINTY (2000 MC draws)
+    Δ_norm median +0.0051  80% CI [-0.0552, +0.0699]  95% CI [-0.0832, +0.1036]
+    regime distribution: Equilibrium 90%, Negotiated 8%, Crisis 3%
+------------------------------------------------------------------------------
+  CALIBRATION WARNINGS
+    ! C and Δ depend on φ, ψ, α_exit — all FREE in the paper. Δ level is therefore scenario-relative, not absolute.
+    ! Loops L3, L4 use LEVEL-PROXY activation tests; formal tests need ε_p, η, χ, ξ and the natural depolarisation/decay rates.
+    ! CAI uses unit Coupling_Weight and Loop_Speed — the paper states no values, so CAI is effectively a count of active loops.
+    ! S₃ is the highest-risk proxy (Part III §2.3). Widen all λ-dependent intervals.
+
+    Paper's claimed values vs engine, same inputs:
+  FAIL      L1 active (Ĉ₁=0.82 > 0.70)                       got +0.0000  paper +1.0000  (tol ±0.5)  paper: ACTIVE above threshold
+  PASS      CAI                                              got +2.0000  paper +2.1000  (tol ±0.6)  paper: CAI ≈ 2.1
+  PASS      Δ_norm                                           got +0.0075  paper -0.0200  (tol ±0.1)  paper: Δ ≈ −0.02
+
+    NOTE on L1: the paper's own §2.1 threshold is 'Ĉ₁ > 0.70 AND Ŝ₂ < 0.60'.
+    US Ŝ₂ ≈ 0.90 (advanced democracy, TCAI → 1), so the CONJUNCTION FAILS
+    even though Ĉ₁ = 0.82 clears its threshold. Part V nonetheless calls L1
+    'ACTIVE above threshold' using the Ĉ₁ condition alone.
+    → INCONSISTENCY: Part IV §2.1 (joint condition) vs Part V V.US (C₁ only).
+    → Engine implements the joint condition (Part IV, the formal statement).
+
+[4] US 1945 IMPERIAL APEX — Part V §2.1 asserts Δ ≈ 0.72
+----------------------------------------------------------------------------------------
+    S = 1.9880   C = 0.2429   Δ = +1.7450   Δ_norm = +0.6980
+    λ = 2.1319  (paper asserts λ ≈ 2.3; ceiling is 2.170)
+    regime = Imperial
+  PASS      Δ_norm(US 1945) — paper 'Δ ≈ 0.72'               got +0.6980  paper +0.7200  (tol ±0.08)
+
+[5] PARAMETER SPECIFICATION AUDIT
+----------------------------------------------------------------------------------------
+    PAPER     36 / 83   (43.4%)
+    DERIVED    1 / 83   ( 1.2%)
+    FREE      46 / 83   (55.4%)
+
+    The 46 FREE parameters (no numeric value anywhere in Parts I-V):
+      · epsilon                II.eq4       smooth-Heaviside width; paper gives no value
+      · phi                    II.eq6       fragmentation sensitivity — NO value in paper
+      · psi                    II.eq6       fragmentation exponent, ψ>=1 — NO value in paper
+      · alpha_exit             II.eq7       exit neutralisation fraction — NO value in paper
+      · delta_p                II.eq13      productive drain coefficient
+      · delta_d                II.eq13      distributional drain coefficient
+      · delta_s                II.eq13      spontaneous drain coefficient (>0 always)
+      · policy                 II.eq13      Policy(t) redistribution-vs-investment tilt
+      · G_base                 II.eq12      baseline surplus generation rate
+      · g_tech                 II.eq12      tech windfall scaling
+      · g_war                  II.eq12      war dividend scaling
+      · tau_T                  II.eq12      tech shock decay time constant (yr)
+      · tau_W                  II.eq12      war shock decay time constant (yr)
+      · r_cap                  II.eq16      return on private capital
+      · c1_max                 II.eq16      carrying capacity of domestic private capital
+      · tau_max                II.eq17      max effective extraction rate
+      · omega_w                II.eq18      civilian dissipation coefficient
+      · s1_floor               IV.NL        S₁ floor
+      · s3_floor               IV.NL        S₃ floor
+      · kappa                  IV.L2        enforcement-cost drain coefficient
+      · rho_b                  IV.L2        coercion-backlash coefficient
+      · epsilon_p              IV.L3        political-entrepreneurship polarisation rate
+      · eta_echo               IV.L3        echo-chamber amplification
+      · zeta                   IV.L3        policy-incoherence S₃ erosion
+      · L3_c5_thresh           IV.§2.3      no explicit numeric threshold given
+      · L3_revpol_thresh       IV.§2.3      no explicit numeric threshold given
+      · chi                    IV.L4        exit-driven fiscal compression
+      · xi                     IV.L4        exit-driven C₅ increase
+      · L4_c4_thresh           IV.§2.4      inferred; paper states 'high C₄' qualitatively
+      · L4_c1_thresh           IV.§2.4      inferred from C₁,crit
+      · coupling_L1            IV.CAI       
+      · coupling_L2            IV.CAI       
+      · coupling_L3            IV.CAI       
+      · coupling_L4            IV.CAI       
+      · speed_L1               IV.CAI       
+      · speed_L2               IV.CAI       
+      · speed_L3               IV.CAI       
+      · speed_L4               IV.CAI       
+      · tau_cap                IV.N3        capital flow sensitivity
+      · sigma_lab              IV.N4        talent flow sensitivity
+      · iota                   IV.N6        information flow coefficient
+      · eps_speed              IV.TT1       min convergence speed
+      · T_min                  IV.TT1       min sustained convergence period (yr)
+      · nu_depol               PATCH/IV.§2.3 natural depolarisation: −ν·C₅·C₂ in dC₅/dt. Part
+      · sigma_rec              PATCH/IV.§2.2 legitimacy recovery: +σ·(S₃_target − S₃) in dS₃/
+      · s3_target_gain         PATCH        maps S₄ performance to the S₃ attractor: S₃_targ
+
+[6] WHICH OUTPUTS ARE CALIBRATED?
+----------------------------------------------------------------------------------------
+    CALIBRATED (PAPER params only) — usable as-is:
+      λ(S₃), θ₂₅, S, regime bands, Ψ, L1/L2 activation, R_B, Γ, Ĉ₁,crit
+    UNCALIBRATED (depends on ≥1 FREE param) — scenario-relative only:
+      C (needs φ, ψ, α_exit)  →  therefore Δ and Δ_norm too
+      L3/L4 activation (needs ε_p, η, χ, ξ, natural rates)
+      CAI (needs Coupling_Weight, Loop_Speed)
+      every ODE trajectory (needs δ_p, δ_d, δ_s, G_base, r, τ_max, ω, κ, ρ_b, ζ)
+      Ψ_G, T_trap timing, attractor selection
+
+[7] API READINESS OF THE TEN-COMPONENT INPUT VECTOR
+----------------------------------------------------------------------------------------
+    7 of 10 primary proxies are fetchable without manual work.
+    AUTO:    s1, s2, s5, c1, c2, c3, c4
+    BLOCKED: s3, s4, c5
+
+    [   AUTO] S₁ — Fiscal Extraction Capacity            quality=High
+    [   AUTO] S₂ — Coercive Monopoly Index               quality=Medium
+    [BLOCKED] S₃ — Legitimacy Capital                    quality=Medium
+              ✗ HARD BLOCKER: military enlistment bonus / conscription evasion (L_vol) (CODING): Part III P.4: bonus-to-GD
+              ~ degraded without: tax gap estimates (L_comply) (MANUAL) → WVS tax-morale item (BULK_REG, irregular waves)
+    [BLOCKED] S₄ — Administrative Penetration Depth      quality=Med-High
+              ✗ HARD BLOCKER: policy implementation ratio (CODING): Part III §2.4: 'requires manual coding for historical 
+    [   AUTO] S₅ — Temporal Leverage                     quality=Medium
+              ~ degraded without: senior civil service tenure records (T_horizon) (CODING) → fiscal component only (NetDebt/Un
+    [   AUTO] C₁ — Private Capital Concentration         quality=High
+              ~ degraded without: revolving-door rates (CODING) → PAF from lobbying+campaign finance only (2 of 3 terms), qual
+    [   AUTO] C₂ — Civil Organization Density            quality=Med-High
+    [   AUTO] C₃ — Information Autonomy                  quality=High
+              ~ degraded without: Reuters Institute Digital News Report (MANUAL) → V-Dem media indicators (listed above)
+    [   AUTO] C₄ — Exit Option Availability              quality=High
+    [BLOCKED] C₅ — Preference Fragmentation Index        quality=Med-High
+              ✗ HARD BLOCKER: Reuters Institute / Comscore (audience overlap) (MANUAL): P_media: audience-overlap Gini is 
+
+    STRUCTURAL OBSERVATION:
+    The model's two NON-LINEAR HINGES are S₃ (the λ multiplier, which
+    scales everything) and C₅ (the fragmentation denominator).
+    Both of those are in the BLOCKED set: ['c5', 's3'].
+    → The parts of the ten-vector that are easy to automate are the
+      LINEAR, additive ones (S₁, S₅, C₁, C₄). The parts that drive the
+      non-linearity — and therefore the regime calls — are the ones
+      with no machine-readable source. This is the single biggest
+      practical obstacle to an API-fed SCCD engine.
+
+========================================================================================
+RESULT: 6 passed / 11 checks
+========================================================================================
+
+KNOWN INCONSISTENCIES REGISTERED IN spec.py:
+  [   low] INC-1 Part II Table 1
+           State-type weight rows all sum to 1.00 — constraint satisfied. No action.
+  [  HIGH] INC-2 Part II eq (6) vs eq (7)
+           eq(6) applies the exit-adjustment Π to the entire Σ v_j Ĉ_j; eq(7) applies it to v₁·Ĉ₁ only. Not equivalent. Engine default = eq(7) (c1_only); switch via spec.PI_SCOPE.
+  [medium] INC-3 Part I Table 1 vs Part II Table 2
+           Part I states Δ normalised to (-1,1); Part II derives Δ_norm ∈ (-0.40,1.00). Band edges agree; lower bound does not. Engine uses Part II.
+  [medium] INC-4 Part II §2.1 vs eq (3)
+           Paper states λ(0.20)≈0.55 and λ(0.38)≈0.93, but eq(2) with the eq(3) parameters yields 0.502 and 1.037. λ(0.50)=1.40 matches exactly. Either the quoted examples use different k/mid, or they are approximations.
+  [  HIGH] INC-5 Part III §3.5 vs Part IV §2.3
+           US C₅ in 2024 given as 0.72 (Part III, MFS) and 0.74 (Part IV §2.3 and Part V V.US). Small but the engine must pick one; defaults to 0.74 (Part V).
+  [medium] INC-6 Part III §3.5 vs Part IV §2.3
+           US C₅ 1980 baseline given as 0.35 (Part III) and 0.28 (Part IV §2.3).
+  [CRITICAL] INC-7 Part IV eq (NL), dC₅/dt
+           dC₅/dt = C₅_structural + ε_p·C₅(1−C₅)·Rev_Pol + η·C₅²·C₃ + ξ·Ĉ₄Ĉ₁(1−C₅). ALL THREE endogenous terms are POSITIVE and there is no depolarisation term, even though §2.3 defines the L3 activation test against a 'Natural_Depolarisation_Rate'. As written, C₅ is monotonically increasing toward 1 for every trajectory, hence Ψ = λ·θ₂₅·(1−C₅) → 0 regardless of scenario. FIX: add −ν·C₅ (or −ν·C₅·C₂, since Part IV §2.3 names C₂ as 'the primary counterweight to L3') to dC₅/dt.
+  [CRITICAL] INC-8 Part IV eq (NL), dS₃/dt
+           dS₃/dt = S₃_natural − ρ_b(1−λ/λmax)² − ζC₅^ψ(S₃−S₃floor). Both endogenous terms are NEGATIVE. With S₃_natural exogenous, S₃ can only decay, so the model cannot generate the legitimacy RECONSTITUTION that Part V §2.3 documents for 1980-86 (λ 1.2 → 1.7) or the 1941-45 build-up. Part IV §2.2 names a 'natural legitimacy recovery' rate but it never enters the ODE. FIX: add a recovery term, e.g. +σ·(S₃_target(performance) − S₃), driven by S₄ implementation success.
+  [CRITICAL] INC-9 Part IV §2.1 vs §7.1 state vector
+           §2.1 writes the C₁ equation explicitly — 'dC₁/dt = v₁·D_drain→C₁ + r(t)C₁(1−C₁/C₁max) − τ_eff·C₁ + μ·Γ' — but §7.1 (INT) lists the state variables as [S_i, C_i, S₃,i, C₅,i]: C₁ is OMITTED and treated as exogenous. Consequence: with C₁ exogenous, neither dS₃/dt nor dC₅/dt depends on S or C, so [S₃,C₅] is an AUTONOMOUS subsystem driving [S,C] one-way. There is NO closed feedback loop in eq (NL) at all — L1 and L4 are open, and the cross-coupling table of §2.4 is not implemented by the equations as written. Diagnostic: every scenario gives identical C₅(t) and Ψ(t). FIX: promote C₁ to a fifth state variable using §2.1's own equation. Engine: simulate(..., c1_dynamic=True).

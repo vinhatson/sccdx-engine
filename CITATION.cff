@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this software or the models it implements, please cite the papers."
+title: "SCCD-X Engine — Sovereign-Civilian Capacity Dynamics, extended"
+abstract: >-
+  A qualitative structural engine for world politics. It implements Sovereign-
+  Civilian Capacity Dynamics (sccd v1.00) and supplies its two exogenous ODE
+  terms from two further papers: a demographic forcing block (The Wheel of Fate)
+  and an AI-adoption forcing block (The Displacement Hypothesis). Ships a
+  fully bilingual VI/EN interface and a worked eleven-polity ASEAN application.
+authors:
+  - family-names: "Vi"
+    given-names: "Nhật Sơn"
+type: software
+license: Apache-2.0
+keywords:
+  - state capacity
+  - political economy
+  - system dynamics
+  - fragility
+  - demography
+  - artificial intelligence
+  - ASEAN
+references:
+  - type: article
+    title: "Sovereign-Civilian Capacity Dynamics, Parts I-V"
+    authors:
+      - family-names: "Vi"
+        given-names: "Nhật Sơn"
+  - type: article
+    title: >-
+      The Wheel of Fate: From the Ancient "Prosperity Trap" to the Modern
+      Fertility Crisis
+    authors:
+      - family-names: "Vi"
+        given-names: "Nhật Sơn"
+  - type: article
+    title: "The Displacement Hypothesis"
+    edition: "2nd"
+    authors:
+      - family-names: "Vi"
+        given-names: "Nhật Sơn"
