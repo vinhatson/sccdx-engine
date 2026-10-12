@@ -77,7 +77,7 @@ same fragility verdict.
 ## Quick start
 
 ```bash
-git clone https://github.com/<your-username>/sccdx-engine.git
+git clone https://github.com/vinhatson/sccdx-engine.git
 cd sccdx-engine
 pip install numpy
 

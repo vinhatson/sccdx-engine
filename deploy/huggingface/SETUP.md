@@ -41,7 +41,7 @@ The Space runs the same `serve.py` with no code change — it already reads
 A Space is itself a git repository. Clone it, copy the engine in, push.
 
 ```bash
-git clone https://huggingface.co/spaces/<your-hf-username>/sccdx-engine
+git clone https://huggingface.co/spaces/vinhatson/sccdx-engine
 cd sccdx-engine
 
 # copy the engine in, but NOT its .git directory

@@ -26,7 +26,7 @@ chính là bản ngắn.
 Python 3.9 trở lên.
 
 ```bash
-git clone https://github.com/<tên-tài-khoản>/sccdx-engine.git
+git clone https://github.com/vinhatson/sccdx-engine.git
 cd sccdx-engine
 pip install numpy
 ```

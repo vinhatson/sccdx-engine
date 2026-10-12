@@ -77,7 +77,7 @@ Kết quả số được khẳng định là **giống hệt nhau** giữa hai 
 ## Dùng nhanh
 
 ```bash
-git clone https://github.com/<tên-tài-khoản>/sccdx-engine.git
+git clone https://github.com/vinhatson/sccdx-engine.git
 cd sccdx-engine
 pip install numpy
 
