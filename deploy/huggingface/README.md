@@ -32,6 +32,6 @@ ranking and a threshold-crossing map, not a level. Open the **audit** tab to
 see where each number came from.
 
 Source, documentation and the three source papers:
-<https://github.com/REPO_SLUG>
+<https://github.com/vinhatson/sccdx-engine>
 
 Licensed Apache-2.0. Cite the papers, not the Space.

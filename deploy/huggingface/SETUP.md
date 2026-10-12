@@ -72,11 +72,11 @@ cp /path/to/github/sccdx-engine/{validate_v1.py,Dockerfile,LICENSE,NOTICE} .
 If you do skip `sea2027/`, drop the `RUN python validate2.py` line from the
 Dockerfile — some of the 119 checks read files under `sea2027/`.
 
-## 3. Fill in the link
+## 3. Check the link back
 
-The Space README has a `REPO_SLUG` placeholder. Replace it with your GitHub
-path, for example `vinhatson/sccdx-engine`, so the Space points back at the
-source.
+The Space README already points at `github.com/vinhatson/sccdx-engine`. If you
+publish the repository under a different account or name, update that line so
+the Space points back at the real source.
 
 ## 4. Link the two together
 
